@@ -1,5 +1,6 @@
 part of youtube_v3_api_client;
 
+/** Rights management policy for YouTube resources. */
 class AccessPolicy {
 
   /** The value of allowed indicates whether the access to the policy is allowed or denied by default. */
@@ -1031,6 +1032,8 @@ class ChannelListResponse {
 
 /** Basic details about a channel, including title, description and thumbnails. */
 class ChannelSnippet {
+
+  /** The description of the channel. */
   String description;
 
   /** The date and time that the channel was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
@@ -2675,11 +2678,16 @@ class SubscriptionSnippetThumbnails {
 
 }
 
+/** A thumbnail is an image representing a YouTube resource. */
 class Thumbnail {
+
+  /** (Optional) Height of the thumbnail image. */
   int height;
 
   /** The thumbnail image's URL. */
   String url;
+
+  /** (Optional) Width of the thumbnail image. */
   int width;
 
   /** Create new Thumbnail from JSON data */
@@ -2983,6 +2991,7 @@ class VideoCategorySnippet {
 
 }
 
+/** Details about the content of a YouTube Video. */
 class VideoContentDetails {
 
   /** The value of captions indicates whether the video has captions or not. */
@@ -3150,6 +3159,7 @@ class VideoListResponse {
 
 }
 
+/** Details about monetization of a YouTube Video. */
 class VideoMonetizationDetails {
 
   /** The value of access indicates whether the video can be monetized or not. */
