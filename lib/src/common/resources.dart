@@ -126,6 +126,8 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [id] - The id parameter specifies a comma-separated list of the YouTube channel ID(s) for the resource(s) that are being retrieved. In a channel resource, the id property specifies the channel's YouTube channel ID.
    *
+   * [managedByMe] - Set this parameter's value to true to instruct the API to only return channels managed by the content owner that the onBehalfOfContentOwner parameter specifies. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
+   *
    * [maxResults] - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
    *   Default: 5
    *   Minimum: 0
@@ -135,11 +137,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [mySubscribers] - Set this parameter's value to true to retrieve a list of channels that subscribed to the authenticated user's channel.
    *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   *
    * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChannelListResponse> list(String part, {String categoryId, String id, int maxResults, bool mine, String mySubscribers, String pageToken, Map optParams}) {
+  Future<ChannelListResponse> list(String part, {String categoryId, String id, bool managedByMe, int maxResults, bool mine, String mySubscribers, String onBehalfOfContentOwner, String pageToken, Map optParams}) {
     var completer = new Completer();
     var url = "channels";
     var urlParams = new Map();
@@ -148,9 +152,11 @@ If the parameter identifies a property that contains child properties, the child
     var paramErrors = new List();
     if (categoryId != null) queryParams["categoryId"] = categoryId;
     if (id != null) queryParams["id"] = id;
+    if (managedByMe != null) queryParams["managedByMe"] = managedByMe;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (mine != null) queryParams["mine"] = mine;
     if (mySubscribers != null) queryParams["mySubscribers"] = mySubscribers;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
@@ -226,6 +232,523 @@ If the parameter identifies a property that contains child properties, the child
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
     response
       .then((data) => completer.complete(new GuideCategoryListResponse.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+}
+
+class LiveBroadcastsResource extends Resource {
+
+  LiveBroadcastsResource(Client client) : super(client) {
+  }
+
+  /**
+   * Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream.
+   *
+   * [id] - The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
+   *
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   *
+   * [streamId] - The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveBroadcast> bind(String id, String part, {String streamId, Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts/bind";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (id == null) paramErrors.add("id is required");
+    if (id != null) queryParams["id"] = id;
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (streamId != null) queryParams["streamId"] = streamId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Deletes a broadcast.
+   *
+   * [id] - The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<Map> delete(String id, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (id == null) paramErrors.add("id is required");
+    if (id != null) queryParams["id"] = id;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(data))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Creates a broadcast.
+   *
+   * [request] - LiveBroadcast to send in this request
+   *
+   * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+
+The part properties that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveBroadcast> insert(LiveBroadcast request, String part, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Returns a list of YouTube broadcasts that match the API request parameters.
+   *
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   *
+   * [broadcastStatus] - The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
+   *   Allowed values:
+   *     active - Return current live broadcasts.
+   *     all - Return all broadcasts.
+   *     completed - Return broadcasts that have already ended.
+   *     upcoming - Return broadcasts that have not yet started.
+   *
+   * [id] - The id parameter specifies a comma-separated list of YouTube broadcast IDs that identify the broadcasts being retrieved. In a liveBroadcast resource, the id property specifies the broadcast's ID.
+   *
+   * [maxResults] - The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 5.
+   *   Default: 5
+   *   Minimum: 0
+   *   Maximum: 50
+   *
+   * [mine] - The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
+   *
+   * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveBroadcastList> list(String part, {String broadcastStatus, String id, int maxResults, bool mine, String pageToken, Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (broadcastStatus != null && !["active", "all", "completed", "upcoming"].contains(broadcastStatus)) {
+      paramErrors.add("Allowed values for broadcastStatus: active, all, completed, upcoming");
+    }
+    if (broadcastStatus != null) queryParams["broadcastStatus"] = broadcastStatus;
+    if (id != null) queryParams["id"] = id;
+    if (maxResults != null) queryParams["maxResults"] = maxResults;
+    if (mine != null) queryParams["mine"] = mine;
+    if (pageToken != null) queryParams["pageToken"] = pageToken;
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveBroadcastList.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Changes the status of a YouTube live broadcast and initiates any processes associated with the new status. For example, when you transition a broadcast's status to testing, YouTube starts to transmit video to that broadcast's monitor stream.
+   *
+   * [broadcastStatus] - The broadcastStatus parameter identifies the state to which the broadcast is changing.
+   *   Allowed values:
+   *     complete - The broadcast is over. YouTube stops transmitting video.
+   *     live - The broadcast is visible to its audience. YouTube transmits video to the broadcast's monitor stream and its broadcast stream.
+   *     testing - Start testing the broadcast. YouTube transmits video to the broadcast's monitor stream. Note that you can only transition a broadcast to the testing state if its contentDetails.monitorStream.enableMonitorStream property is set to true.
+   *
+   * [id] - The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
+   *
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveBroadcast> transition(String broadcastStatus, String id, String part, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts/transition";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (broadcastStatus == null) paramErrors.add("broadcastStatus is required");
+    if (broadcastStatus != null && !["complete", "live", "testing"].contains(broadcastStatus)) {
+      paramErrors.add("Allowed values for broadcastStatus: complete, live, testing");
+    }
+    if (broadcastStatus != null) queryParams["broadcastStatus"] = broadcastStatus;
+    if (id == null) paramErrors.add("id is required");
+    if (id != null) queryParams["id"] = id;
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Updates a broadcast. For example, you could modify the broadcast settings defined in the liveBroadcast resource's contentDetails object.
+   *
+   * [request] - LiveBroadcast to send in this request
+   *
+   * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+
+The part properties that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+
+Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveBroadcast> update(LiveBroadcast request, String part, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveBroadcasts";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+}
+
+class LiveStreamsResource extends Resource {
+
+  LiveStreamsResource(Client client) : super(client) {
+  }
+
+  /**
+   * Deletes a video stream.
+   *
+   * [id] - The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<Map> delete(String id, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveStreams";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (id == null) paramErrors.add("id is required");
+    if (id != null) queryParams["id"] = id;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(data))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Creates a video stream. The stream enables you to send your video to YouTube, which can then broadcast the video to your audience.
+   *
+   * [request] - LiveStream to send in this request
+   *
+   * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+
+The part properties that you can include in the parameter value are id, snippet, cdn, and status.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveStream> insert(LiveStream request, String part, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveStreams";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveStream.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Returns a list of video streams that match the API request parameters.
+   *
+   * [part] - The part parameter specifies a comma-separated list of one or more liveStream resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, cdn, and status.
+   *
+   * [id] - The id parameter specifies a comma-separated list of YouTube stream IDs that identify the streams being retrieved. In a liveStream resource, the id property specifies the stream's ID.
+   *
+   * [maxResults] - The maxResults parameter specifies the maximum number of items that should be returned in the result set. Acceptable values are 0 to 50, inclusive. The default value is 5.
+   *   Default: 5
+   *   Minimum: 0
+   *   Maximum: 50
+   *
+   * [mine] - The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
+   *
+   * [onBehalfOf] - ID of the Google+ Page for the channel on whose behalf this request is made
+   *
+   * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveStreamList> list(String part, {String id, int maxResults, bool mine, String onBehalfOf, String pageToken, Map optParams}) {
+    var completer = new Completer();
+    var url = "liveStreams";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (id != null) queryParams["id"] = id;
+    if (maxResults != null) queryParams["maxResults"] = maxResults;
+    if (mine != null) queryParams["mine"] = mine;
+    if (onBehalfOf != null) queryParams["onBehalfOf"] = onBehalfOf;
+    if (pageToken != null) queryParams["pageToken"] = pageToken;
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveStreamList.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
+   * Updates a video stream. If the properties that you want to change cannot be updated, then you need to create a new stream with the proper settings.
+   *
+   * [request] - LiveStream to send in this request
+   *
+   * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
+
+The part properties that you can include in the parameter value are id, snippet, cdn, and status.
+
+Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<LiveStream> update(LiveStream request, String part, {Map optParams}) {
+    var completer = new Completer();
+    var url = "liveStreams";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new LiveStream.fromJson(data)))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+}
+
+class PlayersResource extends Resource {
+
+  PlayersResource(Client client) : super(client) {
+  }
+
+  /**
+   * Returns the data required to play the videos specified on the request, or restriction information explaining why it can't be played.
+   *
+   * [part] - The part parameter specifies a comma-separated list of one or more player resource properties that the API response will include.
+   *
+   * [itag] - If specified, the itag parameter specifies a comma-separated list of itags video formats the client is interested in. The returned formats will be a subset of those itags.
+   *
+   * [videoId] - The videoId parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved.
+   *
+   * [optParams] - Additional query parameters
+   */
+  Future<PlayerListResponse> list(String part, {String itag, String videoId, Map optParams}) {
+    var completer = new Completer();
+    var url = "players";
+    var urlParams = new Map();
+    var queryParams = new Map();
+
+    var paramErrors = new List();
+    if (itag != null) queryParams["itag"] = itag;
+    if (part == null) paramErrors.add("part is required");
+    if (part != null) queryParams["part"] = part;
+    if (videoId != null) queryParams["videoId"] = videoId;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(new PlayerListResponse.fromJson(data)))
       .catchError((e) { completer.completeError(e); return true; });
     return completer.future;
   }
@@ -613,10 +1136,19 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [channelId] - The channelId parameter indicates that the API response should only contain resources created by the channel
    *
+   * [channelType] - The channelType parameter lets you restrict a search to a particular type of channel.
+   *   Allowed values:
+   *     any - Return all channels.
+   *     show - Only retrieve shows.
+   *
+   * [forContentOwner] - The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
+   *
    * [maxResults] - USE_DESCRIPTION --- channels:list:maxResults
    *   Default: 5
    *   Minimum: 0
    *   Maximum: 50
+   *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
    *
    * [order] - The order parameter specifies the method that will be used to order resources in the API response.
    *   Default: SEARCH_SORT_RELEVANCE
@@ -637,6 +1169,12 @@ If the parameter identifies a property that contains child properties, the child
    * [regionCode] - The regionCode parameter instructs the API to return search results for the specified country. The parameter value is an ISO 3166-1 alpha-2 country code.
    *
    * [relatedToVideoId] - The relatedToVideoId parameter retrieves a list of videos that are related to the video that the parameter value identifies. The parameter value must be set to a YouTube video ID and, if you are using this parameter, the type parameter must be set to video.
+   *
+   * [safeSearch] - The safeSearch parameter indicates whether the search results should include restricted content as well as standard content.
+   *   Allowed values:
+   *     moderate - YouTube will filter some content from search results and, at the least, will filter content that is restricted in your locale. Based on their content, search results could be removed from search results or demoted in search results. Note: The default value for the safeSearch parameter is moderate.
+   *     none - YouTube will not perform any filtering on the search result set.
+   *     strict - YouTube will try to exclude all restricted content from the search result set. Based on their content, search results could be removed from search results or demoted in search results.
    *
    * [topicId] - The topicId parameter indicates that the API response should only contain resources associated with the specified topic. The value identifies a Freebase topic ID.
    *
@@ -686,9 +1224,15 @@ If the parameter identifies a property that contains child properties, the child
    *     any - Return all videos, syndicated or not.
    *     true - Only retrieve syndicated videos.
    *
+   * [videoType] - The videoType parameter lets you restrict a search to a particular type of videos.
+   *   Allowed values:
+   *     any - Return all videos.
+   *     episode - Only retrieve episodes of shows.
+   *     movie - Only retrieve movies.
+   *
    * [optParams] - Additional query parameters
    */
-  Future<SearchListResponse> list(String part, {String channelId, int maxResults, String order, String pageToken, String publishedAfter, String publishedBefore, String q, String regionCode, String relatedToVideoId, String topicId, String type, String videoCaption, String videoCategoryId, String videoDefinition, String videoDimension, String videoDuration, String videoEmbeddable, String videoLicense, String videoSyndicated, Map optParams}) {
+  Future<SearchListResponse> list(String part, {String channelId, String channelType, bool forContentOwner, int maxResults, String onBehalfOfContentOwner, String order, String pageToken, String publishedAfter, String publishedBefore, String q, String regionCode, String relatedToVideoId, String safeSearch, String topicId, String type, String videoCaption, String videoCategoryId, String videoDefinition, String videoDimension, String videoDuration, String videoEmbeddable, String videoLicense, String videoSyndicated, String videoType, Map optParams}) {
     var completer = new Completer();
     var url = "search";
     var urlParams = new Map();
@@ -696,7 +1240,13 @@ If the parameter identifies a property that contains child properties, the child
 
     var paramErrors = new List();
     if (channelId != null) queryParams["channelId"] = channelId;
+    if (channelType != null && !["any", "show"].contains(channelType)) {
+      paramErrors.add("Allowed values for channelType: any, show");
+    }
+    if (channelType != null) queryParams["channelType"] = channelType;
+    if (forContentOwner != null) queryParams["forContentOwner"] = forContentOwner;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (order != null && !["date", "rating", "relevance", "viewCount"].contains(order)) {
       paramErrors.add("Allowed values for order: date, rating, relevance, viewCount");
     }
@@ -709,6 +1259,10 @@ If the parameter identifies a property that contains child properties, the child
     if (q != null) queryParams["q"] = q;
     if (regionCode != null) queryParams["regionCode"] = regionCode;
     if (relatedToVideoId != null) queryParams["relatedToVideoId"] = relatedToVideoId;
+    if (safeSearch != null && !["moderate", "none", "strict"].contains(safeSearch)) {
+      paramErrors.add("Allowed values for safeSearch: moderate, none, strict");
+    }
+    if (safeSearch != null) queryParams["safeSearch"] = safeSearch;
     if (topicId != null) queryParams["topicId"] = topicId;
     if (type != null) queryParams["type"] = type;
     if (videoCaption != null && !["any", "closedCaption", "none"].contains(videoCaption)) {
@@ -740,6 +1294,10 @@ If the parameter identifies a property that contains child properties, the child
       paramErrors.add("Allowed values for videoSyndicated: any, true");
     }
     if (videoSyndicated != null) queryParams["videoSyndicated"] = videoSyndicated;
+    if (videoType != null && !["any", "episode", "movie"].contains(videoType)) {
+      paramErrors.add("Allowed values for videoType: any, episode, movie");
+    }
+    if (videoType != null) queryParams["videoType"] = videoType;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -980,9 +1538,11 @@ class VideosResource extends Resource {
    *
    * [id] - The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
    *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
+  Future<Map> delete(String id, {String onBehalfOfContentOwner, Map optParams}) {
     var completer = new Completer();
     var url = "videos";
     var urlParams = new Map();
@@ -991,6 +1551,7 @@ class VideosResource extends Resource {
     var paramErrors = new List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1071,9 +1632,11 @@ The part names that you can include in the parameter value are snippet, contentD
 
 If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
    *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   *
    * [optParams] - Additional query parameters
    */
-  Future<VideoListResponse> list(String id, String part, {Map optParams}) {
+  Future<VideoListResponse> list(String id, String part, {String onBehalfOfContentOwner, Map optParams}) {
     var completer = new Completer();
     var url = "videos";
     var urlParams = new Map();
@@ -1082,6 +1645,7 @@ If the parameter identifies a property that contains child properties, the child
     var paramErrors = new List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1118,15 +1682,18 @@ Note that this method will override the existing values for all of the mutable p
 
 In addition, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
    *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   *
    * [optParams] - Additional query parameters
    */
-  Future<Video> update(Video request, String part, {Map optParams}) {
+  Future<Video> update(Video request, String part, {String onBehalfOfContentOwner, Map optParams}) {
     var completer = new Completer();
     var url = "videos";
     var urlParams = new Map();
     var queryParams = new Map();
 
     var paramErrors = new List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {

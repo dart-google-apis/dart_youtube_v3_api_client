@@ -248,6 +248,53 @@ class ActivityContentDetailsUpload {
 
 }
 
+/** The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation. */
+class ActivityContentDetailsRecommendation {
+
+  /** The reason that the resource is recommended to the user. */
+  String reason;
+
+  /** The resourceId object contains information that identifies the recommended resource. */
+  ResourceId resourceId;
+
+  /** The seedResourceId object contains information about the resource that caused the recommendation. */
+  ResourceId seedResourceId;
+
+  /** Create new ActivityContentDetailsRecommendation from JSON data */
+  ActivityContentDetailsRecommendation.fromJson(Map json) {
+    if (json.containsKey("reason")) {
+      reason = json["reason"];
+    }
+    if (json.containsKey("resourceId")) {
+      resourceId = new ResourceId.fromJson(json["resourceId"]);
+    }
+    if (json.containsKey("seedResourceId")) {
+      seedResourceId = new ResourceId.fromJson(json["seedResourceId"]);
+    }
+  }
+
+  /** Create JSON Object for ActivityContentDetailsRecommendation */
+  Map toJson() {
+    var output = new Map();
+
+    if (reason != null) {
+      output["reason"] = reason;
+    }
+    if (resourceId != null) {
+      output["resourceId"] = resourceId.toJson();
+    }
+    if (seedResourceId != null) {
+      output["seedResourceId"] = seedResourceId.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ActivityContentDetailsRecommendation */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem. */
 class ActivityContentDetailsChannelItem {
 
@@ -320,53 +367,6 @@ class ActivityContentDetailsPlaylistItem {
   }
 
   /** Return String representation of ActivityContentDetailsPlaylistItem */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation. */
-class ActivityContentDetailsRecommendation {
-
-  /** The reason that the resource is recommended to the user. */
-  String reason;
-
-  /** The resourceId object contains information that identifies the recommended resource. */
-  ResourceId resourceId;
-
-  /** The seedResourceId object contains information about the resource that caused the recommendation. */
-  ResourceId seedResourceId;
-
-  /** Create new ActivityContentDetailsRecommendation from JSON data */
-  ActivityContentDetailsRecommendation.fromJson(Map json) {
-    if (json.containsKey("reason")) {
-      reason = json["reason"];
-    }
-    if (json.containsKey("resourceId")) {
-      resourceId = new ResourceId.fromJson(json["resourceId"]);
-    }
-    if (json.containsKey("seedResourceId")) {
-      seedResourceId = new ResourceId.fromJson(json["seedResourceId"]);
-    }
-  }
-
-  /** Create JSON Object for ActivityContentDetailsRecommendation */
-  Map toJson() {
-    var output = new Map();
-
-    if (reason != null) {
-      output["reason"] = reason;
-    }
-    if (resourceId != null) {
-      output["resourceId"] = resourceId.toJson();
-    }
-    if (seedResourceId != null) {
-      output["seedResourceId"] = seedResourceId.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ActivityContentDetailsRecommendation */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -667,17 +667,20 @@ class ActivitySnippet {
   /** The ID that YouTube uses to uniquely identify the channel associated with the activity. */
   String channelId;
 
+  /** Channel title for the channel responsible for this activity */
+  String channelTitle;
+
   /** The description of the resource primarily associated with the activity. */
   String description;
 
   /** The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value. */
   String groupId;
 
-  /** The date and time that the activity occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  /** The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
   String publishedAt;
 
   /** A map of thumbnail images associated with the resource that is primarily associated with the activity. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  ActivitySnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The title of the resource primarily associated with the activity. */
   String title;
@@ -690,6 +693,9 @@ class ActivitySnippet {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
+    if (json.containsKey("channelTitle")) {
+      channelTitle = json["channelTitle"];
+    }
     if (json.containsKey("description")) {
       description = json["description"];
     }
@@ -700,7 +706,7 @@ class ActivitySnippet {
       publishedAt = json["publishedAt"];
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new ActivitySnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -716,6 +722,9 @@ class ActivitySnippet {
 
     if (channelId != null) {
       output["channelId"] = channelId;
+    }
+    if (channelTitle != null) {
+      output["channelTitle"] = channelTitle;
     }
     if (description != null) {
       output["description"] = description;
@@ -744,28 +753,11 @@ class ActivitySnippet {
 
 }
 
-/** A map of thumbnail images associated with the resource that is primarily associated with the activity. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class ActivitySnippetThumbnails {
-
-  /** Create new ActivitySnippetThumbnails from JSON data */
-  ActivitySnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for ActivitySnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of ActivitySnippetThumbnails */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
 /** A channel resource contains information about a YouTube channel. */
 class Channel {
+
+  /** The brandingSettings object encapsulates information about the branding of the channel. */
+  ChannelBrandingSettings brandingSettings;
 
   /** The contentDetails object encapsulates information about the channel's content. */
   ChannelContentDetails contentDetails;
@@ -793,6 +785,9 @@ class Channel {
 
   /** Create new Channel from JSON data */
   Channel.fromJson(Map json) {
+    if (json.containsKey("brandingSettings")) {
+      brandingSettings = new ChannelBrandingSettings.fromJson(json["brandingSettings"]);
+    }
     if (json.containsKey("contentDetails")) {
       contentDetails = new ChannelContentDetails.fromJson(json["contentDetails"]);
     }
@@ -823,6 +818,9 @@ class Channel {
   Map toJson() {
     var output = new Map();
 
+    if (brandingSettings != null) {
+      output["brandingSettings"] = brandingSettings.toJson();
+    }
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
     }
@@ -856,14 +854,82 @@ class Channel {
 
 }
 
+/** Branding properties of a YouTube channel. */
+class ChannelBrandingSettings {
+
+  /** Branding properties for the channel view. */
+  ChannelSettings channel;
+
+  /** Additional experimental branding properties. */
+  List<PropertyValue> hints;
+
+  /** Branding properties for branding images. */
+  ImageSettings image;
+
+  /** Branding properties for the watch page. */
+  WatchSettings watch;
+
+  /** Create new ChannelBrandingSettings from JSON data */
+  ChannelBrandingSettings.fromJson(Map json) {
+    if (json.containsKey("channel")) {
+      channel = new ChannelSettings.fromJson(json["channel"]);
+    }
+    if (json.containsKey("hints")) {
+      hints = [];
+      json["hints"].forEach((item) {
+        hints.add(new PropertyValue.fromJson(item));
+      });
+    }
+    if (json.containsKey("image")) {
+      image = new ImageSettings.fromJson(json["image"]);
+    }
+    if (json.containsKey("watch")) {
+      watch = new WatchSettings.fromJson(json["watch"]);
+    }
+  }
+
+  /** Create JSON Object for ChannelBrandingSettings */
+  Map toJson() {
+    var output = new Map();
+
+    if (channel != null) {
+      output["channel"] = channel.toJson();
+    }
+    if (hints != null) {
+      output["hints"] = new List();
+      hints.forEach((item) {
+        output["hints"].add(item.toJson());
+      });
+    }
+    if (image != null) {
+      output["image"] = image.toJson();
+    }
+    if (watch != null) {
+      output["watch"] = watch.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelBrandingSettings */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Details about the content of a channel. */
 class ChannelContentDetails {
+
+  /** The googlePlusUserId object identifies the Google+ profile ID associated with this channel. */
+  String googlePlusUserId;
 
   /** The relatedPlaylists object is a map that identifies playlists associated with the channel, such as the channel's uploaded videos or favorite videos. You can retrieve any of these playlists using the playlists.list method. */
   ChannelContentDetailsRelatedPlaylists relatedPlaylists;
 
   /** Create new ChannelContentDetails from JSON data */
   ChannelContentDetails.fromJson(Map json) {
+    if (json.containsKey("googlePlusUserId")) {
+      googlePlusUserId = json["googlePlusUserId"];
+    }
     if (json.containsKey("relatedPlaylists")) {
       relatedPlaylists = new ChannelContentDetailsRelatedPlaylists.fromJson(json["relatedPlaylists"]);
     }
@@ -873,6 +939,9 @@ class ChannelContentDetails {
   Map toJson() {
     var output = new Map();
 
+    if (googlePlusUserId != null) {
+      output["googlePlusUserId"] = googlePlusUserId;
+    }
     if (relatedPlaylists != null) {
       output["relatedPlaylists"] = relatedPlaylists.toJson();
     }
@@ -1030,6 +1099,109 @@ class ChannelListResponse {
 
 }
 
+/** Branding properties for the channel view. */
+class ChannelSettings {
+  String defaultTab;
+  String description;
+  String featuredChannelsTitle;
+  List<String> featuredChannelsUrls;
+  String keywords;
+  bool moderateComments;
+  bool showBrowseView;
+  bool showRelatedChannels;
+  String title;
+  String trackingAnalyticsAccountId;
+  String unsubscribedTrailer;
+
+  /** Create new ChannelSettings from JSON data */
+  ChannelSettings.fromJson(Map json) {
+    if (json.containsKey("defaultTab")) {
+      defaultTab = json["defaultTab"];
+    }
+    if (json.containsKey("description")) {
+      description = json["description"];
+    }
+    if (json.containsKey("featuredChannelsTitle")) {
+      featuredChannelsTitle = json["featuredChannelsTitle"];
+    }
+    if (json.containsKey("featuredChannelsUrls")) {
+      featuredChannelsUrls = [];
+      json["featuredChannelsUrls"].forEach((item) {
+        featuredChannelsUrls.add(item);
+      });
+    }
+    if (json.containsKey("keywords")) {
+      keywords = json["keywords"];
+    }
+    if (json.containsKey("moderateComments")) {
+      moderateComments = json["moderateComments"];
+    }
+    if (json.containsKey("showBrowseView")) {
+      showBrowseView = json["showBrowseView"];
+    }
+    if (json.containsKey("showRelatedChannels")) {
+      showRelatedChannels = json["showRelatedChannels"];
+    }
+    if (json.containsKey("title")) {
+      title = json["title"];
+    }
+    if (json.containsKey("trackingAnalyticsAccountId")) {
+      trackingAnalyticsAccountId = json["trackingAnalyticsAccountId"];
+    }
+    if (json.containsKey("unsubscribedTrailer")) {
+      unsubscribedTrailer = json["unsubscribedTrailer"];
+    }
+  }
+
+  /** Create JSON Object for ChannelSettings */
+  Map toJson() {
+    var output = new Map();
+
+    if (defaultTab != null) {
+      output["defaultTab"] = defaultTab;
+    }
+    if (description != null) {
+      output["description"] = description;
+    }
+    if (featuredChannelsTitle != null) {
+      output["featuredChannelsTitle"] = featuredChannelsTitle;
+    }
+    if (featuredChannelsUrls != null) {
+      output["featuredChannelsUrls"] = new List();
+      featuredChannelsUrls.forEach((item) {
+        output["featuredChannelsUrls"].add(item);
+      });
+    }
+    if (keywords != null) {
+      output["keywords"] = keywords;
+    }
+    if (moderateComments != null) {
+      output["moderateComments"] = moderateComments;
+    }
+    if (showBrowseView != null) {
+      output["showBrowseView"] = showBrowseView;
+    }
+    if (showRelatedChannels != null) {
+      output["showRelatedChannels"] = showRelatedChannels;
+    }
+    if (title != null) {
+      output["title"] = title;
+    }
+    if (trackingAnalyticsAccountId != null) {
+      output["trackingAnalyticsAccountId"] = trackingAnalyticsAccountId;
+    }
+    if (unsubscribedTrailer != null) {
+      output["unsubscribedTrailer"] = unsubscribedTrailer;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelSettings */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Basic details about a channel, including title, description and thumbnails. */
 class ChannelSnippet {
 
@@ -1040,7 +1212,7 @@ class ChannelSnippet {
   String publishedAt;
 
   /** A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  ChannelSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The channel's title. */
   String title;
@@ -1054,7 +1226,7 @@ class ChannelSnippet {
       publishedAt = json["publishedAt"];
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new ChannelSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -1082,26 +1254,6 @@ class ChannelSnippet {
   }
 
   /** Return String representation of ChannelSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class ChannelSnippetThumbnails {
-
-  /** Create new ChannelSnippetThumbnails from JSON data */
-  ChannelSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for ChannelSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of ChannelSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1222,6 +1374,156 @@ class ChannelTopicDetails {
   }
 
   /** Return String representation of ChannelTopicDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+class FeaturedChannel {
+  String channelId;
+  ChannelSnippet channelSnippet;
+  String endTimeMs;
+  String featureId;
+  String imageUrl;
+  String startTimeMs;
+  String subscriberCount;
+
+  /** Create new FeaturedChannel from JSON data */
+  FeaturedChannel.fromJson(Map json) {
+    if (json.containsKey("channelId")) {
+      channelId = json["channelId"];
+    }
+    if (json.containsKey("channelSnippet")) {
+      channelSnippet = new ChannelSnippet.fromJson(json["channelSnippet"]);
+    }
+    if (json.containsKey("endTimeMs")) {
+      endTimeMs = json["endTimeMs"];
+    }
+    if (json.containsKey("featureId")) {
+      featureId = json["featureId"];
+    }
+    if (json.containsKey("imageUrl")) {
+      imageUrl = json["imageUrl"];
+    }
+    if (json.containsKey("startTimeMs")) {
+      startTimeMs = json["startTimeMs"];
+    }
+    if (json.containsKey("subscriberCount")) {
+      subscriberCount = json["subscriberCount"];
+    }
+  }
+
+  /** Create JSON Object for FeaturedChannel */
+  Map toJson() {
+    var output = new Map();
+
+    if (channelId != null) {
+      output["channelId"] = channelId;
+    }
+    if (channelSnippet != null) {
+      output["channelSnippet"] = channelSnippet.toJson();
+    }
+    if (endTimeMs != null) {
+      output["endTimeMs"] = endTimeMs;
+    }
+    if (featureId != null) {
+      output["featureId"] = featureId;
+    }
+    if (imageUrl != null) {
+      output["imageUrl"] = imageUrl;
+    }
+    if (startTimeMs != null) {
+      output["startTimeMs"] = startTimeMs;
+    }
+    if (subscriberCount != null) {
+      output["subscriberCount"] = subscriberCount;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of FeaturedChannel */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+class FeaturedVideo {
+  int concurrentViewers;
+  String endTimeMs;
+  String featureId;
+  bool isLive;
+  String lengthS;
+  String startTimeMs;
+  String videoId;
+  VideoSnippet videoSnippet;
+  String viewCount;
+
+  /** Create new FeaturedVideo from JSON data */
+  FeaturedVideo.fromJson(Map json) {
+    if (json.containsKey("concurrentViewers")) {
+      concurrentViewers = json["concurrentViewers"];
+    }
+    if (json.containsKey("endTimeMs")) {
+      endTimeMs = json["endTimeMs"];
+    }
+    if (json.containsKey("featureId")) {
+      featureId = json["featureId"];
+    }
+    if (json.containsKey("isLive")) {
+      isLive = json["isLive"];
+    }
+    if (json.containsKey("lengthS")) {
+      lengthS = json["lengthS"];
+    }
+    if (json.containsKey("startTimeMs")) {
+      startTimeMs = json["startTimeMs"];
+    }
+    if (json.containsKey("videoId")) {
+      videoId = json["videoId"];
+    }
+    if (json.containsKey("videoSnippet")) {
+      videoSnippet = new VideoSnippet.fromJson(json["videoSnippet"]);
+    }
+    if (json.containsKey("viewCount")) {
+      viewCount = json["viewCount"];
+    }
+  }
+
+  /** Create JSON Object for FeaturedVideo */
+  Map toJson() {
+    var output = new Map();
+
+    if (concurrentViewers != null) {
+      output["concurrentViewers"] = concurrentViewers;
+    }
+    if (endTimeMs != null) {
+      output["endTimeMs"] = endTimeMs;
+    }
+    if (featureId != null) {
+      output["featureId"] = featureId;
+    }
+    if (isLive != null) {
+      output["isLive"] = isLive;
+    }
+    if (lengthS != null) {
+      output["lengthS"] = lengthS;
+    }
+    if (startTimeMs != null) {
+      output["startTimeMs"] = startTimeMs;
+    }
+    if (videoId != null) {
+      output["videoId"] = videoId;
+    }
+    if (videoSnippet != null) {
+      output["videoSnippet"] = videoSnippet.toJson();
+    }
+    if (viewCount != null) {
+      output["viewCount"] = viewCount;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of FeaturedVideo */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1420,6 +1722,1030 @@ class GuideCategorySnippet {
 
 }
 
+class ImageSettings {
+  LocalizedProperty backgroundImageUrl;
+  String bannerImageUrl;
+  String bannerMobileImageUrl;
+  LocalizedProperty largeBrandedBannerImageImapScript;
+  LocalizedProperty largeBrandedBannerImageUrl;
+  LocalizedProperty smallBrandedBannerImageImapScript;
+  LocalizedProperty smallBrandedBannerImageUrl;
+  String trackingImageUrl;
+  String watchIconImageUrl;
+
+  /** Create new ImageSettings from JSON data */
+  ImageSettings.fromJson(Map json) {
+    if (json.containsKey("backgroundImageUrl")) {
+      backgroundImageUrl = new LocalizedProperty.fromJson(json["backgroundImageUrl"]);
+    }
+    if (json.containsKey("bannerImageUrl")) {
+      bannerImageUrl = json["bannerImageUrl"];
+    }
+    if (json.containsKey("bannerMobileImageUrl")) {
+      bannerMobileImageUrl = json["bannerMobileImageUrl"];
+    }
+    if (json.containsKey("largeBrandedBannerImageImapScript")) {
+      largeBrandedBannerImageImapScript = new LocalizedProperty.fromJson(json["largeBrandedBannerImageImapScript"]);
+    }
+    if (json.containsKey("largeBrandedBannerImageUrl")) {
+      largeBrandedBannerImageUrl = new LocalizedProperty.fromJson(json["largeBrandedBannerImageUrl"]);
+    }
+    if (json.containsKey("smallBrandedBannerImageImapScript")) {
+      smallBrandedBannerImageImapScript = new LocalizedProperty.fromJson(json["smallBrandedBannerImageImapScript"]);
+    }
+    if (json.containsKey("smallBrandedBannerImageUrl")) {
+      smallBrandedBannerImageUrl = new LocalizedProperty.fromJson(json["smallBrandedBannerImageUrl"]);
+    }
+    if (json.containsKey("trackingImageUrl")) {
+      trackingImageUrl = json["trackingImageUrl"];
+    }
+    if (json.containsKey("watchIconImageUrl")) {
+      watchIconImageUrl = json["watchIconImageUrl"];
+    }
+  }
+
+  /** Create JSON Object for ImageSettings */
+  Map toJson() {
+    var output = new Map();
+
+    if (backgroundImageUrl != null) {
+      output["backgroundImageUrl"] = backgroundImageUrl.toJson();
+    }
+    if (bannerImageUrl != null) {
+      output["bannerImageUrl"] = bannerImageUrl;
+    }
+    if (bannerMobileImageUrl != null) {
+      output["bannerMobileImageUrl"] = bannerMobileImageUrl;
+    }
+    if (largeBrandedBannerImageImapScript != null) {
+      output["largeBrandedBannerImageImapScript"] = largeBrandedBannerImageImapScript.toJson();
+    }
+    if (largeBrandedBannerImageUrl != null) {
+      output["largeBrandedBannerImageUrl"] = largeBrandedBannerImageUrl.toJson();
+    }
+    if (smallBrandedBannerImageImapScript != null) {
+      output["smallBrandedBannerImageImapScript"] = smallBrandedBannerImageImapScript.toJson();
+    }
+    if (smallBrandedBannerImageUrl != null) {
+      output["smallBrandedBannerImageUrl"] = smallBrandedBannerImageUrl.toJson();
+    }
+    if (trackingImageUrl != null) {
+      output["trackingImageUrl"] = trackingImageUrl;
+    }
+    if (watchIconImageUrl != null) {
+      output["watchIconImageUrl"] = watchIconImageUrl;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ImageSettings */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+class InvideoFeature {
+  FeaturedChannel featuredChannel;
+  FeaturedVideo featuredVideo;
+
+  /** Create new InvideoFeature from JSON data */
+  InvideoFeature.fromJson(Map json) {
+    if (json.containsKey("featuredChannel")) {
+      featuredChannel = new FeaturedChannel.fromJson(json["featuredChannel"]);
+    }
+    if (json.containsKey("featuredVideo")) {
+      featuredVideo = new FeaturedVideo.fromJson(json["featuredVideo"]);
+    }
+  }
+
+  /** Create JSON Object for InvideoFeature */
+  Map toJson() {
+    var output = new Map();
+
+    if (featuredChannel != null) {
+      output["featuredChannel"] = featuredChannel.toJson();
+    }
+    if (featuredVideo != null) {
+      output["featuredVideo"] = featuredVideo.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of InvideoFeature */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A liveBroadcast resource represents an event that will be streamed, via live video, on YouTube. */
+class LiveBroadcast {
+
+  /** The contentDetails object contains information about the event's video content, such as whether the content can be shown in an embedded video player or if it will be archived and therefore available for viewing after the event has concluded. */
+  LiveBroadcastContentDetails contentDetails;
+
+  /** The ETag of the broadcast. */
+  String etag;
+
+  /** The ID that YouTube assigns to uniquely identify the broadcast. */
+  String id;
+
+  /** The type of the API resource. For live broadcast resources, the value will be youtube#liveBroadcast. */
+  String kind;
+
+  /** The slateSettings object contains details about the content that will display in the player when you show a broadcast slate. A broadcast slate displays above the video. However, while it displays, the video continues to play and is also audible in the background. */
+  LiveBroadcastSlateSettings slateSettings;
+
+  /** The snippet object contains basic details about the event, including its title, description, start time, and end time. */
+  LiveBroadcastSnippet snippet;
+
+  /** The status object contains information about the event's status. */
+  LiveBroadcastStatus status;
+
+  /** Create new LiveBroadcast from JSON data */
+  LiveBroadcast.fromJson(Map json) {
+    if (json.containsKey("contentDetails")) {
+      contentDetails = new LiveBroadcastContentDetails.fromJson(json["contentDetails"]);
+    }
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("slateSettings")) {
+      slateSettings = new LiveBroadcastSlateSettings.fromJson(json["slateSettings"]);
+    }
+    if (json.containsKey("snippet")) {
+      snippet = new LiveBroadcastSnippet.fromJson(json["snippet"]);
+    }
+    if (json.containsKey("status")) {
+      status = new LiveBroadcastStatus.fromJson(json["status"]);
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcast */
+  Map toJson() {
+    var output = new Map();
+
+    if (contentDetails != null) {
+      output["contentDetails"] = contentDetails.toJson();
+    }
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (slateSettings != null) {
+      output["slateSettings"] = slateSettings.toJson();
+    }
+    if (snippet != null) {
+      output["snippet"] = snippet.toJson();
+    }
+    if (status != null) {
+      output["status"] = status.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcast */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Slate settings of a broadcast. */
+class LiveBroadcastContentDetails {
+
+  /** This value uniquely identifies the live stream bound to the broadcast. */
+  String boundStreamId;
+
+  /** This setting indicates whether the live event should be archived so that YouTube viewers can watch it at a later date. The default value for this property is true.
+
+Important: You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback. */
+  bool enableArchive;
+
+  /** This setting indicates whether YouTube should enable content encryption for the broadcast. */
+  bool enableContentEncryption;
+
+  /** This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.
+
+Important: You must set the value to true and also set the enableArchive property's value to true if you want to make playback available immediately after the broadcast ends. */
+  bool enableDvr;
+
+  /** This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video. */
+  bool enableEmbed;
+
+  /** The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly. */
+  LiveBroadcastContentDetailsMonitorStream monitorStream;
+
+  /** This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers. */
+  bool startWithSlateCuepoint;
+
+  /** Create new LiveBroadcastContentDetails from JSON data */
+  LiveBroadcastContentDetails.fromJson(Map json) {
+    if (json.containsKey("boundStreamId")) {
+      boundStreamId = json["boundStreamId"];
+    }
+    if (json.containsKey("enableArchive")) {
+      enableArchive = json["enableArchive"];
+    }
+    if (json.containsKey("enableContentEncryption")) {
+      enableContentEncryption = json["enableContentEncryption"];
+    }
+    if (json.containsKey("enableDvr")) {
+      enableDvr = json["enableDvr"];
+    }
+    if (json.containsKey("enableEmbed")) {
+      enableEmbed = json["enableEmbed"];
+    }
+    if (json.containsKey("monitorStream")) {
+      monitorStream = new LiveBroadcastContentDetailsMonitorStream.fromJson(json["monitorStream"]);
+    }
+    if (json.containsKey("startWithSlateCuepoint")) {
+      startWithSlateCuepoint = json["startWithSlateCuepoint"];
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastContentDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (boundStreamId != null) {
+      output["boundStreamId"] = boundStreamId;
+    }
+    if (enableArchive != null) {
+      output["enableArchive"] = enableArchive;
+    }
+    if (enableContentEncryption != null) {
+      output["enableContentEncryption"] = enableContentEncryption;
+    }
+    if (enableDvr != null) {
+      output["enableDvr"] = enableDvr;
+    }
+    if (enableEmbed != null) {
+      output["enableEmbed"] = enableEmbed;
+    }
+    if (monitorStream != null) {
+      output["monitorStream"] = monitorStream.toJson();
+    }
+    if (startWithSlateCuepoint != null) {
+      output["startWithSlateCuepoint"] = startWithSlateCuepoint;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastContentDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly. */
+class LiveBroadcastContentDetailsMonitorStream {
+
+  /** If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay. */
+  int broadcastStreamDelayMs;
+
+  /** HTML code that embeds a player that plays the monitor stream. */
+  String embedHtml;
+
+  /** This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster's consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.
+
+You need to set this value to true if you intend to have a broadcast delay for your event.
+
+Note: This property cannot be updated once the broadcast is in the testing or live state. */
+  bool enableMonitorStream;
+
+  /** Create new LiveBroadcastContentDetailsMonitorStream from JSON data */
+  LiveBroadcastContentDetailsMonitorStream.fromJson(Map json) {
+    if (json.containsKey("broadcastStreamDelayMs")) {
+      broadcastStreamDelayMs = json["broadcastStreamDelayMs"];
+    }
+    if (json.containsKey("embedHtml")) {
+      embedHtml = json["embedHtml"];
+    }
+    if (json.containsKey("enableMonitorStream")) {
+      enableMonitorStream = json["enableMonitorStream"];
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastContentDetailsMonitorStream */
+  Map toJson() {
+    var output = new Map();
+
+    if (broadcastStreamDelayMs != null) {
+      output["broadcastStreamDelayMs"] = broadcastStreamDelayMs;
+    }
+    if (embedHtml != null) {
+      output["embedHtml"] = embedHtml;
+    }
+    if (enableMonitorStream != null) {
+      output["enableMonitorStream"] = enableMonitorStream;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastContentDetailsMonitorStream */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** JSON template for list of broadcasts. */
+class LiveBroadcastList {
+
+  /** The ETag of the response. */
+  String etag;
+
+  /** A list of broadcasts that match the request criteria. */
+  List<LiveBroadcast> items;
+
+  /** The type of the API response. For this operation, the value will be youtube#liveBroadcastList. */
+  String kind;
+
+  /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
+  String nextPageToken;
+
+  /** The pageInfo object encapsulates paging information for the result set. */
+  PageInfo pageInfo;
+
+  /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
+  String prevPageToken;
+
+  /** Create new LiveBroadcastList from JSON data */
+  LiveBroadcastList.fromJson(Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("items")) {
+      items = [];
+      json["items"].forEach((item) {
+        items.add(new LiveBroadcast.fromJson(item));
+      });
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("nextPageToken")) {
+      nextPageToken = json["nextPageToken"];
+    }
+    if (json.containsKey("pageInfo")) {
+      pageInfo = new PageInfo.fromJson(json["pageInfo"]);
+    }
+    if (json.containsKey("prevPageToken")) {
+      prevPageToken = json["prevPageToken"];
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastList */
+  Map toJson() {
+    var output = new Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (items != null) {
+      output["items"] = new List();
+      items.forEach((item) {
+        output["items"].add(item.toJson());
+      });
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (nextPageToken != null) {
+      output["nextPageToken"] = nextPageToken;
+    }
+    if (pageInfo != null) {
+      output["pageInfo"] = pageInfo.toJson();
+    }
+    if (prevPageToken != null) {
+      output["prevPageToken"] = prevPageToken;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastList */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Slate settings of a broadcast. */
+class LiveBroadcastSlateSettings {
+
+  /** An indication of whether a broadcast slate is enabled for the broadcast. Set this property to true to display the slate. Update the property value to false to remove the slate. You can insert or remove the broadcast slate at any time during an event. */
+  bool enableSlates;
+
+  /** A map of slates that are displayed for the broadcast in different regions. */
+  LiveBroadcastSlateSettingsSlates slates;
+
+  /** Create new LiveBroadcastSlateSettings from JSON data */
+  LiveBroadcastSlateSettings.fromJson(Map json) {
+    if (json.containsKey("enableSlates")) {
+      enableSlates = json["enableSlates"];
+    }
+    if (json.containsKey("slates")) {
+      slates = new LiveBroadcastSlateSettingsSlates.fromJson(json["slates"]);
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastSlateSettings */
+  Map toJson() {
+    var output = new Map();
+
+    if (enableSlates != null) {
+      output["enableSlates"] = enableSlates;
+    }
+    if (slates != null) {
+      output["slates"] = slates.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastSlateSettings */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A map of slates that are displayed for the broadcast in different regions. */
+class LiveBroadcastSlateSettingsSlates {
+
+  /** Create new LiveBroadcastSlateSettingsSlates from JSON data */
+  LiveBroadcastSlateSettingsSlates.fromJson(Map json) {
+  }
+
+  /** Create JSON Object for LiveBroadcastSlateSettingsSlates */
+  Map toJson() {
+    var output = new Map();
+
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastSlateSettingsSlates */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Basic details about a live broadcast, including title, description and thumbnails. */
+class LiveBroadcastSnippet {
+
+  /** The date and time that the broadcast actually ended. This information is only available once the broadcast's state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String actualEndTime;
+
+  /** The date and time that the broadcast actually started. This information is only available once the broadcast's state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String actualStartTime;
+
+  /** The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast. */
+  String channelId;
+
+  /** The broadcast's description. As with the title, you can set this field by modifying the broadcast resource or by setting the description field of the corresponding video resource. */
+  String description;
+
+  /** The date and time that the broadcast was added to YouTube's live broadcast schedule. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String publishedAt;
+
+  /** The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String scheduledEndTime;
+
+  /** The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String scheduledStartTime;
+
+  /** A map of thumbnail images associated with the broadcast. For each nested object in this object, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
+  ThumbnailDetails thumbnails;
+
+  /** The broadcast's title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource. */
+  String title;
+
+  /** Create new LiveBroadcastSnippet from JSON data */
+  LiveBroadcastSnippet.fromJson(Map json) {
+    if (json.containsKey("actualEndTime")) {
+      actualEndTime = json["actualEndTime"];
+    }
+    if (json.containsKey("actualStartTime")) {
+      actualStartTime = json["actualStartTime"];
+    }
+    if (json.containsKey("channelId")) {
+      channelId = json["channelId"];
+    }
+    if (json.containsKey("description")) {
+      description = json["description"];
+    }
+    if (json.containsKey("publishedAt")) {
+      publishedAt = json["publishedAt"];
+    }
+    if (json.containsKey("scheduledEndTime")) {
+      scheduledEndTime = json["scheduledEndTime"];
+    }
+    if (json.containsKey("scheduledStartTime")) {
+      scheduledStartTime = json["scheduledStartTime"];
+    }
+    if (json.containsKey("thumbnails")) {
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
+    }
+    if (json.containsKey("title")) {
+      title = json["title"];
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastSnippet */
+  Map toJson() {
+    var output = new Map();
+
+    if (actualEndTime != null) {
+      output["actualEndTime"] = actualEndTime;
+    }
+    if (actualStartTime != null) {
+      output["actualStartTime"] = actualStartTime;
+    }
+    if (channelId != null) {
+      output["channelId"] = channelId;
+    }
+    if (description != null) {
+      output["description"] = description;
+    }
+    if (publishedAt != null) {
+      output["publishedAt"] = publishedAt;
+    }
+    if (scheduledEndTime != null) {
+      output["scheduledEndTime"] = scheduledEndTime;
+    }
+    if (scheduledStartTime != null) {
+      output["scheduledStartTime"] = scheduledStartTime;
+    }
+    if (thumbnails != null) {
+      output["thumbnails"] = thumbnails.toJson();
+    }
+    if (title != null) {
+      output["title"] = title;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastSnippet */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The status of a live broadcast. */
+class LiveBroadcastStatus {
+
+  /** The broadcast's status. The status can be updated using the API's liveBroadcasts.transition method. */
+  String lifeCycleStatus;
+
+  /** The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource. */
+  String privacyStatus;
+
+  /** Create new LiveBroadcastStatus from JSON data */
+  LiveBroadcastStatus.fromJson(Map json) {
+    if (json.containsKey("lifeCycleStatus")) {
+      lifeCycleStatus = json["lifeCycleStatus"];
+    }
+    if (json.containsKey("privacyStatus")) {
+      privacyStatus = json["privacyStatus"];
+    }
+  }
+
+  /** Create JSON Object for LiveBroadcastStatus */
+  Map toJson() {
+    var output = new Map();
+
+    if (lifeCycleStatus != null) {
+      output["lifeCycleStatus"] = lifeCycleStatus;
+    }
+    if (privacyStatus != null) {
+      output["privacyStatus"] = privacyStatus;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastStatus */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A live stream describes a live ingestion point. */
+class LiveStream {
+
+  /** The cdn object defines the live stream's content delivery network (CDN) settings. These settings provide details about the manner in which you stream your content to YouTube. */
+  LiveStreamCdn cdn;
+
+  /** The ETag of the stream resource. */
+  String etag;
+
+  /** The ID that YouTube assigns to uniquely identify the stream. */
+  String id;
+
+  /** The type of the API resource. For live stream resources, the value will be youtube#liveStream. */
+  String kind;
+
+  /** The snippet object contains basic details about the stream, including its channel, title, and description. */
+  LiveStreamSnippet snippet;
+
+  /** The status object contains information about live stream's status. */
+  LiveStreamStatus status;
+
+  /** Create new LiveStream from JSON data */
+  LiveStream.fromJson(Map json) {
+    if (json.containsKey("cdn")) {
+      cdn = new LiveStreamCdn.fromJson(json["cdn"]);
+    }
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("snippet")) {
+      snippet = new LiveStreamSnippet.fromJson(json["snippet"]);
+    }
+    if (json.containsKey("status")) {
+      status = new LiveStreamStatus.fromJson(json["status"]);
+    }
+  }
+
+  /** Create JSON Object for LiveStream */
+  Map toJson() {
+    var output = new Map();
+
+    if (cdn != null) {
+      output["cdn"] = cdn.toJson();
+    }
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (snippet != null) {
+      output["snippet"] = snippet.toJson();
+    }
+    if (status != null) {
+      output["status"] = status.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStream */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Brief description of the live stream cdn settings. */
+class LiveStreamCdn {
+
+  /** The format of the video stream that you are sending to YouTube. */
+  String format;
+
+  /** The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube. */
+  LiveStreamCdnIngestionInfo ingestionInfo;
+
+  /** The method or protocol used to transmit the video stream. */
+  String ingestionType;
+
+  /** Create new LiveStreamCdn from JSON data */
+  LiveStreamCdn.fromJson(Map json) {
+    if (json.containsKey("format")) {
+      format = json["format"];
+    }
+    if (json.containsKey("ingestionInfo")) {
+      ingestionInfo = new LiveStreamCdnIngestionInfo.fromJson(json["ingestionInfo"]);
+    }
+    if (json.containsKey("ingestionType")) {
+      ingestionType = json["ingestionType"];
+    }
+  }
+
+  /** Create JSON Object for LiveStreamCdn */
+  Map toJson() {
+    var output = new Map();
+
+    if (format != null) {
+      output["format"] = format;
+    }
+    if (ingestionInfo != null) {
+      output["ingestionInfo"] = ingestionInfo.toJson();
+    }
+    if (ingestionType != null) {
+      output["ingestionType"] = ingestionType;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStreamCdn */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Brief description of the live stream cdn settings. */
+class LiveStreamCdnIngestionInfo {
+
+  /** The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL. */
+  String backupIngestionAddress;
+
+  /** The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.
+
+Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:
+
+STREAM_URL/STREAM_NAME */
+  String ingestionAddress;
+
+  /** The HTTP or RTMP stream name that YouTube assigns to the video stream. */
+  String streamName;
+
+  /** Create new LiveStreamCdnIngestionInfo from JSON data */
+  LiveStreamCdnIngestionInfo.fromJson(Map json) {
+    if (json.containsKey("backupIngestionAddress")) {
+      backupIngestionAddress = json["backupIngestionAddress"];
+    }
+    if (json.containsKey("ingestionAddress")) {
+      ingestionAddress = json["ingestionAddress"];
+    }
+    if (json.containsKey("streamName")) {
+      streamName = json["streamName"];
+    }
+  }
+
+  /** Create JSON Object for LiveStreamCdnIngestionInfo */
+  Map toJson() {
+    var output = new Map();
+
+    if (backupIngestionAddress != null) {
+      output["backupIngestionAddress"] = backupIngestionAddress;
+    }
+    if (ingestionAddress != null) {
+      output["ingestionAddress"] = ingestionAddress;
+    }
+    if (streamName != null) {
+      output["streamName"] = streamName;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStreamCdnIngestionInfo */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** List of live streams. */
+class LiveStreamList {
+
+  /** The ETag of the response. */
+  String etag;
+
+  /** A list of live streams that match the request criteria. */
+  List<LiveStream> items;
+
+  /** The type of the API response. For this operation, the value will be youtube#liveStreamList. */
+  String kind;
+
+  /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
+  String nextPageToken;
+
+  /** The pageInfo object encapsulates paging information for the result set. */
+  PageInfo pageInfo;
+
+  /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
+  String prevPageToken;
+
+  /** Create new LiveStreamList from JSON data */
+  LiveStreamList.fromJson(Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("items")) {
+      items = [];
+      json["items"].forEach((item) {
+        items.add(new LiveStream.fromJson(item));
+      });
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("nextPageToken")) {
+      nextPageToken = json["nextPageToken"];
+    }
+    if (json.containsKey("pageInfo")) {
+      pageInfo = new PageInfo.fromJson(json["pageInfo"]);
+    }
+    if (json.containsKey("prevPageToken")) {
+      prevPageToken = json["prevPageToken"];
+    }
+  }
+
+  /** Create JSON Object for LiveStreamList */
+  Map toJson() {
+    var output = new Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (items != null) {
+      output["items"] = new List();
+      items.forEach((item) {
+        output["items"].add(item.toJson());
+      });
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (nextPageToken != null) {
+      output["nextPageToken"] = nextPageToken;
+    }
+    if (pageInfo != null) {
+      output["pageInfo"] = pageInfo.toJson();
+    }
+    if (prevPageToken != null) {
+      output["prevPageToken"] = prevPageToken;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStreamList */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Basic details about a live stream, including title and description. */
+class LiveStreamSnippet {
+
+  /** The ID that YouTube uses to uniquely identify the channel that is transmitting the stream. */
+  String channelId;
+
+  /** The stream's description. The value cannot be longer than 10000 characters. */
+  String description;
+
+  /** The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  String publishedAt;
+
+  /** The stream's title. The value must be between 1 and 128 characters long. */
+  String title;
+
+  /** Create new LiveStreamSnippet from JSON data */
+  LiveStreamSnippet.fromJson(Map json) {
+    if (json.containsKey("channelId")) {
+      channelId = json["channelId"];
+    }
+    if (json.containsKey("description")) {
+      description = json["description"];
+    }
+    if (json.containsKey("publishedAt")) {
+      publishedAt = json["publishedAt"];
+    }
+    if (json.containsKey("title")) {
+      title = json["title"];
+    }
+  }
+
+  /** Create JSON Object for LiveStreamSnippet */
+  Map toJson() {
+    var output = new Map();
+
+    if (channelId != null) {
+      output["channelId"] = channelId;
+    }
+    if (description != null) {
+      output["description"] = description;
+    }
+    if (publishedAt != null) {
+      output["publishedAt"] = publishedAt;
+    }
+    if (title != null) {
+      output["title"] = title;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStreamSnippet */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Brief description of the live stream status. */
+class LiveStreamStatus {
+
+  /** The stream's status. */
+  String streamStatus;
+
+  /** Create new LiveStreamStatus from JSON data */
+  LiveStreamStatus.fromJson(Map json) {
+    if (json.containsKey("streamStatus")) {
+      streamStatus = json["streamStatus"];
+    }
+  }
+
+  /** Create JSON Object for LiveStreamStatus */
+  Map toJson() {
+    var output = new Map();
+
+    if (streamStatus != null) {
+      output["streamStatus"] = streamStatus;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LiveStreamStatus */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Represent a property available in different languages. */
+class LocalizedProperty {
+  String default;
+  List<LocalizedString> localized;
+
+  /** Create new LocalizedProperty from JSON data */
+  LocalizedProperty.fromJson(Map json) {
+    if (json.containsKey("default")) {
+      default = json["default"];
+    }
+    if (json.containsKey("localized")) {
+      localized = [];
+      json["localized"].forEach((item) {
+        localized.add(new LocalizedString.fromJson(item));
+      });
+    }
+  }
+
+  /** Create JSON Object for LocalizedProperty */
+  Map toJson() {
+    var output = new Map();
+
+    if (default != null) {
+      output["default"] = default;
+    }
+    if (localized != null) {
+      output["localized"] = new List();
+      localized.forEach((item) {
+        output["localized"].add(item.toJson());
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LocalizedProperty */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A localized string. */
+class LocalizedString {
+  String language;
+  String value;
+
+  /** Create new LocalizedString from JSON data */
+  LocalizedString.fromJson(Map json) {
+    if (json.containsKey("language")) {
+      language = json["language"];
+    }
+    if (json.containsKey("value")) {
+      value = json["value"];
+    }
+  }
+
+  /** Create JSON Object for LocalizedString */
+  Map toJson() {
+    var output = new Map();
+
+    if (language != null) {
+      output["language"] = language;
+    }
+    if (value != null) {
+      output["value"] = value;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of LocalizedString */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Paging details for lists of resources, including total number of items available and number of resources returned in a single page. */
 class PageInfo {
 
@@ -1454,6 +2780,291 @@ class PageInfo {
   }
 
   /** Return String representation of PageInfo */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A player resource represents all the information needed to play a video. */
+class Player {
+
+  /** The playlist of video ads to show for this playback. */
+  PlayerAdsPlaylist adsPlaylist;
+
+  /** The ETag for the player resource. */
+  String etag;
+
+  /** The ID that YouTube uses to uniquely identify the resource. */
+  ResourceId id;
+
+  /** The invideo features for the video. */
+  InvideoFeature invideoFeature;
+
+  /** The type of the API resource. */
+  String kind;
+
+  /** The videoUrls object either contains restriction information or URLs giving access to the content. */
+  PlayerVideoUrls videoUrls;
+
+  /** Create new Player from JSON data */
+  Player.fromJson(Map json) {
+    if (json.containsKey("adsPlaylist")) {
+      adsPlaylist = new PlayerAdsPlaylist.fromJson(json["adsPlaylist"]);
+    }
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = new ResourceId.fromJson(json["id"]);
+    }
+    if (json.containsKey("invideoFeature")) {
+      invideoFeature = new InvideoFeature.fromJson(json["invideoFeature"]);
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("videoUrls")) {
+      videoUrls = new PlayerVideoUrls.fromJson(json["videoUrls"]);
+    }
+  }
+
+  /** Create JSON Object for Player */
+  Map toJson() {
+    var output = new Map();
+
+    if (adsPlaylist != null) {
+      output["adsPlaylist"] = adsPlaylist.toJson();
+    }
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id.toJson();
+    }
+    if (invideoFeature != null) {
+      output["invideoFeature"] = invideoFeature.toJson();
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (videoUrls != null) {
+      output["videoUrls"] = videoUrls.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of Player */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The playlist of ads which accompany the content video. */
+class PlayerAdsPlaylist {
+
+  /** The VMAP XML document that describes where ads should be inserted and what ad formats should be used in those ad breaks. See http://www.iab.net/vmap. */
+  String vmap_xml;
+
+  /** Create new PlayerAdsPlaylist from JSON data */
+  PlayerAdsPlaylist.fromJson(Map json) {
+    if (json.containsKey("vmap_xml")) {
+      vmap_xml = json["vmap_xml"];
+    }
+  }
+
+  /** Create JSON Object for PlayerAdsPlaylist */
+  Map toJson() {
+    var output = new Map();
+
+    if (vmap_xml != null) {
+      output["vmap_xml"] = vmap_xml;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlayerAdsPlaylist */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A list of players returned from a youtube.player.list call. */
+class PlayerListResponse {
+
+  /** The ETag of the response. */
+  String etag;
+
+  /** The type of the API response. For this operation, the value will be youtube#playerListResponse. */
+  String kind;
+
+  /** A list of players that match the request criteria. */
+  List<Player> players;
+
+  /** Create new PlayerListResponse from JSON data */
+  PlayerListResponse.fromJson(Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("players")) {
+      players = [];
+      json["players"].forEach((item) {
+        players.add(new Player.fromJson(item));
+      });
+    }
+  }
+
+  /** Create JSON Object for PlayerListResponse */
+  Map toJson() {
+    var output = new Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (players != null) {
+      output["players"] = new List();
+      players.forEach((item) {
+        output["players"].add(item.toJson());
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlayerListResponse */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Part describing if and why a video can't be played. */
+class PlayerRestrictionDetails {
+
+  /** Detailed information about the restriction */
+  String reason;
+
+  /** True iff the video can't be played. */
+  bool restricted;
+
+  /** A code describing the restriction class. */
+  String restriction;
+
+  /** Create new PlayerRestrictionDetails from JSON data */
+  PlayerRestrictionDetails.fromJson(Map json) {
+    if (json.containsKey("reason")) {
+      reason = json["reason"];
+    }
+    if (json.containsKey("restricted")) {
+      restricted = json["restricted"];
+    }
+    if (json.containsKey("restriction")) {
+      restriction = json["restriction"];
+    }
+  }
+
+  /** Create JSON Object for PlayerRestrictionDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (reason != null) {
+      output["reason"] = reason;
+    }
+    if (restricted != null) {
+      output["restricted"] = restricted;
+    }
+    if (restriction != null) {
+      output["restriction"] = restriction;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlayerRestrictionDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A single video format the user can access. */
+class PlayerVideoUrl {
+
+  /** itag of the video format. */
+  int itag;
+
+  /** Streamer URL serving the video. */
+  String url;
+
+  /** Create new PlayerVideoUrl from JSON data */
+  PlayerVideoUrl.fromJson(Map json) {
+    if (json.containsKey("itag")) {
+      itag = json["itag"];
+    }
+    if (json.containsKey("url")) {
+      url = json["url"];
+    }
+  }
+
+  /** Create JSON Object for PlayerVideoUrl */
+  Map toJson() {
+    var output = new Map();
+
+    if (itag != null) {
+      output["itag"] = itag;
+    }
+    if (url != null) {
+      output["url"] = url;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlayerVideoUrl */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Part containing the URLs pointing to the video data. */
+class PlayerVideoUrls {
+
+  /** Possible restriction to the playability of the video. */
+  PlayerRestrictionDetails restriction;
+
+  /** URLs to the formats that are available to the caller. */
+  List<PlayerVideoUrl> url;
+
+  /** Create new PlayerVideoUrls from JSON data */
+  PlayerVideoUrls.fromJson(Map json) {
+    if (json.containsKey("restriction")) {
+      restriction = new PlayerRestrictionDetails.fromJson(json["restriction"]);
+    }
+    if (json.containsKey("url")) {
+      url = [];
+      json["url"].forEach((item) {
+        url.add(new PlayerVideoUrl.fromJson(item));
+      });
+    }
+  }
+
+  /** Create JSON Object for PlayerVideoUrls */
+  Map toJson() {
+    var output = new Map();
+
+    if (restriction != null) {
+      output["restriction"] = restriction.toJson();
+    }
+    if (url != null) {
+      output["url"] = new List();
+      url.forEach((item) {
+        output["url"].add(item.toJson());
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlayerVideoUrls */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1789,11 +3400,13 @@ class PlaylistItemListResponse {
 
 }
 
-/** Basic details about an item included in a playlist, including title, description, thumbnails, playlist the item is part of and position of the item inside the playlist. */
 class PlaylistItemSnippet {
 
   /** The ID that YouTube uses to uniquely identify the user that added the item to the playlist. */
   String channelId;
+
+  /** Channel title for the channel that the playlist item belongs to. */
+  String channelTitle;
 
   /** The item's description. */
   String description;
@@ -1809,9 +3422,7 @@ class PlaylistItemSnippet {
 
   /** The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item. */
   ResourceId resourceId;
-
-  /** A map of thumbnail images associated with the playlist item. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  PlaylistItemSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The item's title. */
   String title;
@@ -1820,6 +3431,9 @@ class PlaylistItemSnippet {
   PlaylistItemSnippet.fromJson(Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
+    }
+    if (json.containsKey("channelTitle")) {
+      channelTitle = json["channelTitle"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
@@ -1837,7 +3451,7 @@ class PlaylistItemSnippet {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new PlaylistItemSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -1850,6 +3464,9 @@ class PlaylistItemSnippet {
 
     if (channelId != null) {
       output["channelId"] = channelId;
+    }
+    if (channelTitle != null) {
+      output["channelTitle"] = channelTitle;
     }
     if (description != null) {
       output["description"] = description;
@@ -1877,26 +3494,6 @@ class PlaylistItemSnippet {
   }
 
   /** Return String representation of PlaylistItemSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the playlist item. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class PlaylistItemSnippetThumbnails {
-
-  /** Create new PlaylistItemSnippetThumbnails from JSON data */
-  PlaylistItemSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for PlaylistItemSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of PlaylistItemSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2016,34 +3613,51 @@ class PlaylistSnippet {
   /** The ID that YouTube uses to uniquely identify the channel that published the playlist. */
   String channelId;
 
+  /** Channel title for the channel that the video belongs to. */
+  String channelTitle;
+
   /** The playlist's description. */
   String description;
 
   /** The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  String publishedAtMs;
+  List<String> tags;
 
   /** A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  PlaylistSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The playlist's title. */
   String title;
+  String updatedAtMs;
 
   /** Create new PlaylistSnippet from JSON data */
   PlaylistSnippet.fromJson(Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
+    if (json.containsKey("channelTitle")) {
+      channelTitle = json["channelTitle"];
+    }
     if (json.containsKey("description")) {
       description = json["description"];
     }
-    if (json.containsKey("publishedAt")) {
-      publishedAt = json["publishedAt"];
+    if (json.containsKey("publishedAtMs")) {
+      publishedAtMs = json["publishedAtMs"];
+    }
+    if (json.containsKey("tags")) {
+      tags = [];
+      json["tags"].forEach((item) {
+        tags.add(item);
+      });
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new PlaylistSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
+    }
+    if (json.containsKey("updatedAtMs")) {
+      updatedAtMs = json["updatedAtMs"];
     }
   }
 
@@ -2054,11 +3668,20 @@ class PlaylistSnippet {
     if (channelId != null) {
       output["channelId"] = channelId;
     }
+    if (channelTitle != null) {
+      output["channelTitle"] = channelTitle;
+    }
     if (description != null) {
       output["description"] = description;
     }
-    if (publishedAt != null) {
-      output["publishedAt"] = publishedAt;
+    if (publishedAtMs != null) {
+      output["publishedAtMs"] = publishedAtMs;
+    }
+    if (tags != null) {
+      output["tags"] = new List();
+      tags.forEach((item) {
+        output["tags"].add(item);
+      });
     }
     if (thumbnails != null) {
       output["thumbnails"] = thumbnails.toJson();
@@ -2066,31 +3689,14 @@ class PlaylistSnippet {
     if (title != null) {
       output["title"] = title;
     }
+    if (updatedAtMs != null) {
+      output["updatedAtMs"] = updatedAtMs;
+    }
 
     return output;
   }
 
   /** Return String representation of PlaylistSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class PlaylistSnippetThumbnails {
-
-  /** Create new PlaylistSnippetThumbnails from JSON data */
-  PlaylistSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for PlaylistSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of PlaylistSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2124,13 +3730,45 @@ class PlaylistStatus {
 
 }
 
+/** A pair Property / Value. */
+class PropertyValue {
+  String property;
+  String value;
+
+  /** Create new PropertyValue from JSON data */
+  PropertyValue.fromJson(Map json) {
+    if (json.containsKey("property")) {
+      property = json["property"];
+    }
+    if (json.containsKey("value")) {
+      value = json["value"];
+    }
+  }
+
+  /** Create JSON Object for PropertyValue */
+  Map toJson() {
+    var output = new Map();
+
+    if (property != null) {
+      output["property"] = property;
+    }
+    if (value != null) {
+      output["value"] = value;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PropertyValue */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** A resource id is a generic reference that points to another YouTube resource. */
 class ResourceId {
 
   /** The ID that YouTube uses to uniquely identify the referred resource, if that resource is a channel. This property is only present if the resourceId.kind value is youtube#channel. */
   String channelId;
-
-  /** The kind, or type, of the referred resource. */
   String kind;
 
   /** The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the resourceId.kind value is youtube#playlist. */
@@ -2263,13 +3901,13 @@ class SearchListResponse {
 /** A search result contains information about a YouTube video, channel, or playlist that matches the search parameters specified in an API request. While a search result points to a uniquely identifiable resource, like a video, it does not have its own persistent data. */
 class SearchResult {
 
-  /** The ETag of the search result. */
+  /** Etag of this resource. */
   String etag;
 
   /** The id object contains information that can be used to uniquely identify the resource that matches the search request. */
   ResourceId id;
 
-  /** The type of the API response. For this resource, the value will be youtube#searchResult. */
+  /** The kind, fixed to "youtube#searchResult". */
   String kind;
 
   /** The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video's title and the description will be the video's description. */
@@ -2316,11 +3954,13 @@ class SearchResult {
 
 }
 
-/** Basic details about a search result, including title, description and thumbnails of the item referenced by the search result. */
 class SearchResultSnippet {
 
   /** The value that YouTube uses to uniquely identify the channel that published the resource that the search result identifies. */
   String channelId;
+
+  /** The title of the channel that published the resource that the search result identifies. */
+  String channelTitle;
 
   /** A description of the search result. */
   String description;
@@ -2329,15 +3969,18 @@ class SearchResultSnippet {
   String publishedAt;
 
   /** A map of thumbnail images associated with the search result. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  SearchResultSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
-  /** The title to display for the search result. */
+  /** The title of the search result. */
   String title;
 
   /** Create new SearchResultSnippet from JSON data */
   SearchResultSnippet.fromJson(Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
+    }
+    if (json.containsKey("channelTitle")) {
+      channelTitle = json["channelTitle"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
@@ -2346,7 +3989,7 @@ class SearchResultSnippet {
       publishedAt = json["publishedAt"];
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new SearchResultSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -2359,6 +4002,9 @@ class SearchResultSnippet {
 
     if (channelId != null) {
       output["channelId"] = channelId;
+    }
+    if (channelTitle != null) {
+      output["channelTitle"] = channelTitle;
     }
     if (description != null) {
       output["description"] = description;
@@ -2377,26 +4023,6 @@ class SearchResultSnippet {
   }
 
   /** Return String representation of SearchResultSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the search result. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class SearchResultSnippetThumbnails {
-
-  /** Create new SearchResultSnippetThumbnails from JSON data */
-  SearchResultSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for SearchResultSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of SearchResultSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2600,7 +4226,7 @@ class SubscriptionSnippet {
   ResourceId resourceId;
 
   /** A map of thumbnail images associated with the subscription. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  SubscriptionSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The subscription's title. */
   String title;
@@ -2620,7 +4246,7 @@ class SubscriptionSnippet {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new SubscriptionSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -2654,26 +4280,6 @@ class SubscriptionSnippet {
   }
 
   /** Return String representation of SubscriptionSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the subscription. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class SubscriptionSnippetThumbnails {
-
-  /** Create new SubscriptionSnippetThumbnails from JSON data */
-  SubscriptionSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for SubscriptionSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of SubscriptionSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2725,14 +4331,74 @@ class Thumbnail {
 
 }
 
+class ThumbnailDetails {
+  Thumbnail default;
+  Thumbnail high;
+  Thumbnail maxres;
+  Thumbnail medium;
+  Thumbnail standard;
+
+  /** Create new ThumbnailDetails from JSON data */
+  ThumbnailDetails.fromJson(Map json) {
+    if (json.containsKey("default")) {
+      default = new Thumbnail.fromJson(json["default"]);
+    }
+    if (json.containsKey("high")) {
+      high = new Thumbnail.fromJson(json["high"]);
+    }
+    if (json.containsKey("maxres")) {
+      maxres = new Thumbnail.fromJson(json["maxres"]);
+    }
+    if (json.containsKey("medium")) {
+      medium = new Thumbnail.fromJson(json["medium"]);
+    }
+    if (json.containsKey("standard")) {
+      standard = new Thumbnail.fromJson(json["standard"]);
+    }
+  }
+
+  /** Create JSON Object for ThumbnailDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (default != null) {
+      output["default"] = default.toJson();
+    }
+    if (high != null) {
+      output["high"] = high.toJson();
+    }
+    if (maxres != null) {
+      output["maxres"] = maxres.toJson();
+    }
+    if (medium != null) {
+      output["medium"] = medium.toJson();
+    }
+    if (standard != null) {
+      output["standard"] = standard.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ThumbnailDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** A video resource represents a YouTube video. */
 class Video {
+
+  /** Age restriction details related to a video. */
+  VideoAgeGating ageGatingDetails;
 
   /** The contentDetails object contains information about the video content, including the length of the video and its aspect ratio. */
   VideoContentDetails contentDetails;
 
   /** The ETag of the video resource. */
   String etag;
+
+  /** The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner. */
+  VideoFileDetails fileDetails;
 
   /** The ID that YouTube uses to uniquely identify the video. */
   String id;
@@ -2746,6 +4412,14 @@ class Video {
   /** The player object contains information that you would use to play the video in an embedded player. */
   VideoPlayer player;
 
+  /** The processingProgress object encapsulates information about YouTube's progress in processing the uploaded video file. The properties in the object identify the current processing status and an estimate of the time remaining until YouTube finishes processing the video. This part also indicates whether different types of data or content, such as file details or thumbnail images, are available for the video.
+
+The processingProgress object is designed to be polled so that the video uploaded can track the progress that YouTube has made in processing the uploaded video file. This data can only be retrieved by the video owner. */
+  VideoProcessingDetails processingDetails;
+
+  /** The projectDetails object contains information about the project specific video metadata. */
+  VideoProjectDetails projectDetails;
+
   /** The recordingDetails object encapsulates information about the location, date and address where the video was recorded. */
   VideoRecordingDetails recordingDetails;
 
@@ -2758,16 +4432,25 @@ class Video {
   /** The status object contains information about the video's uploading, processing, and privacy statuses. */
   VideoStatus status;
 
+  /** The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video. This data can only be retrieved by the video owner. */
+  VideoSuggestions suggestions;
+
   /** The topicDetails object encapsulates information about Freebase topics associated with the video. */
   VideoTopicDetails topicDetails;
 
   /** Create new Video from JSON data */
   Video.fromJson(Map json) {
+    if (json.containsKey("ageGatingDetails")) {
+      ageGatingDetails = new VideoAgeGating.fromJson(json["ageGatingDetails"]);
+    }
     if (json.containsKey("contentDetails")) {
       contentDetails = new VideoContentDetails.fromJson(json["contentDetails"]);
     }
     if (json.containsKey("etag")) {
       etag = json["etag"];
+    }
+    if (json.containsKey("fileDetails")) {
+      fileDetails = new VideoFileDetails.fromJson(json["fileDetails"]);
     }
     if (json.containsKey("id")) {
       id = json["id"];
@@ -2781,6 +4464,12 @@ class Video {
     if (json.containsKey("player")) {
       player = new VideoPlayer.fromJson(json["player"]);
     }
+    if (json.containsKey("processingDetails")) {
+      processingDetails = new VideoProcessingDetails.fromJson(json["processingDetails"]);
+    }
+    if (json.containsKey("projectDetails")) {
+      projectDetails = new VideoProjectDetails.fromJson(json["projectDetails"]);
+    }
     if (json.containsKey("recordingDetails")) {
       recordingDetails = new VideoRecordingDetails.fromJson(json["recordingDetails"]);
     }
@@ -2793,6 +4482,9 @@ class Video {
     if (json.containsKey("status")) {
       status = new VideoStatus.fromJson(json["status"]);
     }
+    if (json.containsKey("suggestions")) {
+      suggestions = new VideoSuggestions.fromJson(json["suggestions"]);
+    }
     if (json.containsKey("topicDetails")) {
       topicDetails = new VideoTopicDetails.fromJson(json["topicDetails"]);
     }
@@ -2802,11 +4494,17 @@ class Video {
   Map toJson() {
     var output = new Map();
 
+    if (ageGatingDetails != null) {
+      output["ageGatingDetails"] = ageGatingDetails.toJson();
+    }
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
     }
     if (etag != null) {
       output["etag"] = etag;
+    }
+    if (fileDetails != null) {
+      output["fileDetails"] = fileDetails.toJson();
     }
     if (id != null) {
       output["id"] = id;
@@ -2820,6 +4518,12 @@ class Video {
     if (player != null) {
       output["player"] = player.toJson();
     }
+    if (processingDetails != null) {
+      output["processingDetails"] = processingDetails.toJson();
+    }
+    if (projectDetails != null) {
+      output["projectDetails"] = projectDetails.toJson();
+    }
     if (recordingDetails != null) {
       output["recordingDetails"] = recordingDetails.toJson();
     }
@@ -2832,6 +4536,9 @@ class Video {
     if (status != null) {
       output["status"] = status.toJson();
     }
+    if (suggestions != null) {
+      output["suggestions"] = suggestions.toJson();
+    }
     if (topicDetails != null) {
       output["topicDetails"] = topicDetails.toJson();
     }
@@ -2840,6 +4547,52 @@ class Video {
   }
 
   /** Return String representation of Video */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+class VideoAgeGating {
+
+  /** Indicates whether or not the video has alcoholic beverage content. Only users of legal purchasing age in a particular country, as identified by ICAP, can view the content. */
+  bool alcoholContent;
+
+  /** Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is true the content is restricted to viewers aged 18+. Otherwise The field won't be present. */
+  bool restricted;
+
+  /** Video game rating, if any. */
+  String videoGameRating;
+
+  /** Create new VideoAgeGating from JSON data */
+  VideoAgeGating.fromJson(Map json) {
+    if (json.containsKey("alcoholContent")) {
+      alcoholContent = json["alcoholContent"];
+    }
+    if (json.containsKey("restricted")) {
+      restricted = json["restricted"];
+    }
+    if (json.containsKey("videoGameRating")) {
+      videoGameRating = json["videoGameRating"];
+    }
+  }
+
+  /** Create JSON Object for VideoAgeGating */
+  Map toJson() {
+    var output = new Map();
+
+    if (alcoholContent != null) {
+      output["alcoholContent"] = alcoholContent;
+    }
+    if (restricted != null) {
+      output["restricted"] = restricted;
+    }
+    if (videoGameRating != null) {
+      output["videoGameRating"] = videoGameRating;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoAgeGating */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2953,13 +4706,10 @@ class VideoCategoryListResponse {
 
 }
 
-/** Basic details about a video category, such as its localized title. */
 class VideoCategorySnippet {
 
   /** The YouTube channel that created the video category. */
   String channelId;
-
-  /** The video category's title. */
   String title;
 
   /** Create new VideoCategorySnippet from JSON data */
@@ -2997,6 +4747,9 @@ class VideoContentDetails {
   /** The value of captions indicates whether the video has captions or not. */
   String caption;
 
+  /** The countryRestriction object contains information about the countries where a video is (or is not) viewable. */
+  AccessPolicy countryRestriction;
+
   /** The value of definition indicates whether the video is available in high definition or only in standard definition. */
   String definition;
 
@@ -3006,6 +4759,9 @@ class VideoContentDetails {
   /** The length of the video. The tag value is an ISO 8601 duration in the format PT#M#S, in which the letters PT indicate that the value specifies a period of time, and the letters M and S refer to length in minutes and seconds, respectively. The # characters preceding the M and S letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of PT15M51S indicates that the video is 15 minutes and 51 seconds long. */
   String duration;
 
+  /** The value of is_license_content indicates whether the video is licensed content. */
+  bool licensedContent;
+
   /** The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property. */
   VideoContentDetailsRegionRestriction regionRestriction;
 
@@ -3013,6 +4769,9 @@ class VideoContentDetails {
   VideoContentDetails.fromJson(Map json) {
     if (json.containsKey("caption")) {
       caption = json["caption"];
+    }
+    if (json.containsKey("countryRestriction")) {
+      countryRestriction = new AccessPolicy.fromJson(json["countryRestriction"]);
     }
     if (json.containsKey("definition")) {
       definition = json["definition"];
@@ -3022,6 +4781,9 @@ class VideoContentDetails {
     }
     if (json.containsKey("duration")) {
       duration = json["duration"];
+    }
+    if (json.containsKey("licensedContent")) {
+      licensedContent = json["licensedContent"];
     }
     if (json.containsKey("regionRestriction")) {
       regionRestriction = new VideoContentDetailsRegionRestriction.fromJson(json["regionRestriction"]);
@@ -3035,6 +4797,9 @@ class VideoContentDetails {
     if (caption != null) {
       output["caption"] = caption;
     }
+    if (countryRestriction != null) {
+      output["countryRestriction"] = countryRestriction.toJson();
+    }
     if (definition != null) {
       output["definition"] = definition;
     }
@@ -3043,6 +4808,9 @@ class VideoContentDetails {
     }
     if (duration != null) {
       output["duration"] = duration;
+    }
+    if (licensedContent != null) {
+      output["licensedContent"] = licensedContent;
     }
     if (regionRestriction != null) {
       output["regionRestriction"] = regionRestriction.toJson();
@@ -3056,7 +4824,7 @@ class VideoContentDetails {
 
 }
 
-/** Region restriction of the video. */
+/** DEPRECATED Region restriction of the video. */
 class VideoContentDetailsRegionRestriction {
 
   /** A list of region codes that identify countries where the video is viewable. If this property is present and a country is not listed in its value, then the video is blocked from appearing in that country. If this property is present and contains an empty list, the video is blocked in all countries. */
@@ -3102,6 +4870,279 @@ class VideoContentDetailsRegionRestriction {
   }
 
   /** Return String representation of VideoContentDetailsRegionRestriction */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Describes original video file properties, including technical details about audio and video streams, but also metadata information like content length, digitization time, or geotagging information. */
+class VideoFileDetails {
+
+  /** A list of audio streams contained in the uploaded video file. Each item in the list contains detailed metadata about an audio stream. */
+  List<VideoFileDetailsAudioStream> audioStreams;
+
+  /** The uploaded video file's combined (video and audio) bitrate in bits per second. */
+  String bitrateBps;
+
+  /** The uploaded video file's container format. */
+  String container;
+
+  /** The date and time when the uploaded video file was created. The value is specified in ISO 8601 format. Currently, the following ISO 8601 formats are supported:  
+- Date only: YYYY-MM-DD 
+- Naive time: YYYY-MM-DDTHH:MM:SS 
+- Time with timezone: YYYY-MM-DDTHH:MM:SS+HH:MM */
+  String creationTime;
+
+  /** The length of the uploaded video in milliseconds. */
+  String durationMs;
+
+  /** The uploaded file's name. This field is present whether a video file or another type of file was uploaded. */
+  String fileName;
+
+  /** The uploaded file's size in bytes. This field is present whether a video file or another type of file was uploaded. */
+  String fileSize;
+
+  /** The uploaded file's type as detected by YouTube's video processing engine. Currently, YouTube only processes video files, but this field is present whether a video file or another type of file was uploaded. */
+  String fileType;
+
+  /** Geographic coordinates that identify the place where the uploaded video was recorded. Coordinates are defined using WGS 84. */
+  GeoPoint recordingLocation;
+
+  /** A list of video streams contained in the uploaded video file. Each item in the list contains detailed metadata about a video stream. */
+  List<VideoFileDetailsVideoStream> videoStreams;
+
+  /** Create new VideoFileDetails from JSON data */
+  VideoFileDetails.fromJson(Map json) {
+    if (json.containsKey("audioStreams")) {
+      audioStreams = [];
+      json["audioStreams"].forEach((item) {
+        audioStreams.add(new VideoFileDetailsAudioStream.fromJson(item));
+      });
+    }
+    if (json.containsKey("bitrateBps")) {
+      bitrateBps = json["bitrateBps"];
+    }
+    if (json.containsKey("container")) {
+      container = json["container"];
+    }
+    if (json.containsKey("creationTime")) {
+      creationTime = json["creationTime"];
+    }
+    if (json.containsKey("durationMs")) {
+      durationMs = json["durationMs"];
+    }
+    if (json.containsKey("fileName")) {
+      fileName = json["fileName"];
+    }
+    if (json.containsKey("fileSize")) {
+      fileSize = json["fileSize"];
+    }
+    if (json.containsKey("fileType")) {
+      fileType = json["fileType"];
+    }
+    if (json.containsKey("recordingLocation")) {
+      recordingLocation = new GeoPoint.fromJson(json["recordingLocation"]);
+    }
+    if (json.containsKey("videoStreams")) {
+      videoStreams = [];
+      json["videoStreams"].forEach((item) {
+        videoStreams.add(new VideoFileDetailsVideoStream.fromJson(item));
+      });
+    }
+  }
+
+  /** Create JSON Object for VideoFileDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (audioStreams != null) {
+      output["audioStreams"] = new List();
+      audioStreams.forEach((item) {
+        output["audioStreams"].add(item.toJson());
+      });
+    }
+    if (bitrateBps != null) {
+      output["bitrateBps"] = bitrateBps;
+    }
+    if (container != null) {
+      output["container"] = container;
+    }
+    if (creationTime != null) {
+      output["creationTime"] = creationTime;
+    }
+    if (durationMs != null) {
+      output["durationMs"] = durationMs;
+    }
+    if (fileName != null) {
+      output["fileName"] = fileName;
+    }
+    if (fileSize != null) {
+      output["fileSize"] = fileSize;
+    }
+    if (fileType != null) {
+      output["fileType"] = fileType;
+    }
+    if (recordingLocation != null) {
+      output["recordingLocation"] = recordingLocation.toJson();
+    }
+    if (videoStreams != null) {
+      output["videoStreams"] = new List();
+      videoStreams.forEach((item) {
+        output["videoStreams"].add(item.toJson());
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoFileDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about an audio stream. */
+class VideoFileDetailsAudioStream {
+
+  /** The audio stream's bitrate, in bits per second. */
+  String bitrateBps;
+
+  /** The number of audio channels that the stream contains. */
+  int channelCount;
+
+  /** The audio codec that the stream uses. */
+  String codec;
+
+  /** A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code. */
+  String vendor;
+
+  /** Create new VideoFileDetailsAudioStream from JSON data */
+  VideoFileDetailsAudioStream.fromJson(Map json) {
+    if (json.containsKey("bitrateBps")) {
+      bitrateBps = json["bitrateBps"];
+    }
+    if (json.containsKey("channelCount")) {
+      channelCount = json["channelCount"];
+    }
+    if (json.containsKey("codec")) {
+      codec = json["codec"];
+    }
+    if (json.containsKey("vendor")) {
+      vendor = json["vendor"];
+    }
+  }
+
+  /** Create JSON Object for VideoFileDetailsAudioStream */
+  Map toJson() {
+    var output = new Map();
+
+    if (bitrateBps != null) {
+      output["bitrateBps"] = bitrateBps;
+    }
+    if (channelCount != null) {
+      output["channelCount"] = channelCount;
+    }
+    if (codec != null) {
+      output["codec"] = codec;
+    }
+    if (vendor != null) {
+      output["vendor"] = vendor;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoFileDetailsAudioStream */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about a video stream. */
+class VideoFileDetailsVideoStream {
+
+  /** The video content's display aspect ratio, which specifies the aspect ratio in which the video should be displayed. */
+  num aspectRatio;
+
+  /** The video stream's bitrate, in bits per second. */
+  String bitrateBps;
+
+  /** The video codec that the stream uses. */
+  String codec;
+
+  /** The video stream's frame rate, in frames per second. */
+  num frameRateFps;
+
+  /** The encoded video content's height in pixels. */
+  int heightPixels;
+
+  /** The amount that YouTube needs to rotate the original source content to properly display the video. */
+  String rotation;
+
+  /** A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code. */
+  String vendor;
+
+  /** The encoded video content's width in pixels. You can calculate the video's encoding aspect ratio as width_pixelsÂ /Â height_pixels. */
+  int widthPixels;
+
+  /** Create new VideoFileDetailsVideoStream from JSON data */
+  VideoFileDetailsVideoStream.fromJson(Map json) {
+    if (json.containsKey("aspectRatio")) {
+      aspectRatio = json["aspectRatio"];
+    }
+    if (json.containsKey("bitrateBps")) {
+      bitrateBps = json["bitrateBps"];
+    }
+    if (json.containsKey("codec")) {
+      codec = json["codec"];
+    }
+    if (json.containsKey("frameRateFps")) {
+      frameRateFps = json["frameRateFps"];
+    }
+    if (json.containsKey("heightPixels")) {
+      heightPixels = json["heightPixels"];
+    }
+    if (json.containsKey("rotation")) {
+      rotation = json["rotation"];
+    }
+    if (json.containsKey("vendor")) {
+      vendor = json["vendor"];
+    }
+    if (json.containsKey("widthPixels")) {
+      widthPixels = json["widthPixels"];
+    }
+  }
+
+  /** Create JSON Object for VideoFileDetailsVideoStream */
+  Map toJson() {
+    var output = new Map();
+
+    if (aspectRatio != null) {
+      output["aspectRatio"] = aspectRatio;
+    }
+    if (bitrateBps != null) {
+      output["bitrateBps"] = bitrateBps;
+    }
+    if (codec != null) {
+      output["codec"] = codec;
+    }
+    if (frameRateFps != null) {
+      output["frameRateFps"] = frameRateFps;
+    }
+    if (heightPixels != null) {
+      output["heightPixels"] = heightPixels;
+    }
+    if (rotation != null) {
+      output["rotation"] = rotation;
+    }
+    if (vendor != null) {
+      output["vendor"] = vendor;
+    }
+    if (widthPixels != null) {
+      output["widthPixels"] = widthPixels;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoFileDetailsVideoStream */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -3217,6 +5258,183 @@ class VideoPlayer {
 
 }
 
+/** Describes processing status and progress and availability of some other Video resource parts. */
+class VideoProcessingDetails {
+
+  /** This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
+  String editorSuggestionsAvailability;
+
+  /** This value indicates whether file details are available for the uploaded video. You can retrieve a video's file details by requesting the fileDetails part in your videos.list() request. */
+  String fileDetailsAvailability;
+
+  /** The reason that YouTube failed to process the video. This property will only have a value if the processingStatus property's value is failed. */
+  String processingFailureReason;
+
+  /** This value indicates whether the video processing engine has generated suggestions that might improve YouTube's ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
+  String processingIssuesAvailability;
+
+  /** The processingProgress object contains information about the progress YouTube has made in processing the video. The values are really only relevant if the video's processing status is processing. */
+  VideoProcessingDetailsProcessingProgress processingProgress;
+
+  /** The video's processing status. This value indicates whether YouTube was able to process the video or if the video is still being processed. */
+  String processingStatus;
+
+  /** This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video's metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
+  String tagSuggestionsAvailability;
+
+  /** This value indicates whether thumbnail images have been generated for the video. */
+  String thumbnailsAvailability;
+
+  /** Create new VideoProcessingDetails from JSON data */
+  VideoProcessingDetails.fromJson(Map json) {
+    if (json.containsKey("editorSuggestionsAvailability")) {
+      editorSuggestionsAvailability = json["editorSuggestionsAvailability"];
+    }
+    if (json.containsKey("fileDetailsAvailability")) {
+      fileDetailsAvailability = json["fileDetailsAvailability"];
+    }
+    if (json.containsKey("processingFailureReason")) {
+      processingFailureReason = json["processingFailureReason"];
+    }
+    if (json.containsKey("processingIssuesAvailability")) {
+      processingIssuesAvailability = json["processingIssuesAvailability"];
+    }
+    if (json.containsKey("processingProgress")) {
+      processingProgress = new VideoProcessingDetailsProcessingProgress.fromJson(json["processingProgress"]);
+    }
+    if (json.containsKey("processingStatus")) {
+      processingStatus = json["processingStatus"];
+    }
+    if (json.containsKey("tagSuggestionsAvailability")) {
+      tagSuggestionsAvailability = json["tagSuggestionsAvailability"];
+    }
+    if (json.containsKey("thumbnailsAvailability")) {
+      thumbnailsAvailability = json["thumbnailsAvailability"];
+    }
+  }
+
+  /** Create JSON Object for VideoProcessingDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (editorSuggestionsAvailability != null) {
+      output["editorSuggestionsAvailability"] = editorSuggestionsAvailability;
+    }
+    if (fileDetailsAvailability != null) {
+      output["fileDetailsAvailability"] = fileDetailsAvailability;
+    }
+    if (processingFailureReason != null) {
+      output["processingFailureReason"] = processingFailureReason;
+    }
+    if (processingIssuesAvailability != null) {
+      output["processingIssuesAvailability"] = processingIssuesAvailability;
+    }
+    if (processingProgress != null) {
+      output["processingProgress"] = processingProgress.toJson();
+    }
+    if (processingStatus != null) {
+      output["processingStatus"] = processingStatus;
+    }
+    if (tagSuggestionsAvailability != null) {
+      output["tagSuggestionsAvailability"] = tagSuggestionsAvailability;
+    }
+    if (thumbnailsAvailability != null) {
+      output["thumbnailsAvailability"] = thumbnailsAvailability;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoProcessingDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Video processing progress and completion time estimate. */
+class VideoProcessingDetailsProcessingProgress {
+
+  /** The number of parts of the video that YouTube has already processed. You can estimate the percentage of the video that YouTube has already processed by calculating:
+100 * parts_processed / parts_total
+
+Note that since the estimated number of parts could increase without a corresponding increase in the number of parts that have already been processed, it is possible that the calculated progress could periodically decrease while YouTube processes a video. */
+  String partsProcessed;
+
+  /** An estimate of the total number of parts that need to be processed for the video. The number may be updated with more precise estimates while YouTube processes the video. */
+  String partsTotal;
+
+  /** An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video. */
+  String timeLeftMs;
+
+  /** Create new VideoProcessingDetailsProcessingProgress from JSON data */
+  VideoProcessingDetailsProcessingProgress.fromJson(Map json) {
+    if (json.containsKey("partsProcessed")) {
+      partsProcessed = json["partsProcessed"];
+    }
+    if (json.containsKey("partsTotal")) {
+      partsTotal = json["partsTotal"];
+    }
+    if (json.containsKey("timeLeftMs")) {
+      timeLeftMs = json["timeLeftMs"];
+    }
+  }
+
+  /** Create JSON Object for VideoProcessingDetailsProcessingProgress */
+  Map toJson() {
+    var output = new Map();
+
+    if (partsProcessed != null) {
+      output["partsProcessed"] = partsProcessed;
+    }
+    if (partsTotal != null) {
+      output["partsTotal"] = partsTotal;
+    }
+    if (timeLeftMs != null) {
+      output["timeLeftMs"] = timeLeftMs;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoProcessingDetailsProcessingProgress */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Project specific details about the content of a YouTube Video. */
+class VideoProjectDetails {
+
+  /** A list of project tags associated with the video during the upload. */
+  List<String> tags;
+
+  /** Create new VideoProjectDetails from JSON data */
+  VideoProjectDetails.fromJson(Map json) {
+    if (json.containsKey("tags")) {
+      tags = [];
+      json["tags"].forEach((item) {
+        tags.add(item);
+      });
+    }
+  }
+
+  /** Create JSON Object for VideoProjectDetails */
+  Map toJson() {
+    var output = new Map();
+
+    if (tags != null) {
+      output["tags"] = new List();
+      tags.forEach((item) {
+        output["tags"].add(item);
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoProjectDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Recording information associated with the video. */
 class VideoRecordingDetails {
 
@@ -3273,6 +5491,9 @@ class VideoSnippet {
   /** The ID that YouTube uses to uniquely identify the channel that the video was uploaded to. */
   String channelId;
 
+  /** Channel title for the channel that the video belongs to. */
+  String channelTitle;
+
   /** The video's description. */
   String description;
 
@@ -3283,7 +5504,7 @@ class VideoSnippet {
   List<String> tags;
 
   /** A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-  VideoSnippetThumbnails thumbnails;
+  ThumbnailDetails thumbnails;
 
   /** The video's title. */
   String title;
@@ -3295,6 +5516,9 @@ class VideoSnippet {
     }
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
+    }
+    if (json.containsKey("channelTitle")) {
+      channelTitle = json["channelTitle"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
@@ -3309,7 +5533,7 @@ class VideoSnippet {
       });
     }
     if (json.containsKey("thumbnails")) {
-      thumbnails = new VideoSnippetThumbnails.fromJson(json["thumbnails"]);
+      thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
     }
     if (json.containsKey("title")) {
       title = json["title"];
@@ -3325,6 +5549,9 @@ class VideoSnippet {
     }
     if (channelId != null) {
       output["channelId"] = channelId;
+    }
+    if (channelTitle != null) {
+      output["channelTitle"] = channelTitle;
     }
     if (description != null) {
       output["description"] = description;
@@ -3349,26 +5576,6 @@ class VideoSnippet {
   }
 
   /** Return String representation of VideoSnippet */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
-class VideoSnippetThumbnails {
-
-  /** Create new VideoSnippetThumbnails from JSON data */
-  VideoSnippetThumbnails.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for VideoSnippetThumbnails */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of VideoSnippetThumbnails */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -3453,6 +5660,9 @@ class VideoStatus {
   /** The video's privacy status. */
   String privacyStatus;
 
+  /** This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled. */
+  bool publicStatsViewable;
+
   /** This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected. */
   String rejectionReason;
 
@@ -3472,6 +5682,9 @@ class VideoStatus {
     }
     if (json.containsKey("privacyStatus")) {
       privacyStatus = json["privacyStatus"];
+    }
+    if (json.containsKey("publicStatsViewable")) {
+      publicStatsViewable = json["publicStatsViewable"];
     }
     if (json.containsKey("rejectionReason")) {
       rejectionReason = json["rejectionReason"];
@@ -3497,6 +5710,9 @@ class VideoStatus {
     if (privacyStatus != null) {
       output["privacyStatus"] = privacyStatus;
     }
+    if (publicStatsViewable != null) {
+      output["publicStatsViewable"] = publicStatsViewable;
+    }
     if (rejectionReason != null) {
       output["rejectionReason"] = rejectionReason;
     }
@@ -3508,6 +5724,145 @@ class VideoStatus {
   }
 
   /** Return String representation of VideoStatus */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Specifies suggestions on how to improve video content, including encoding hints, tag suggestions, and editor suggestions. */
+class VideoSuggestions {
+
+  /** A list of video editing operations that might improve the video quality or playback experience of the uploaded video. */
+  List<String> editorSuggestions;
+
+  /** A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video's current processing status, eventually, that status will almost certainly be failed. */
+  List<String> processingErrors;
+
+  /** A list of suggestions that may improve YouTube's ability to process the video. */
+  List<String> processingHints;
+
+  /** A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding. These warnings are generated before YouTube actually processes the uploaded video file. In addition, they identify issues that are unlikely to cause the video processing to fail but that might cause problems such as sync issues, video artifacts, or a missing audio track. */
+  List<String> processingWarnings;
+
+  /** A list of keyword tags that could be added to the video's metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube. */
+  List<VideoSuggestionsTagSuggestion> tagSuggestions;
+
+  /** Create new VideoSuggestions from JSON data */
+  VideoSuggestions.fromJson(Map json) {
+    if (json.containsKey("editorSuggestions")) {
+      editorSuggestions = [];
+      json["editorSuggestions"].forEach((item) {
+        editorSuggestions.add(item);
+      });
+    }
+    if (json.containsKey("processingErrors")) {
+      processingErrors = [];
+      json["processingErrors"].forEach((item) {
+        processingErrors.add(item);
+      });
+    }
+    if (json.containsKey("processingHints")) {
+      processingHints = [];
+      json["processingHints"].forEach((item) {
+        processingHints.add(item);
+      });
+    }
+    if (json.containsKey("processingWarnings")) {
+      processingWarnings = [];
+      json["processingWarnings"].forEach((item) {
+        processingWarnings.add(item);
+      });
+    }
+    if (json.containsKey("tagSuggestions")) {
+      tagSuggestions = [];
+      json["tagSuggestions"].forEach((item) {
+        tagSuggestions.add(new VideoSuggestionsTagSuggestion.fromJson(item));
+      });
+    }
+  }
+
+  /** Create JSON Object for VideoSuggestions */
+  Map toJson() {
+    var output = new Map();
+
+    if (editorSuggestions != null) {
+      output["editorSuggestions"] = new List();
+      editorSuggestions.forEach((item) {
+        output["editorSuggestions"].add(item);
+      });
+    }
+    if (processingErrors != null) {
+      output["processingErrors"] = new List();
+      processingErrors.forEach((item) {
+        output["processingErrors"].add(item);
+      });
+    }
+    if (processingHints != null) {
+      output["processingHints"] = new List();
+      processingHints.forEach((item) {
+        output["processingHints"].add(item);
+      });
+    }
+    if (processingWarnings != null) {
+      output["processingWarnings"] = new List();
+      processingWarnings.forEach((item) {
+        output["processingWarnings"].add(item);
+      });
+    }
+    if (tagSuggestions != null) {
+      output["tagSuggestions"] = new List();
+      tagSuggestions.forEach((item) {
+        output["tagSuggestions"].add(item.toJson());
+      });
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoSuggestions */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** A single tag suggestion with it's relevance information. */
+class VideoSuggestionsTagSuggestion {
+
+  /** A set of video categories for which the tag is relevant. You can use this information to display appropriate tag suggestions based on the video category that the video uploader associates with the video. By default, tag suggestions are relevant for all categories if there are no restricts defined for the keyword. */
+  List<String> categoryRestricts;
+
+  /** The keyword tag suggested for the video. */
+  String tag;
+
+  /** Create new VideoSuggestionsTagSuggestion from JSON data */
+  VideoSuggestionsTagSuggestion.fromJson(Map json) {
+    if (json.containsKey("categoryRestricts")) {
+      categoryRestricts = [];
+      json["categoryRestricts"].forEach((item) {
+        categoryRestricts.add(item);
+      });
+    }
+    if (json.containsKey("tag")) {
+      tag = json["tag"];
+    }
+  }
+
+  /** Create JSON Object for VideoSuggestionsTagSuggestion */
+  Map toJson() {
+    var output = new Map();
+
+    if (categoryRestricts != null) {
+      output["categoryRestricts"] = new List();
+      categoryRestricts.forEach((item) {
+        output["categoryRestricts"].add(item);
+      });
+    }
+    if (tag != null) {
+      output["tag"] = tag;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of VideoSuggestionsTagSuggestion */
   String toString() => JSON.stringify(this.toJson());
 
 }
@@ -3543,6 +5898,47 @@ class VideoTopicDetails {
   }
 
   /** Return String representation of VideoTopicDetails */
+  String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Branding properties for the watch. */
+class WatchSettings {
+  String backgroundColor;
+  String featuredPlaylistId;
+  String textColor;
+
+  /** Create new WatchSettings from JSON data */
+  WatchSettings.fromJson(Map json) {
+    if (json.containsKey("backgroundColor")) {
+      backgroundColor = json["backgroundColor"];
+    }
+    if (json.containsKey("featuredPlaylistId")) {
+      featuredPlaylistId = json["featuredPlaylistId"];
+    }
+    if (json.containsKey("textColor")) {
+      textColor = json["textColor"];
+    }
+  }
+
+  /** Create JSON Object for WatchSettings */
+  Map toJson() {
+    var output = new Map();
+
+    if (backgroundColor != null) {
+      output["backgroundColor"] = backgroundColor;
+    }
+    if (featuredPlaylistId != null) {
+      output["featuredPlaylistId"] = featuredPlaylistId;
+    }
+    if (textColor != null) {
+      output["textColor"] = textColor;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of WatchSettings */
   String toString() => JSON.stringify(this.toJson());
 
 }

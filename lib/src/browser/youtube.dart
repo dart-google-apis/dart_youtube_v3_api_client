@@ -10,6 +10,12 @@ class Youtube extends BrowserClient {
   ChannelsResource get channels => _channels;
   GuideCategoriesResource _guideCategories;
   GuideCategoriesResource get guideCategories => _guideCategories;
+  LiveBroadcastsResource _liveBroadcasts;
+  LiveBroadcastsResource get liveBroadcasts => _liveBroadcasts;
+  LiveStreamsResource _liveStreams;
+  LiveStreamsResource get liveStreams => _liveStreams;
+  PlayersResource _players;
+  PlayersResource get players => _players;
   PlaylistItemsResource _playlistItems;
   PlaylistItemsResource get playlistItems => _playlistItems;
   PlaylistsResource _playlists;
@@ -90,6 +96,9 @@ class Youtube extends BrowserClient {
     _activities = new ActivitiesResource(this);
     _channels = new ChannelsResource(this);
     _guideCategories = new GuideCategoriesResource(this);
+    _liveBroadcasts = new LiveBroadcastsResource(this);
+    _liveStreams = new LiveStreamsResource(this);
+    _players = new PlayersResource(this);
     _playlistItems = new PlaylistItemsResource(this);
     _playlists = new PlaylistsResource(this);
     _search = new SearchResource(this);
