@@ -16,13 +16,13 @@ The part names that you can include in the parameter value are snippet and conte
    *
    * [optParams] - Additional query parameters
    */
-  Future<Activity> insert(Activity request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Activity> insert(Activity request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "activities";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -72,13 +72,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<ActivityListResponse> list(String part, {String channelId, String home, int maxResults, bool mine, String pageToken, String publishedAfter, String publishedBefore, Map optParams}) {
-    var completer = new Completer();
+  async.Future<ActivityListResponse> list(core.String part, {core.String channelId, core.String home, core.int maxResults, core.bool mine, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "activities";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (channelId != null) queryParams["channelId"] = channelId;
     if (home != null) queryParams["home"] = home;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
@@ -143,13 +143,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<ChannelListResponse> list(String part, {String categoryId, String id, bool managedByMe, int maxResults, bool mine, String mySubscribers, String onBehalfOfContentOwner, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<ChannelListResponse> list(core.String part, {core.String categoryId, core.String id, core.bool managedByMe, core.int maxResults, core.bool mine, core.String mySubscribers, core.String onBehalfOfContentOwner, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "channels";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (categoryId != null) queryParams["categoryId"] = categoryId;
     if (id != null) queryParams["id"] = id;
     if (managedByMe != null) queryParams["managedByMe"] = managedByMe;
@@ -203,13 +203,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<GuideCategoryListResponse> list(String part, {String hl, String id, String regionCode, Map optParams}) {
-    var completer = new Completer();
+  async.Future<GuideCategoryListResponse> list(core.String part, {core.String hl, core.String id, core.String regionCode, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "guideCategories";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (hl != null) queryParams["hl"] = hl;
     if (id != null) queryParams["id"] = id;
     if (part == null) paramErrors.add("part is required");
@@ -247,19 +247,19 @@ class LiveBroadcastsResource extends Resource {
    *
    * [id] - The id parameter specifies the unique ID of the broadcast that is being bound to a video stream.
    *
-   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
    * [streamId] - The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveBroadcast> bind(String id, String part, {String streamId, Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveBroadcast> bind(core.String id, core.String part, {core.String streamId, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts/bind";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (part == null) paramErrors.add("part is required");
@@ -293,13 +293,13 @@ class LiveBroadcastsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (optParams != null) {
@@ -330,17 +330,17 @@ class LiveBroadcastsResource extends Resource {
    *
    * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
 
-The part properties that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveBroadcast> insert(LiveBroadcast request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveBroadcast> insert(LiveBroadcast request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -367,7 +367,7 @@ The part properties that you can include in the parameter value are id, snippet,
   /**
    * Returns a list of YouTube broadcasts that match the API request parameters.
    *
-   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
    * [broadcastStatus] - The broadcastStatus parameter filters the API response to only include broadcasts with the specified status.
    *   Allowed values:
@@ -389,13 +389,13 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveBroadcastList> list(String part, {String broadcastStatus, String id, int maxResults, bool mine, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveBroadcastList> list(core.String part, {core.String broadcastStatus, core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (broadcastStatus != null && !["active", "all", "completed", "upcoming"].contains(broadcastStatus)) {
       paramErrors.add("Allowed values for broadcastStatus: active, all, completed, upcoming");
     }
@@ -438,17 +438,17 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [id] - The id parameter specifies the unique ID of the broadcast that is transitioning to another status.
    *
-   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+   * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveBroadcast> transition(String broadcastStatus, String id, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveBroadcast> transition(core.String broadcastStatus, core.String id, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts/transition";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (broadcastStatus == null) paramErrors.add("broadcastStatus is required");
     if (broadcastStatus != null && !["complete", "live", "testing"].contains(broadcastStatus)) {
       paramErrors.add("Allowed values for broadcastStatus: complete, live, testing");
@@ -486,19 +486,19 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
 
-The part properties that you can include in the parameter value are id, snippet, contentDetails, slateSettings, and status.
+The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
 
 Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveBroadcast> update(LiveBroadcast request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveBroadcast> update(LiveBroadcast request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveBroadcasts";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -535,13 +535,13 @@ class LiveStreamsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveStreams";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (optParams != null) {
@@ -576,13 +576,13 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveStream> insert(LiveStream request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveStream> insert(LiveStream request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveStreams";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -626,13 +626,13 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveStreamList> list(String part, {String id, int maxResults, bool mine, String onBehalfOf, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveStreamList> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String onBehalfOf, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveStreams";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (mine != null) queryParams["mine"] = mine;
@@ -674,13 +674,13 @@ Note that this method will override the existing values for all of the mutable p
    *
    * [optParams] - Additional query parameters
    */
-  Future<LiveStream> update(LiveStream request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<LiveStream> update(LiveStream request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "liveStreams";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -721,13 +721,13 @@ class PlayersResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<PlayerListResponse> list(String part, {String itag, String videoId, Map optParams}) {
-    var completer = new Completer();
+  async.Future<PlayerListResponse> list(core.String part, {core.String itag, core.String videoId, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "players";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (itag != null) queryParams["itag"] = itag;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
@@ -766,13 +766,13 @@ class PlaylistItemsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlistItems";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (optParams != null) {
@@ -807,13 +807,13 @@ The part names that you can include in the parameter value are snippet and conte
    *
    * [optParams] - Additional query parameters
    */
-  Future<PlaylistItem> insert(PlaylistItem request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<PlaylistItem> insert(PlaylistItem request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlistItems";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -859,13 +859,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<PlaylistItemListResponse> list(String part, {String id, int maxResults, String pageToken, String playlistId, String videoId, Map optParams}) {
-    var completer = new Completer();
+  async.Future<PlaylistItemListResponse> list(core.String part, {core.String id, core.int maxResults, core.String pageToken, core.String playlistId, core.String videoId, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlistItems";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
@@ -907,13 +907,13 @@ Note that this method will override the existing values for all of the mutable p
    *
    * [optParams] - Additional query parameters
    */
-  Future<PlaylistItem> update(PlaylistItem request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<PlaylistItem> update(PlaylistItem request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlistItems";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -950,13 +950,13 @@ class PlaylistsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlists";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (optParams != null) {
@@ -991,13 +991,13 @@ The part names that you can include in the parameter value are snippet and statu
    *
    * [optParams] - Additional query parameters
    */
-  Future<Playlist> insert(Playlist request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Playlist> insert(Playlist request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlists";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1043,13 +1043,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<PlaylistListResponse> list(String part, {String channelId, String id, int maxResults, bool mine, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<PlaylistListResponse> list(core.String part, {core.String channelId, core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlists";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (channelId != null) queryParams["channelId"] = channelId;
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
@@ -1091,13 +1091,13 @@ Note that this method will override the existing values for all of the mutable p
    *
    * [optParams] - Additional query parameters
    */
-  Future<Playlist> update(Playlist request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Playlist> update(Playlist request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "playlists";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1143,6 +1143,8 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [forContentOwner] - The forContentOwner parameter restricts the search to only retrieve resources owned by the content owner specified by the onBehalfOfContentOwner parameter. The user must be authenticated as a CMS account linked to the specified content owner and onBehalfOfContentOwner must be provided.
    *
+   * [forMine] - The forMine parameter restricts the search to only retrieve videos owned by the authenticated user.
+   *
    * [maxResults] - USE_DESCRIPTION --- channels:list:maxResults
    *   Default: 5
    *   Minimum: 0
@@ -1156,6 +1158,8 @@ If the parameter identifies a property that contains child properties, the child
    *     date - Resources are sorted in reverse chronological order based on the date they were created.
    *     rating - Resources are sorted from highest to lowest rating.
    *     relevance - Resources are sorted based on their relevance to the search query. This is the default value for this parameter.
+   *     title - Resources are sorted based on their title.
+   *     videoCount - Channels are sorted from highest to lowest number of video uploaded.
    *     viewCount - Resources are sorted from highest to lowest number of views.
    *
    * [pageToken] - USE_DESCRIPTION --- channels:list:pageToken
@@ -1232,23 +1236,24 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<SearchListResponse> list(String part, {String channelId, String channelType, bool forContentOwner, int maxResults, String onBehalfOfContentOwner, String order, String pageToken, String publishedAfter, String publishedBefore, String q, String regionCode, String relatedToVideoId, String safeSearch, String topicId, String type, String videoCaption, String videoCategoryId, String videoDefinition, String videoDimension, String videoDuration, String videoEmbeddable, String videoLicense, String videoSyndicated, String videoType, Map optParams}) {
-    var completer = new Completer();
+  async.Future<SearchListResponse> list(core.String part, {core.String channelId, core.String channelType, core.bool forContentOwner, core.bool forMine, core.int maxResults, core.String onBehalfOfContentOwner, core.String order, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String q, core.String regionCode, core.String relatedToVideoId, core.String safeSearch, core.String topicId, core.String type, core.String videoCaption, core.String videoCategoryId, core.String videoDefinition, core.String videoDimension, core.String videoDuration, core.String videoEmbeddable, core.String videoLicense, core.String videoSyndicated, core.String videoType, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "search";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (channelId != null) queryParams["channelId"] = channelId;
     if (channelType != null && !["any", "show"].contains(channelType)) {
       paramErrors.add("Allowed values for channelType: any, show");
     }
     if (channelType != null) queryParams["channelType"] = channelType;
     if (forContentOwner != null) queryParams["forContentOwner"] = forContentOwner;
+    if (forMine != null) queryParams["forMine"] = forMine;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
-    if (order != null && !["date", "rating", "relevance", "viewCount"].contains(order)) {
-      paramErrors.add("Allowed values for order: date, rating, relevance, viewCount");
+    if (order != null && !["date", "rating", "relevance", "title", "videoCount", "viewCount"].contains(order)) {
+      paramErrors.add("Allowed values for order: date, rating, relevance, title, videoCount, viewCount");
     }
     if (order != null) queryParams["order"] = order;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
@@ -1332,13 +1337,13 @@ class SubscriptionsResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "subscriptions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (optParams != null) {
@@ -1373,13 +1378,13 @@ The part names that you can include in the parameter value are snippet and conte
    *
    * [optParams] - Additional query parameters
    */
-  Future<Subscription> insert(Subscription request, String part, {Map optParams}) {
-    var completer = new Completer();
+  async.Future<Subscription> insert(Subscription request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "subscriptions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1434,13 +1439,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<SubscriptionListResponse> list(String part, {String channelId, String forChannelId, String id, int maxResults, bool mine, String order, String pageToken, Map optParams}) {
-    var completer = new Completer();
+  async.Future<SubscriptionListResponse> list(core.String part, {core.String channelId, core.String forChannelId, core.String id, core.int maxResults, core.bool mine, core.String order, core.String pageToken, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "subscriptions";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (channelId != null) queryParams["channelId"] = channelId;
     if (forChannelId != null) queryParams["forChannelId"] = forChannelId;
     if (id != null) queryParams["id"] = id;
@@ -1494,13 +1499,13 @@ class VideoCategoriesResource extends Resource {
    *
    * [optParams] - Additional query parameters
    */
-  Future<VideoCategoryListResponse> list(String part, {String hl, String id, String regionCode, Map optParams}) {
-    var completer = new Completer();
+  async.Future<VideoCategoryListResponse> list(core.String part, {core.String hl, core.String id, core.String regionCode, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "videoCategories";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (hl != null) queryParams["hl"] = hl;
     if (id != null) queryParams["id"] = id;
     if (part == null) paramErrors.add("part is required");
@@ -1538,20 +1543,17 @@ class VideosResource extends Resource {
    *
    * [id] - The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
    *
-   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-   *
    * [optParams] - Additional query parameters
    */
-  Future<Map> delete(String id, {String onBehalfOfContentOwner, Map optParams}) {
-    var completer = new Completer();
+  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "videos";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
-    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1588,14 +1590,14 @@ The part names that you can include in the parameter value are snippet, contentD
    *
    * [optParams] - Additional query parameters
    */
-  Future<Video> insert(Video request, String part, {String content, String contentType, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Video> insert(Video request, core.String part, {core.String content, core.String contentType, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "videos";
     var uploadUrl = "/upload/youtube/v3/videos";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1636,13 +1638,13 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  Future<VideoListResponse> list(String id, String part, {String onBehalfOfContentOwner, Map optParams}) {
-    var completer = new Completer();
+  async.Future<VideoListResponse> list(core.String id, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "videos";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
+    var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
@@ -1670,6 +1672,54 @@ If the parameter identifies a property that contains child properties, the child
   }
 
   /**
+   * Like, dislike, or remove rating from a video.
+   *
+   * [id] - The id parameter specifies the YouTube video ID.
+   *
+   * [rating] - Specifies the rating to record.
+   *   Allowed values:
+   *     dislike - Records that the authenticated user disliked the video.
+   *     like - Records that the authenticated user liked the video.
+   *     none - Removes any vote (like or dislike) the authenticated user had for the video.
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> rate(core.String id, core.String rating, {core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "videos/rate";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (id == null) paramErrors.add("id is required");
+    if (id != null) queryParams["id"] = id;
+    if (rating == null) paramErrors.add("rating is required");
+    if (rating != null && !["dislike", "like", "none"].contains(rating)) {
+      paramErrors.add("Allowed values for rating: dislike, like, none");
+    }
+    if (rating != null) queryParams["rating"] = rating;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(data))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
+
+  /**
    * Updates a video's metadata.
    *
    * [request] - Video to send in this request
@@ -1682,18 +1732,15 @@ Note that this method will override the existing values for all of the mutable p
 
 In addition, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
    *
-   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
-   *
    * [optParams] - Additional query parameters
    */
-  Future<Video> update(Video request, String part, {String onBehalfOfContentOwner, Map optParams}) {
-    var completer = new Completer();
+  async.Future<Video> update(Video request, core.String part, {core.Map optParams}) {
+    var completer = new async.Completer();
     var url = "videos";
-    var urlParams = new Map();
-    var queryParams = new Map();
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
 
-    var paramErrors = new List();
-    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    var paramErrors = new core.List();
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {

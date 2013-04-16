@@ -4,13 +4,13 @@ part of youtube_v3_api_client;
 class AccessPolicy {
 
   /** The value of allowed indicates whether the access to the policy is allowed or denied by default. */
-  bool allowed;
+  core.bool allowed;
 
   /** A list of region codes that identify countries where the default policy do not apply. */
-  List<String> exception;
+  core.List<core.String> exception;
 
   /** Create new AccessPolicy from JSON data */
-  AccessPolicy.fromJson(Map json) {
+  AccessPolicy.fromJson(core.Map json) {
     if (json.containsKey("allowed")) {
       allowed = json["allowed"];
     }
@@ -23,14 +23,14 @@ class AccessPolicy {
   }
 
   /** Create JSON Object for AccessPolicy */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (allowed != null) {
       output["allowed"] = allowed;
     }
     if (exception != null) {
-      output["exception"] = new List();
+      output["exception"] = new core.List();
       exception.forEach((item) {
         output["exception"].add(item);
       });
@@ -40,7 +40,7 @@ class AccessPolicy {
   }
 
   /** Return String representation of AccessPolicy */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -51,19 +51,19 @@ class Activity {
   ActivityContentDetails contentDetails;
 
   /** The ETag of the activity resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the activity. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For activity resources, the value will be youtube#activity. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the activity, including the activity's type and group ID. */
   ActivitySnippet snippet;
 
   /** Create new Activity from JSON data */
-  Activity.fromJson(Map json) {
+  Activity.fromJson(core.Map json) {
     if (json.containsKey("contentDetails")) {
       contentDetails = new ActivityContentDetails.fromJson(json["contentDetails"]);
     }
@@ -82,8 +82,8 @@ class Activity {
   }
 
   /** Create JSON Object for Activity */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -105,7 +105,7 @@ class Activity {
   }
 
   /** Return String representation of Activity */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -143,7 +143,7 @@ class ActivityContentDetails {
   ActivityContentDetailsUpload upload;
 
   /** Create new ActivityContentDetails from JSON data */
-  ActivityContentDetails.fromJson(Map json) {
+  ActivityContentDetails.fromJson(core.Map json) {
     if (json.containsKey("bulletin")) {
       bulletin = new ActivityContentDetailsBulletin.fromJson(json["bulletin"]);
     }
@@ -177,8 +177,8 @@ class ActivityContentDetails {
   }
 
   /** Create JSON Object for ActivityContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (bulletin != null) {
       output["bulletin"] = bulletin.toJson();
@@ -215,7 +215,7 @@ class ActivityContentDetails {
   }
 
   /** Return String representation of ActivityContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -223,18 +223,18 @@ class ActivityContentDetails {
 class ActivityContentDetailsUpload {
 
   /** The ID that YouTube uses to uniquely identify the uploaded video. */
-  String videoId;
+  core.String videoId;
 
   /** Create new ActivityContentDetailsUpload from JSON data */
-  ActivityContentDetailsUpload.fromJson(Map json) {
+  ActivityContentDetailsUpload.fromJson(core.Map json) {
     if (json.containsKey("videoId")) {
       videoId = json["videoId"];
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsUpload */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (videoId != null) {
       output["videoId"] = videoId;
@@ -244,7 +244,7 @@ class ActivityContentDetailsUpload {
   }
 
   /** Return String representation of ActivityContentDetailsUpload */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -252,7 +252,7 @@ class ActivityContentDetailsUpload {
 class ActivityContentDetailsRecommendation {
 
   /** The reason that the resource is recommended to the user. */
-  String reason;
+  core.String reason;
 
   /** The resourceId object contains information that identifies the recommended resource. */
   ResourceId resourceId;
@@ -261,7 +261,7 @@ class ActivityContentDetailsRecommendation {
   ResourceId seedResourceId;
 
   /** Create new ActivityContentDetailsRecommendation from JSON data */
-  ActivityContentDetailsRecommendation.fromJson(Map json) {
+  ActivityContentDetailsRecommendation.fromJson(core.Map json) {
     if (json.containsKey("reason")) {
       reason = json["reason"];
     }
@@ -274,8 +274,8 @@ class ActivityContentDetailsRecommendation {
   }
 
   /** Create JSON Object for ActivityContentDetailsRecommendation */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (reason != null) {
       output["reason"] = reason;
@@ -291,7 +291,7 @@ class ActivityContentDetailsRecommendation {
   }
 
   /** Return String representation of ActivityContentDetailsRecommendation */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -302,15 +302,15 @@ class ActivityContentDetailsChannelItem {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsChannelItem from JSON data */
-  ActivityContentDetailsChannelItem.fromJson(Map json) {
+  ActivityContentDetailsChannelItem.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsChannelItem */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -320,7 +320,7 @@ class ActivityContentDetailsChannelItem {
   }
 
   /** Return String representation of ActivityContentDetailsChannelItem */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -328,16 +328,16 @@ class ActivityContentDetailsChannelItem {
 class ActivityContentDetailsPlaylistItem {
 
   /** The value that YouTube uses to uniquely identify the playlist. */
-  String playlistId;
+  core.String playlistId;
 
   /** ID of the item within the playlist. */
-  String playlistItemId;
+  core.String playlistItemId;
 
   /** The resourceId object contains information about the resource that was added to the playlist. */
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsPlaylistItem from JSON data */
-  ActivityContentDetailsPlaylistItem.fromJson(Map json) {
+  ActivityContentDetailsPlaylistItem.fromJson(core.Map json) {
     if (json.containsKey("playlistId")) {
       playlistId = json["playlistId"];
     }
@@ -350,8 +350,8 @@ class ActivityContentDetailsPlaylistItem {
   }
 
   /** Create JSON Object for ActivityContentDetailsPlaylistItem */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (playlistId != null) {
       output["playlistId"] = playlistId;
@@ -367,7 +367,7 @@ class ActivityContentDetailsPlaylistItem {
   }
 
   /** Return String representation of ActivityContentDetailsPlaylistItem */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -378,15 +378,15 @@ class ActivityContentDetailsBulletin {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsBulletin from JSON data */
-  ActivityContentDetailsBulletin.fromJson(Map json) {
+  ActivityContentDetailsBulletin.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsBulletin */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -396,7 +396,7 @@ class ActivityContentDetailsBulletin {
   }
 
   /** Return String representation of ActivityContentDetailsBulletin */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -407,15 +407,15 @@ class ActivityContentDetailsSubscription {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsSubscription from JSON data */
-  ActivityContentDetailsSubscription.fromJson(Map json) {
+  ActivityContentDetailsSubscription.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsSubscription */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -425,7 +425,7 @@ class ActivityContentDetailsSubscription {
   }
 
   /** Return String representation of ActivityContentDetailsSubscription */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -436,15 +436,15 @@ class ActivityContentDetailsFavorite {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsFavorite from JSON data */
-  ActivityContentDetailsFavorite.fromJson(Map json) {
+  ActivityContentDetailsFavorite.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsFavorite */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -454,7 +454,7 @@ class ActivityContentDetailsFavorite {
   }
 
   /** Return String representation of ActivityContentDetailsFavorite */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -465,15 +465,15 @@ class ActivityContentDetailsLike {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsLike from JSON data */
-  ActivityContentDetailsLike.fromJson(Map json) {
+  ActivityContentDetailsLike.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsLike */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -483,7 +483,7 @@ class ActivityContentDetailsLike {
   }
 
   /** Return String representation of ActivityContentDetailsLike */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -491,22 +491,22 @@ class ActivityContentDetailsLike {
 class ActivityContentDetailsSocial {
 
   /** The author of the social network post. */
-  String author;
+  core.String author;
 
   /** An image of the post's author. */
-  String imageUrl;
+  core.String imageUrl;
 
   /** The URL of the social network post. */
-  String referenceUrl;
+  core.String referenceUrl;
 
   /** The resourceId object encapsulates information that identifies the resource associated with a social network post. */
   ResourceId resourceId;
 
   /** The name of the social network. */
-  String type;
+  core.String type;
 
   /** Create new ActivityContentDetailsSocial from JSON data */
-  ActivityContentDetailsSocial.fromJson(Map json) {
+  ActivityContentDetailsSocial.fromJson(core.Map json) {
     if (json.containsKey("author")) {
       author = json["author"];
     }
@@ -525,8 +525,8 @@ class ActivityContentDetailsSocial {
   }
 
   /** Create JSON Object for ActivityContentDetailsSocial */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (author != null) {
       output["author"] = author;
@@ -548,7 +548,7 @@ class ActivityContentDetailsSocial {
   }
 
   /** Return String representation of ActivityContentDetailsSocial */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -559,15 +559,15 @@ class ActivityContentDetailsComment {
   ResourceId resourceId;
 
   /** Create new ActivityContentDetailsComment from JSON data */
-  ActivityContentDetailsComment.fromJson(Map json) {
+  ActivityContentDetailsComment.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
   /** Create JSON Object for ActivityContentDetailsComment */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
@@ -577,7 +577,7 @@ class ActivityContentDetailsComment {
   }
 
   /** Return String representation of ActivityContentDetailsComment */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -585,25 +585,25 @@ class ActivityContentDetailsComment {
 class ActivityListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of activities, or events, that match the request criteria. */
-  List<Activity> items;
+  core.List<Activity> items;
 
   /** The type of the API response. For this operation, the value will be youtube#activityListResponse. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new ActivityListResponse from JSON data */
-  ActivityListResponse.fromJson(Map json) {
+  ActivityListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -628,14 +628,14 @@ class ActivityListResponse {
   }
 
   /** Create JSON Object for ActivityListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -657,7 +657,7 @@ class ActivityListResponse {
   }
 
   /** Return String representation of ActivityListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -665,31 +665,31 @@ class ActivityListResponse {
 class ActivitySnippet {
 
   /** The ID that YouTube uses to uniquely identify the channel associated with the activity. */
-  String channelId;
+  core.String channelId;
 
   /** Channel title for the channel responsible for this activity */
-  String channelTitle;
+  core.String channelTitle;
 
   /** The description of the resource primarily associated with the activity. */
-  String description;
+  core.String description;
 
   /** The group ID associated with the activity. A group ID identifies user events that are associated with the same user and resource. For example, if a user rates a video and marks the same video as a favorite, the entries for those events would have the same group ID in the user's activity feed. In your user interface, you can avoid repetition by grouping events with the same groupId value. */
-  String groupId;
+  core.String groupId;
 
   /** The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** A map of thumbnail images associated with the resource that is primarily associated with the activity. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The title of the resource primarily associated with the activity. */
-  String title;
+  core.String title;
 
   /** The type of activity that the resource describes. */
-  String type;
+  core.String type;
 
   /** Create new ActivitySnippet from JSON data */
-  ActivitySnippet.fromJson(Map json) {
+  ActivitySnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -717,8 +717,8 @@ class ActivitySnippet {
   }
 
   /** Create JSON Object for ActivitySnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -749,7 +749,7 @@ class ActivitySnippet {
   }
 
   /** Return String representation of ActivitySnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -763,13 +763,13 @@ class Channel {
   ChannelContentDetails contentDetails;
 
   /** The ETag for the channel resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the channel. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For channel resources, the value will be youtube#channel. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the channel, such as its title, description, and thumbnail images. */
   ChannelSnippet snippet;
@@ -784,7 +784,7 @@ class Channel {
   ChannelTopicDetails topicDetails;
 
   /** Create new Channel from JSON data */
-  Channel.fromJson(Map json) {
+  Channel.fromJson(core.Map json) {
     if (json.containsKey("brandingSettings")) {
       brandingSettings = new ChannelBrandingSettings.fromJson(json["brandingSettings"]);
     }
@@ -815,8 +815,8 @@ class Channel {
   }
 
   /** Create JSON Object for Channel */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (brandingSettings != null) {
       output["brandingSettings"] = brandingSettings.toJson();
@@ -850,7 +850,7 @@ class Channel {
   }
 
   /** Return String representation of Channel */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -861,7 +861,7 @@ class ChannelBrandingSettings {
   ChannelSettings channel;
 
   /** Additional experimental branding properties. */
-  List<PropertyValue> hints;
+  core.List<PropertyValue> hints;
 
   /** Branding properties for branding images. */
   ImageSettings image;
@@ -870,7 +870,7 @@ class ChannelBrandingSettings {
   WatchSettings watch;
 
   /** Create new ChannelBrandingSettings from JSON data */
-  ChannelBrandingSettings.fromJson(Map json) {
+  ChannelBrandingSettings.fromJson(core.Map json) {
     if (json.containsKey("channel")) {
       channel = new ChannelSettings.fromJson(json["channel"]);
     }
@@ -889,14 +889,14 @@ class ChannelBrandingSettings {
   }
 
   /** Create JSON Object for ChannelBrandingSettings */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channel != null) {
       output["channel"] = channel.toJson();
     }
     if (hints != null) {
-      output["hints"] = new List();
+      output["hints"] = new core.List();
       hints.forEach((item) {
         output["hints"].add(item.toJson());
       });
@@ -912,7 +912,7 @@ class ChannelBrandingSettings {
   }
 
   /** Return String representation of ChannelBrandingSettings */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -920,13 +920,13 @@ class ChannelBrandingSettings {
 class ChannelContentDetails {
 
   /** The googlePlusUserId object identifies the Google+ profile ID associated with this channel. */
-  String googlePlusUserId;
+  core.String googlePlusUserId;
 
   /** The relatedPlaylists object is a map that identifies playlists associated with the channel, such as the channel's uploaded videos or favorite videos. You can retrieve any of these playlists using the playlists.list method. */
   ChannelContentDetailsRelatedPlaylists relatedPlaylists;
 
   /** Create new ChannelContentDetails from JSON data */
-  ChannelContentDetails.fromJson(Map json) {
+  ChannelContentDetails.fromJson(core.Map json) {
     if (json.containsKey("googlePlusUserId")) {
       googlePlusUserId = json["googlePlusUserId"];
     }
@@ -936,8 +936,8 @@ class ChannelContentDetails {
   }
 
   /** Create JSON Object for ChannelContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (googlePlusUserId != null) {
       output["googlePlusUserId"] = googlePlusUserId;
@@ -950,7 +950,7 @@ class ChannelContentDetails {
   }
 
   /** Return String representation of ChannelContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -958,22 +958,22 @@ class ChannelContentDetails {
 class ChannelContentDetailsRelatedPlaylists {
 
   /** The ID of the playlist that contains the channel's favorite videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
-  String favorites;
+  core.String favorites;
 
   /** The ID of the playlist that contains the channel's liked videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
-  String likes;
+  core.String likes;
 
   /** The ID of the playlist that contains the channel's uploaded videos. Use the videos.insert method to upload new videos and the videos.delete method to delete previously uploaded videos. */
-  String uploads;
+  core.String uploads;
 
   /** The ID of the playlist that contains the channel's watch history. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
-  String watchHistory;
+  core.String watchHistory;
 
   /** The ID of the channel's watch later playlist. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
-  String watchLater;
+  core.String watchLater;
 
   /** Create new ChannelContentDetailsRelatedPlaylists from JSON data */
-  ChannelContentDetailsRelatedPlaylists.fromJson(Map json) {
+  ChannelContentDetailsRelatedPlaylists.fromJson(core.Map json) {
     if (json.containsKey("favorites")) {
       favorites = json["favorites"];
     }
@@ -992,8 +992,8 @@ class ChannelContentDetailsRelatedPlaylists {
   }
 
   /** Create JSON Object for ChannelContentDetailsRelatedPlaylists */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (favorites != null) {
       output["favorites"] = favorites;
@@ -1015,7 +1015,7 @@ class ChannelContentDetailsRelatedPlaylists {
   }
 
   /** Return String representation of ChannelContentDetailsRelatedPlaylists */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1023,25 +1023,25 @@ class ChannelContentDetailsRelatedPlaylists {
 class ChannelListResponse {
 
   /** The ETag for the response. */
-  String etag;
+  core.String etag;
 
   /** A list of channels that match the request criteria. */
-  List<Channel> items;
+  core.List<Channel> items;
 
   /** The type of the API response. For this operation, the value will be youtube#channelListResponse. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new ChannelListResponse from JSON data */
-  ChannelListResponse.fromJson(Map json) {
+  ChannelListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -1066,14 +1066,14 @@ class ChannelListResponse {
   }
 
   /** Create JSON Object for ChannelListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -1095,26 +1095,48 @@ class ChannelListResponse {
   }
 
   /** Return String representation of ChannelListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 /** Branding properties for the channel view. */
 class ChannelSettings {
-  String defaultTab;
-  String description;
-  String featuredChannelsTitle;
-  List<String> featuredChannelsUrls;
-  String keywords;
-  bool moderateComments;
-  bool showBrowseView;
-  bool showRelatedChannels;
-  String title;
-  String trackingAnalyticsAccountId;
-  String unsubscribedTrailer;
+
+  /** Which content tab users should see when viewing the channel. */
+  core.String defaultTab;
+
+  /** Specifies the channel description. */
+  core.String description;
+
+  /** Title for the featured channels tab. */
+  core.String featuredChannelsTitle;
+
+  /** The list of featured channels. */
+  core.List<core.String> featuredChannelsUrls;
+
+  /** Lists keywords associated with the channel, comma-separated. */
+  core.String keywords;
+
+  /** Whether user-submitted comments left on the channel page need to be approved by the channel owner to be publicly visible. */
+  core.bool moderateComments;
+
+  /** Whether the tab to browse the videos should be displayed. */
+  core.bool showBrowseView;
+
+  /** Whether related channels should be proposed. */
+  core.bool showRelatedChannels;
+
+  /** Specifies the channel title. */
+  core.String title;
+
+  /** The ID for a Google Analytics account to track and measure traffic to the channels. */
+  core.String trackingAnalyticsAccountId;
+
+  /** The trailer of the channel, for users that are not subscribers. */
+  core.String unsubscribedTrailer;
 
   /** Create new ChannelSettings from JSON data */
-  ChannelSettings.fromJson(Map json) {
+  ChannelSettings.fromJson(core.Map json) {
     if (json.containsKey("defaultTab")) {
       defaultTab = json["defaultTab"];
     }
@@ -1154,8 +1176,8 @@ class ChannelSettings {
   }
 
   /** Create JSON Object for ChannelSettings */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (defaultTab != null) {
       output["defaultTab"] = defaultTab;
@@ -1167,7 +1189,7 @@ class ChannelSettings {
       output["featuredChannelsTitle"] = featuredChannelsTitle;
     }
     if (featuredChannelsUrls != null) {
-      output["featuredChannelsUrls"] = new List();
+      output["featuredChannelsUrls"] = new core.List();
       featuredChannelsUrls.forEach((item) {
         output["featuredChannelsUrls"].add(item);
       });
@@ -1198,7 +1220,7 @@ class ChannelSettings {
   }
 
   /** Return String representation of ChannelSettings */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1206,19 +1228,19 @@ class ChannelSettings {
 class ChannelSnippet {
 
   /** The description of the channel. */
-  String description;
+  core.String description;
 
   /** The date and time that the channel was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The channel's title. */
-  String title;
+  core.String title;
 
   /** Create new ChannelSnippet from JSON data */
-  ChannelSnippet.fromJson(Map json) {
+  ChannelSnippet.fromJson(core.Map json) {
     if (json.containsKey("description")) {
       description = json["description"];
     }
@@ -1234,8 +1256,8 @@ class ChannelSnippet {
   }
 
   /** Create JSON Object for ChannelSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (description != null) {
       output["description"] = description;
@@ -1254,7 +1276,7 @@ class ChannelSnippet {
   }
 
   /** Return String representation of ChannelSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1262,19 +1284,19 @@ class ChannelSnippet {
 class ChannelStatistics {
 
   /** The number of comments for the channel. */
-  String commentCount;
+  core.String commentCount;
 
   /** The number of subscribers that the channel has. */
-  String subscriberCount;
+  core.String subscriberCount;
 
   /** The number of videos uploaded to the channel. */
-  String videoCount;
+  core.String videoCount;
 
   /** The number of times the channel has been viewed. */
-  String viewCount;
+  core.String viewCount;
 
   /** Create new ChannelStatistics from JSON data */
-  ChannelStatistics.fromJson(Map json) {
+  ChannelStatistics.fromJson(core.Map json) {
     if (json.containsKey("commentCount")) {
       commentCount = json["commentCount"];
     }
@@ -1290,8 +1312,8 @@ class ChannelStatistics {
   }
 
   /** Create JSON Object for ChannelStatistics */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (commentCount != null) {
       output["commentCount"] = commentCount;
@@ -1310,7 +1332,7 @@ class ChannelStatistics {
   }
 
   /** Return String representation of ChannelStatistics */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1318,18 +1340,18 @@ class ChannelStatistics {
 class ChannelStatus {
 
   /** Privacy status of the channel. */
-  String privacyStatus;
+  core.String privacyStatus;
 
   /** Create new ChannelStatus from JSON data */
-  ChannelStatus.fromJson(Map json) {
+  ChannelStatus.fromJson(core.Map json) {
     if (json.containsKey("privacyStatus")) {
       privacyStatus = json["privacyStatus"];
     }
   }
 
   /** Create JSON Object for ChannelStatus */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (privacyStatus != null) {
       output["privacyStatus"] = privacyStatus;
@@ -1339,7 +1361,7 @@ class ChannelStatus {
   }
 
   /** Return String representation of ChannelStatus */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1347,10 +1369,10 @@ class ChannelStatus {
 class ChannelTopicDetails {
 
   /** A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API. */
-  List<String> topicIds;
+  core.List<core.String> topicIds;
 
   /** Create new ChannelTopicDetails from JSON data */
-  ChannelTopicDetails.fromJson(Map json) {
+  ChannelTopicDetails.fromJson(core.Map json) {
     if (json.containsKey("topicIds")) {
       topicIds = [];
       json["topicIds"].forEach((item) {
@@ -1360,11 +1382,11 @@ class ChannelTopicDetails {
   }
 
   /** Create JSON Object for ChannelTopicDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (topicIds != null) {
-      output["topicIds"] = new List();
+      output["topicIds"] = new core.List();
       topicIds.forEach((item) {
         output["topicIds"].add(item);
       });
@@ -1374,21 +1396,175 @@ class ChannelTopicDetails {
   }
 
   /** Return String representation of ChannelTopicDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Movie ratings schemes. */
+class ContentRating {
+
+  /** Rating system in Australia - Australian Classification Board */
+  core.String acbRating;
+
+  /** British Board of Film Classification */
+  core.String bbfcRating;
+
+  /** Rating system in India - Central Board of Film Certification */
+  core.String cbfcRating;
+
+  /** Canadian Home Video Rating System */
+  core.String chvrsRating;
+
+  /** Rating system in Brazil - Department of Justice, Rating, Titles and Qualification */
+  core.String djctqRating;
+
+  /** Rating system in Japan - Eiga Rinri Kanri Iinkai */
+  core.String eirinRating;
+
+  /** Rating system in France - French Minister of Culture */
+  core.String fmocRating;
+
+  /** Rating system in Germany - Voluntary Self Regulation of the Movie Industry */
+  core.String fskRating;
+
+  /** Rating system in Spain - Instituto de Cinematografia y de las Artes Audiovisuales */
+  core.String icaaRating;
+
+  /** Rating system in South Korea - Korea Media Rating Board */
+  core.String kmrbRating;
+
+  /** Motion Picture Association of America rating for the content. */
+  core.String mpaaRating;
+
+  /** Rating system in New Zealand - Office of Film and Literature Classification */
+  core.String oflcRating;
+
+  /** Rating system in Mexico - General Directorate of Radio, Television and Cinematography */
+  core.String rtcRating;
+
+  /** Rating system in Russia */
+  core.String russiaRating;
+
+  /** TV Parental Guidelines rating of the content. */
+  core.String tvpgRating;
+
+  /** Create new ContentRating from JSON data */
+  ContentRating.fromJson(core.Map json) {
+    if (json.containsKey("acbRating")) {
+      acbRating = json["acbRating"];
+    }
+    if (json.containsKey("bbfcRating")) {
+      bbfcRating = json["bbfcRating"];
+    }
+    if (json.containsKey("cbfcRating")) {
+      cbfcRating = json["cbfcRating"];
+    }
+    if (json.containsKey("chvrsRating")) {
+      chvrsRating = json["chvrsRating"];
+    }
+    if (json.containsKey("djctqRating")) {
+      djctqRating = json["djctqRating"];
+    }
+    if (json.containsKey("eirinRating")) {
+      eirinRating = json["eirinRating"];
+    }
+    if (json.containsKey("fmocRating")) {
+      fmocRating = json["fmocRating"];
+    }
+    if (json.containsKey("fskRating")) {
+      fskRating = json["fskRating"];
+    }
+    if (json.containsKey("icaaRating")) {
+      icaaRating = json["icaaRating"];
+    }
+    if (json.containsKey("kmrbRating")) {
+      kmrbRating = json["kmrbRating"];
+    }
+    if (json.containsKey("mpaaRating")) {
+      mpaaRating = json["mpaaRating"];
+    }
+    if (json.containsKey("oflcRating")) {
+      oflcRating = json["oflcRating"];
+    }
+    if (json.containsKey("rtcRating")) {
+      rtcRating = json["rtcRating"];
+    }
+    if (json.containsKey("russiaRating")) {
+      russiaRating = json["russiaRating"];
+    }
+    if (json.containsKey("tvpgRating")) {
+      tvpgRating = json["tvpgRating"];
+    }
+  }
+
+  /** Create JSON Object for ContentRating */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (acbRating != null) {
+      output["acbRating"] = acbRating;
+    }
+    if (bbfcRating != null) {
+      output["bbfcRating"] = bbfcRating;
+    }
+    if (cbfcRating != null) {
+      output["cbfcRating"] = cbfcRating;
+    }
+    if (chvrsRating != null) {
+      output["chvrsRating"] = chvrsRating;
+    }
+    if (djctqRating != null) {
+      output["djctqRating"] = djctqRating;
+    }
+    if (eirinRating != null) {
+      output["eirinRating"] = eirinRating;
+    }
+    if (fmocRating != null) {
+      output["fmocRating"] = fmocRating;
+    }
+    if (fskRating != null) {
+      output["fskRating"] = fskRating;
+    }
+    if (icaaRating != null) {
+      output["icaaRating"] = icaaRating;
+    }
+    if (kmrbRating != null) {
+      output["kmrbRating"] = kmrbRating;
+    }
+    if (mpaaRating != null) {
+      output["mpaaRating"] = mpaaRating;
+    }
+    if (oflcRating != null) {
+      output["oflcRating"] = oflcRating;
+    }
+    if (rtcRating != null) {
+      output["rtcRating"] = rtcRating;
+    }
+    if (russiaRating != null) {
+      output["russiaRating"] = russiaRating;
+    }
+    if (tvpgRating != null) {
+      output["tvpgRating"] = tvpgRating;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ContentRating */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class FeaturedChannel {
-  String channelId;
+  core.String channelId;
   ChannelSnippet channelSnippet;
-  String endTimeMs;
-  String featureId;
-  String imageUrl;
-  String startTimeMs;
-  String subscriberCount;
+  core.String endTimeMs;
+  core.String featureId;
+  core.String startTimeMs;
+  core.String watermarkUrl;
 
   /** Create new FeaturedChannel from JSON data */
-  FeaturedChannel.fromJson(Map json) {
+  FeaturedChannel.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -1401,20 +1577,17 @@ class FeaturedChannel {
     if (json.containsKey("featureId")) {
       featureId = json["featureId"];
     }
-    if (json.containsKey("imageUrl")) {
-      imageUrl = json["imageUrl"];
-    }
     if (json.containsKey("startTimeMs")) {
       startTimeMs = json["startTimeMs"];
     }
-    if (json.containsKey("subscriberCount")) {
-      subscriberCount = json["subscriberCount"];
+    if (json.containsKey("watermarkUrl")) {
+      watermarkUrl = json["watermarkUrl"];
     }
   }
 
   /** Create JSON Object for FeaturedChannel */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -1428,51 +1601,35 @@ class FeaturedChannel {
     if (featureId != null) {
       output["featureId"] = featureId;
     }
-    if (imageUrl != null) {
-      output["imageUrl"] = imageUrl;
-    }
     if (startTimeMs != null) {
       output["startTimeMs"] = startTimeMs;
     }
-    if (subscriberCount != null) {
-      output["subscriberCount"] = subscriberCount;
+    if (watermarkUrl != null) {
+      output["watermarkUrl"] = watermarkUrl;
     }
 
     return output;
   }
 
   /** Return String representation of FeaturedChannel */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class FeaturedVideo {
-  int concurrentViewers;
-  String endTimeMs;
-  String featureId;
-  bool isLive;
-  String lengthS;
-  String startTimeMs;
-  String videoId;
+  core.String endTimeMs;
+  core.String featureId;
+  core.String startTimeMs;
+  core.String videoId;
   VideoSnippet videoSnippet;
-  String viewCount;
 
   /** Create new FeaturedVideo from JSON data */
-  FeaturedVideo.fromJson(Map json) {
-    if (json.containsKey("concurrentViewers")) {
-      concurrentViewers = json["concurrentViewers"];
-    }
+  FeaturedVideo.fromJson(core.Map json) {
     if (json.containsKey("endTimeMs")) {
       endTimeMs = json["endTimeMs"];
     }
     if (json.containsKey("featureId")) {
       featureId = json["featureId"];
-    }
-    if (json.containsKey("isLive")) {
-      isLive = json["isLive"];
-    }
-    if (json.containsKey("lengthS")) {
-      lengthS = json["lengthS"];
     }
     if (json.containsKey("startTimeMs")) {
       startTimeMs = json["startTimeMs"];
@@ -1483,29 +1640,17 @@ class FeaturedVideo {
     if (json.containsKey("videoSnippet")) {
       videoSnippet = new VideoSnippet.fromJson(json["videoSnippet"]);
     }
-    if (json.containsKey("viewCount")) {
-      viewCount = json["viewCount"];
-    }
   }
 
   /** Create JSON Object for FeaturedVideo */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
-    if (concurrentViewers != null) {
-      output["concurrentViewers"] = concurrentViewers;
-    }
     if (endTimeMs != null) {
       output["endTimeMs"] = endTimeMs;
     }
     if (featureId != null) {
       output["featureId"] = featureId;
-    }
-    if (isLive != null) {
-      output["isLive"] = isLive;
-    }
-    if (lengthS != null) {
-      output["lengthS"] = lengthS;
     }
     if (startTimeMs != null) {
       output["startTimeMs"] = startTimeMs;
@@ -1516,15 +1661,12 @@ class FeaturedVideo {
     if (videoSnippet != null) {
       output["videoSnippet"] = videoSnippet.toJson();
     }
-    if (viewCount != null) {
-      output["viewCount"] = viewCount;
-    }
 
     return output;
   }
 
   /** Return String representation of FeaturedVideo */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1532,16 +1674,16 @@ class FeaturedVideo {
 class GeoPoint {
 
   /** Altitude above the Earth, in meters. */
-  num elevation;
+  core.num elevation;
 
   /** Latitude in degrees. */
-  num latitude;
+  core.num latitude;
 
   /** Longitude in degrees. */
-  num longitude;
+  core.num longitude;
 
   /** Create new GeoPoint from JSON data */
-  GeoPoint.fromJson(Map json) {
+  GeoPoint.fromJson(core.Map json) {
     if (json.containsKey("elevation")) {
       elevation = json["elevation"];
     }
@@ -1554,8 +1696,8 @@ class GeoPoint {
   }
 
   /** Create JSON Object for GeoPoint */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (elevation != null) {
       output["elevation"] = elevation;
@@ -1571,7 +1713,7 @@ class GeoPoint {
   }
 
   /** Return String representation of GeoPoint */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1579,19 +1721,19 @@ class GeoPoint {
 class GuideCategory {
 
   /** The ETag of the guideCategory resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the guide category. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For guideCategory resources, the value will be youtube#guideCategory/code>. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the category, such as its title. */
   GuideCategorySnippet snippet;
 
   /** Create new GuideCategory from JSON data */
-  GuideCategory.fromJson(Map json) {
+  GuideCategory.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -1607,8 +1749,8 @@ class GuideCategory {
   }
 
   /** Create JSON Object for GuideCategory */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
@@ -1627,7 +1769,7 @@ class GuideCategory {
   }
 
   /** Return String representation of GuideCategory */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1635,16 +1777,16 @@ class GuideCategory {
 class GuideCategoryListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding guideCategory resource. */
-  List<GuideCategory> items;
+  core.List<GuideCategory> items;
 
   /** The type of the API response. For this operation, the value will be youtube#guideCategoryListResponse. */
-  String kind;
+  core.String kind;
 
   /** Create new GuideCategoryListResponse from JSON data */
-  GuideCategoryListResponse.fromJson(Map json) {
+  GuideCategoryListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -1660,14 +1802,14 @@ class GuideCategoryListResponse {
   }
 
   /** Create JSON Object for GuideCategoryListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -1680,7 +1822,7 @@ class GuideCategoryListResponse {
   }
 
   /** Return String representation of GuideCategoryListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1688,13 +1830,13 @@ class GuideCategoryListResponse {
 class GuideCategorySnippet {
 
   /** The ID that YouTube uses to uniquely identify the channel publishing the guide category. */
-  String channelId;
+  core.String channelId;
 
   /** The category's title. */
-  String title;
+  core.String title;
 
   /** Create new GuideCategorySnippet from JSON data */
-  GuideCategorySnippet.fromJson(Map json) {
+  GuideCategorySnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -1704,8 +1846,8 @@ class GuideCategorySnippet {
   }
 
   /** Create JSON Object for GuideCategorySnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -1718,31 +1860,103 @@ class GuideCategorySnippet {
   }
 
   /** Return String representation of GuideCategorySnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class ImageSettings {
+
+  /** The URL for the background image shown on the video watch page. The image should be 1200px by 615px, with a maximum file size of 128k. */
   LocalizedProperty backgroundImageUrl;
-  String bannerImageUrl;
-  String bannerMobileImageUrl;
+
+  /** Banner image. Desktop size (1060x175). */
+  core.String bannerImageUrl;
+
+  /** Banner image. Mobile size high resolution (1440x395). */
+  core.String bannerMobileExtraHdImageUrl;
+
+  /** Banner image. Mobile size high resolution (1280x360). */
+  core.String bannerMobileHdImageUrl;
+
+  /** Banner image. Mobile size (640x175). */
+  core.String bannerMobileImageUrl;
+
+  /** Banner image. Mobile size low resolution (320x88). */
+  core.String bannerMobileLowImageUrl;
+
+  /** Banner image. Mobile size medium/high resolution (960x263). */
+  core.String bannerMobileMediumHdImageUrl;
+
+  /** Banner image. Tablet size extra high resolution (2560x424). */
+  core.String bannerTabletExtraHdImageUrl;
+
+  /** Banner image. Tablet size high resolution (2276x377). */
+  core.String bannerTabletHdImageUrl;
+
+  /** Banner image. Tablet size (1707x283). */
+  core.String bannerTabletImageUrl;
+
+  /** Banner image. Tablet size low resolution (1138x188). */
+  core.String bannerTabletLowImageUrl;
+
+  /** Banner image. TV size (2120x1192). */
+  core.String bannerTvImageUrl;
+
+  /** The image map script for the large banner image. */
   LocalizedProperty largeBrandedBannerImageImapScript;
+
+  /** The URL for the 854px by 70px image that appears below the video player in the expanded video view of the video watch page. */
   LocalizedProperty largeBrandedBannerImageUrl;
+
+  /** The image map script for the small banner image. */
   LocalizedProperty smallBrandedBannerImageImapScript;
+
+  /** The URL for the 640px by 70px banner image that appears below the video player in the default view of the video watch page. */
   LocalizedProperty smallBrandedBannerImageUrl;
-  String trackingImageUrl;
-  String watchIconImageUrl;
+
+  /** The URL for a 1px by 1px tracking pixel that can be used to collect statistics for views of the channel or video pages. */
+  core.String trackingImageUrl;
+
+  /** The URL for the image that appears above the top-left corner of the video player. This is a 25-pixel-high image with a flexible width that cannot exceed 170 pixels. */
+  core.String watchIconImageUrl;
 
   /** Create new ImageSettings from JSON data */
-  ImageSettings.fromJson(Map json) {
+  ImageSettings.fromJson(core.Map json) {
     if (json.containsKey("backgroundImageUrl")) {
       backgroundImageUrl = new LocalizedProperty.fromJson(json["backgroundImageUrl"]);
     }
     if (json.containsKey("bannerImageUrl")) {
       bannerImageUrl = json["bannerImageUrl"];
     }
+    if (json.containsKey("bannerMobileExtraHdImageUrl")) {
+      bannerMobileExtraHdImageUrl = json["bannerMobileExtraHdImageUrl"];
+    }
+    if (json.containsKey("bannerMobileHdImageUrl")) {
+      bannerMobileHdImageUrl = json["bannerMobileHdImageUrl"];
+    }
     if (json.containsKey("bannerMobileImageUrl")) {
       bannerMobileImageUrl = json["bannerMobileImageUrl"];
+    }
+    if (json.containsKey("bannerMobileLowImageUrl")) {
+      bannerMobileLowImageUrl = json["bannerMobileLowImageUrl"];
+    }
+    if (json.containsKey("bannerMobileMediumHdImageUrl")) {
+      bannerMobileMediumHdImageUrl = json["bannerMobileMediumHdImageUrl"];
+    }
+    if (json.containsKey("bannerTabletExtraHdImageUrl")) {
+      bannerTabletExtraHdImageUrl = json["bannerTabletExtraHdImageUrl"];
+    }
+    if (json.containsKey("bannerTabletHdImageUrl")) {
+      bannerTabletHdImageUrl = json["bannerTabletHdImageUrl"];
+    }
+    if (json.containsKey("bannerTabletImageUrl")) {
+      bannerTabletImageUrl = json["bannerTabletImageUrl"];
+    }
+    if (json.containsKey("bannerTabletLowImageUrl")) {
+      bannerTabletLowImageUrl = json["bannerTabletLowImageUrl"];
+    }
+    if (json.containsKey("bannerTvImageUrl")) {
+      bannerTvImageUrl = json["bannerTvImageUrl"];
     }
     if (json.containsKey("largeBrandedBannerImageImapScript")) {
       largeBrandedBannerImageImapScript = new LocalizedProperty.fromJson(json["largeBrandedBannerImageImapScript"]);
@@ -1765,8 +1979,8 @@ class ImageSettings {
   }
 
   /** Create JSON Object for ImageSettings */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (backgroundImageUrl != null) {
       output["backgroundImageUrl"] = backgroundImageUrl.toJson();
@@ -1774,8 +1988,35 @@ class ImageSettings {
     if (bannerImageUrl != null) {
       output["bannerImageUrl"] = bannerImageUrl;
     }
+    if (bannerMobileExtraHdImageUrl != null) {
+      output["bannerMobileExtraHdImageUrl"] = bannerMobileExtraHdImageUrl;
+    }
+    if (bannerMobileHdImageUrl != null) {
+      output["bannerMobileHdImageUrl"] = bannerMobileHdImageUrl;
+    }
     if (bannerMobileImageUrl != null) {
       output["bannerMobileImageUrl"] = bannerMobileImageUrl;
+    }
+    if (bannerMobileLowImageUrl != null) {
+      output["bannerMobileLowImageUrl"] = bannerMobileLowImageUrl;
+    }
+    if (bannerMobileMediumHdImageUrl != null) {
+      output["bannerMobileMediumHdImageUrl"] = bannerMobileMediumHdImageUrl;
+    }
+    if (bannerTabletExtraHdImageUrl != null) {
+      output["bannerTabletExtraHdImageUrl"] = bannerTabletExtraHdImageUrl;
+    }
+    if (bannerTabletHdImageUrl != null) {
+      output["bannerTabletHdImageUrl"] = bannerTabletHdImageUrl;
+    }
+    if (bannerTabletImageUrl != null) {
+      output["bannerTabletImageUrl"] = bannerTabletImageUrl;
+    }
+    if (bannerTabletLowImageUrl != null) {
+      output["bannerTabletLowImageUrl"] = bannerTabletLowImageUrl;
+    }
+    if (bannerTvImageUrl != null) {
+      output["bannerTvImageUrl"] = bannerTvImageUrl;
     }
     if (largeBrandedBannerImageImapScript != null) {
       output["largeBrandedBannerImageImapScript"] = largeBrandedBannerImageImapScript.toJson();
@@ -1800,7 +2041,7 @@ class ImageSettings {
   }
 
   /** Return String representation of ImageSettings */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1809,7 +2050,7 @@ class InvideoFeature {
   FeaturedVideo featuredVideo;
 
   /** Create new InvideoFeature from JSON data */
-  InvideoFeature.fromJson(Map json) {
+  InvideoFeature.fromJson(core.Map json) {
     if (json.containsKey("featuredChannel")) {
       featuredChannel = new FeaturedChannel.fromJson(json["featuredChannel"]);
     }
@@ -1819,8 +2060,8 @@ class InvideoFeature {
   }
 
   /** Create JSON Object for InvideoFeature */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (featuredChannel != null) {
       output["featuredChannel"] = featuredChannel.toJson();
@@ -1833,7 +2074,7 @@ class InvideoFeature {
   }
 
   /** Return String representation of InvideoFeature */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1844,13 +2085,13 @@ class LiveBroadcast {
   LiveBroadcastContentDetails contentDetails;
 
   /** The ETag of the broadcast. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube assigns to uniquely identify the broadcast. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For live broadcast resources, the value will be youtube#liveBroadcast. */
-  String kind;
+  core.String kind;
 
   /** The slateSettings object contains details about the content that will display in the player when you show a broadcast slate. A broadcast slate displays above the video. However, while it displays, the video continues to play and is also audible in the background. */
   LiveBroadcastSlateSettings slateSettings;
@@ -1862,7 +2103,7 @@ class LiveBroadcast {
   LiveBroadcastStatus status;
 
   /** Create new LiveBroadcast from JSON data */
-  LiveBroadcast.fromJson(Map json) {
+  LiveBroadcast.fromJson(core.Map json) {
     if (json.containsKey("contentDetails")) {
       contentDetails = new LiveBroadcastContentDetails.fromJson(json["contentDetails"]);
     }
@@ -1887,8 +2128,8 @@ class LiveBroadcast {
   }
 
   /** Create JSON Object for LiveBroadcast */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -1916,7 +2157,27 @@ class LiveBroadcast {
   }
 
   /** Return String representation of LiveBroadcast */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The slateSettings object contains details about the content that will display in the player when you show a broadcast slate. A broadcast slate displays above the video. However, while it displays, the video continues to play and is also audible in the background. */
+class LiveBroadcastSlateSettings {
+
+  /** Create new LiveBroadcastSlateSettings from JSON data */
+  LiveBroadcastSlateSettings.fromJson(core.Map json) {
+  }
+
+  /** Create JSON Object for LiveBroadcastSlateSettings */
+  core.Map toJson() {
+    var output = new core.Map();
+
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastSlateSettings */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -1924,37 +2185,45 @@ class LiveBroadcast {
 class LiveBroadcastContentDetails {
 
   /** This value uniquely identifies the live stream bound to the broadcast. */
-  String boundStreamId;
+  core.String boundStreamId;
 
-  /** This setting indicates whether the live event should be archived so that YouTube viewers can watch it at a later date. The default value for this property is true.
+  /** DEPRECATED: Please use recordFromStart instead. This setting indicates whether the live event should be archived so that YouTube viewers can watch it at a later date. The default value for this property is true.
 
 Important: You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback. */
-  bool enableArchive;
+  LiveBroadcastContentDetailsEnableArchive enableArchive;
 
   /** This setting indicates whether YouTube should enable content encryption for the broadcast. */
-  bool enableContentEncryption;
+  core.bool enableContentEncryption;
 
   /** This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.
 
 Important: You must set the value to true and also set the enableArchive property's value to true if you want to make playback available immediately after the broadcast ends. */
-  bool enableDvr;
+  core.bool enableDvr;
 
   /** This setting indicates whether the broadcast video can be played in an embedded player. If you choose to archive the video (using the enableArchive property), this setting will also apply to the archived video. */
-  bool enableEmbed;
+  core.bool enableEmbed;
 
   /** The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly. */
   LiveBroadcastContentDetailsMonitorStream monitorStream;
 
+  /** Automatically start recording after the event goes live. The default value for this property is true.
+
+Important: You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback. */
+  core.bool recordFromStart;
+
   /** This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers. */
-  bool startWithSlateCuepoint;
+  core.bool startWithSlate;
+
+  /** DEPRECATED: Please use startWithSlate instead. This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers. */
+  LiveBroadcastContentDetailsStartWithSlateCuepoint startWithSlateCuepoint;
 
   /** Create new LiveBroadcastContentDetails from JSON data */
-  LiveBroadcastContentDetails.fromJson(Map json) {
+  LiveBroadcastContentDetails.fromJson(core.Map json) {
     if (json.containsKey("boundStreamId")) {
       boundStreamId = json["boundStreamId"];
     }
     if (json.containsKey("enableArchive")) {
-      enableArchive = json["enableArchive"];
+      enableArchive = new LiveBroadcastContentDetailsEnableArchive.fromJson(json["enableArchive"]);
     }
     if (json.containsKey("enableContentEncryption")) {
       enableContentEncryption = json["enableContentEncryption"];
@@ -1968,20 +2237,26 @@ Important: You must set the value to true and also set the enableArchive propert
     if (json.containsKey("monitorStream")) {
       monitorStream = new LiveBroadcastContentDetailsMonitorStream.fromJson(json["monitorStream"]);
     }
+    if (json.containsKey("recordFromStart")) {
+      recordFromStart = json["recordFromStart"];
+    }
+    if (json.containsKey("startWithSlate")) {
+      startWithSlate = json["startWithSlate"];
+    }
     if (json.containsKey("startWithSlateCuepoint")) {
-      startWithSlateCuepoint = json["startWithSlateCuepoint"];
+      startWithSlateCuepoint = new LiveBroadcastContentDetailsStartWithSlateCuepoint.fromJson(json["startWithSlateCuepoint"]);
     }
   }
 
   /** Create JSON Object for LiveBroadcastContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (boundStreamId != null) {
       output["boundStreamId"] = boundStreamId;
     }
     if (enableArchive != null) {
-      output["enableArchive"] = enableArchive;
+      output["enableArchive"] = enableArchive.toJson();
     }
     if (enableContentEncryption != null) {
       output["enableContentEncryption"] = enableContentEncryption;
@@ -1995,15 +2270,43 @@ Important: You must set the value to true and also set the enableArchive propert
     if (monitorStream != null) {
       output["monitorStream"] = monitorStream.toJson();
     }
+    if (recordFromStart != null) {
+      output["recordFromStart"] = recordFromStart;
+    }
+    if (startWithSlate != null) {
+      output["startWithSlate"] = startWithSlate;
+    }
     if (startWithSlateCuepoint != null) {
-      output["startWithSlateCuepoint"] = startWithSlateCuepoint;
+      output["startWithSlateCuepoint"] = startWithSlateCuepoint.toJson();
     }
 
     return output;
   }
 
   /** Return String representation of LiveBroadcastContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** DEPRECATED: Please use recordFromStart instead. This setting indicates whether the live event should be archived so that YouTube viewers can watch it at a later date. The default value for this property is true.
+
+Important: You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback. */
+class LiveBroadcastContentDetailsEnableArchive {
+
+  /** Create new LiveBroadcastContentDetailsEnableArchive from JSON data */
+  LiveBroadcastContentDetailsEnableArchive.fromJson(core.Map json) {
+  }
+
+  /** Create JSON Object for LiveBroadcastContentDetailsEnableArchive */
+  core.Map toJson() {
+    var output = new core.Map();
+
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastContentDetailsEnableArchive */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2011,20 +2314,20 @@ Important: You must set the value to true and also set the enableArchive propert
 class LiveBroadcastContentDetailsMonitorStream {
 
   /** If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay. */
-  int broadcastStreamDelayMs;
+  core.int broadcastStreamDelayMs;
 
   /** HTML code that embeds a player that plays the monitor stream. */
-  String embedHtml;
+  core.String embedHtml;
 
   /** This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster's consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.
 
 You need to set this value to true if you intend to have a broadcast delay for your event.
 
 Note: This property cannot be updated once the broadcast is in the testing or live state. */
-  bool enableMonitorStream;
+  core.bool enableMonitorStream;
 
   /** Create new LiveBroadcastContentDetailsMonitorStream from JSON data */
-  LiveBroadcastContentDetailsMonitorStream.fromJson(Map json) {
+  LiveBroadcastContentDetailsMonitorStream.fromJson(core.Map json) {
     if (json.containsKey("broadcastStreamDelayMs")) {
       broadcastStreamDelayMs = json["broadcastStreamDelayMs"];
     }
@@ -2037,8 +2340,8 @@ Note: This property cannot be updated once the broadcast is in the testing or li
   }
 
   /** Create JSON Object for LiveBroadcastContentDetailsMonitorStream */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (broadcastStreamDelayMs != null) {
       output["broadcastStreamDelayMs"] = broadcastStreamDelayMs;
@@ -2054,7 +2357,27 @@ Note: This property cannot be updated once the broadcast is in the testing or li
   }
 
   /** Return String representation of LiveBroadcastContentDetailsMonitorStream */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** DEPRECATED: Please use startWithSlate instead. This setting indicates whether the broadcast should automatically begin with an in-stream slate when you update the broadcast's status to live. After updating the status, you then need to send a liveCuepoints.insert request that sets the cuepoint's eventState to end to remove the in-stream slate and make your broadcast stream visible to viewers. */
+class LiveBroadcastContentDetailsStartWithSlateCuepoint {
+
+  /** Create new LiveBroadcastContentDetailsStartWithSlateCuepoint from JSON data */
+  LiveBroadcastContentDetailsStartWithSlateCuepoint.fromJson(core.Map json) {
+  }
+
+  /** Create JSON Object for LiveBroadcastContentDetailsStartWithSlateCuepoint */
+  core.Map toJson() {
+    var output = new core.Map();
+
+
+    return output;
+  }
+
+  /** Return String representation of LiveBroadcastContentDetailsStartWithSlateCuepoint */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2062,25 +2385,25 @@ Note: This property cannot be updated once the broadcast is in the testing or li
 class LiveBroadcastList {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of broadcasts that match the request criteria. */
-  List<LiveBroadcast> items;
+  core.List<LiveBroadcast> items;
 
   /** The type of the API response. For this operation, the value will be youtube#liveBroadcastList. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new LiveBroadcastList from JSON data */
-  LiveBroadcastList.fromJson(Map json) {
+  LiveBroadcastList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2105,14 +2428,14 @@ class LiveBroadcastList {
   }
 
   /** Create JSON Object for LiveBroadcastList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2134,65 +2457,7 @@ class LiveBroadcastList {
   }
 
   /** Return String representation of LiveBroadcastList */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** Slate settings of a broadcast. */
-class LiveBroadcastSlateSettings {
-
-  /** An indication of whether a broadcast slate is enabled for the broadcast. Set this property to true to display the slate. Update the property value to false to remove the slate. You can insert or remove the broadcast slate at any time during an event. */
-  bool enableSlates;
-
-  /** A map of slates that are displayed for the broadcast in different regions. */
-  LiveBroadcastSlateSettingsSlates slates;
-
-  /** Create new LiveBroadcastSlateSettings from JSON data */
-  LiveBroadcastSlateSettings.fromJson(Map json) {
-    if (json.containsKey("enableSlates")) {
-      enableSlates = json["enableSlates"];
-    }
-    if (json.containsKey("slates")) {
-      slates = new LiveBroadcastSlateSettingsSlates.fromJson(json["slates"]);
-    }
-  }
-
-  /** Create JSON Object for LiveBroadcastSlateSettings */
-  Map toJson() {
-    var output = new Map();
-
-    if (enableSlates != null) {
-      output["enableSlates"] = enableSlates;
-    }
-    if (slates != null) {
-      output["slates"] = slates.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of LiveBroadcastSlateSettings */
-  String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** A map of slates that are displayed for the broadcast in different regions. */
-class LiveBroadcastSlateSettingsSlates {
-
-  /** Create new LiveBroadcastSlateSettingsSlates from JSON data */
-  LiveBroadcastSlateSettingsSlates.fromJson(Map json) {
-  }
-
-  /** Create JSON Object for LiveBroadcastSlateSettingsSlates */
-  Map toJson() {
-    var output = new Map();
-
-
-    return output;
-  }
-
-  /** Return String representation of LiveBroadcastSlateSettingsSlates */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2200,34 +2465,34 @@ class LiveBroadcastSlateSettingsSlates {
 class LiveBroadcastSnippet {
 
   /** The date and time that the broadcast actually ended. This information is only available once the broadcast's state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String actualEndTime;
+  core.String actualEndTime;
 
   /** The date and time that the broadcast actually started. This information is only available once the broadcast's state is live. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String actualStartTime;
+  core.String actualStartTime;
 
   /** The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast. */
-  String channelId;
+  core.String channelId;
 
   /** The broadcast's description. As with the title, you can set this field by modifying the broadcast resource or by setting the description field of the corresponding video resource. */
-  String description;
+  core.String description;
 
   /** The date and time that the broadcast was added to YouTube's live broadcast schedule. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** The date and time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String scheduledEndTime;
+  core.String scheduledEndTime;
 
   /** The date and time that the broadcast is scheduled to start. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String scheduledStartTime;
+  core.String scheduledStartTime;
 
   /** A map of thumbnail images associated with the broadcast. For each nested object in this object, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The broadcast's title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource. */
-  String title;
+  core.String title;
 
   /** Create new LiveBroadcastSnippet from JSON data */
-  LiveBroadcastSnippet.fromJson(Map json) {
+  LiveBroadcastSnippet.fromJson(core.Map json) {
     if (json.containsKey("actualEndTime")) {
       actualEndTime = json["actualEndTime"];
     }
@@ -2258,8 +2523,8 @@ class LiveBroadcastSnippet {
   }
 
   /** Create JSON Object for LiveBroadcastSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (actualEndTime != null) {
       output["actualEndTime"] = actualEndTime;
@@ -2293,7 +2558,7 @@ class LiveBroadcastSnippet {
   }
 
   /** Return String representation of LiveBroadcastSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2301,13 +2566,13 @@ class LiveBroadcastSnippet {
 class LiveBroadcastStatus {
 
   /** The broadcast's status. The status can be updated using the API's liveBroadcasts.transition method. */
-  String lifeCycleStatus;
+  core.String lifeCycleStatus;
 
   /** The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource. */
-  String privacyStatus;
+  core.String privacyStatus;
 
   /** Create new LiveBroadcastStatus from JSON data */
-  LiveBroadcastStatus.fromJson(Map json) {
+  LiveBroadcastStatus.fromJson(core.Map json) {
     if (json.containsKey("lifeCycleStatus")) {
       lifeCycleStatus = json["lifeCycleStatus"];
     }
@@ -2317,8 +2582,8 @@ class LiveBroadcastStatus {
   }
 
   /** Create JSON Object for LiveBroadcastStatus */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (lifeCycleStatus != null) {
       output["lifeCycleStatus"] = lifeCycleStatus;
@@ -2331,7 +2596,7 @@ class LiveBroadcastStatus {
   }
 
   /** Return String representation of LiveBroadcastStatus */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2342,13 +2607,13 @@ class LiveStream {
   LiveStreamCdn cdn;
 
   /** The ETag of the stream resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube assigns to uniquely identify the stream. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For live stream resources, the value will be youtube#liveStream. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the stream, including its channel, title, and description. */
   LiveStreamSnippet snippet;
@@ -2357,7 +2622,7 @@ class LiveStream {
   LiveStreamStatus status;
 
   /** Create new LiveStream from JSON data */
-  LiveStream.fromJson(Map json) {
+  LiveStream.fromJson(core.Map json) {
     if (json.containsKey("cdn")) {
       cdn = new LiveStreamCdn.fromJson(json["cdn"]);
     }
@@ -2379,8 +2644,8 @@ class LiveStream {
   }
 
   /** Create JSON Object for LiveStream */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (cdn != null) {
       output["cdn"] = cdn.toJson();
@@ -2405,7 +2670,7 @@ class LiveStream {
   }
 
   /** Return String representation of LiveStream */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2413,16 +2678,16 @@ class LiveStream {
 class LiveStreamCdn {
 
   /** The format of the video stream that you are sending to YouTube. */
-  String format;
+  core.String format;
 
   /** The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube. */
   LiveStreamCdnIngestionInfo ingestionInfo;
 
   /** The method or protocol used to transmit the video stream. */
-  String ingestionType;
+  core.String ingestionType;
 
   /** Create new LiveStreamCdn from JSON data */
-  LiveStreamCdn.fromJson(Map json) {
+  LiveStreamCdn.fromJson(core.Map json) {
     if (json.containsKey("format")) {
       format = json["format"];
     }
@@ -2435,8 +2700,8 @@ class LiveStreamCdn {
   }
 
   /** Create JSON Object for LiveStreamCdn */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (format != null) {
       output["format"] = format;
@@ -2452,7 +2717,7 @@ class LiveStreamCdn {
   }
 
   /** Return String representation of LiveStreamCdn */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2460,20 +2725,20 @@ class LiveStreamCdn {
 class LiveStreamCdnIngestionInfo {
 
   /** The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL. */
-  String backupIngestionAddress;
+  core.String backupIngestionAddress;
 
   /** The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.
 
 Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:
 
 STREAM_URL/STREAM_NAME */
-  String ingestionAddress;
+  core.String ingestionAddress;
 
   /** The HTTP or RTMP stream name that YouTube assigns to the video stream. */
-  String streamName;
+  core.String streamName;
 
   /** Create new LiveStreamCdnIngestionInfo from JSON data */
-  LiveStreamCdnIngestionInfo.fromJson(Map json) {
+  LiveStreamCdnIngestionInfo.fromJson(core.Map json) {
     if (json.containsKey("backupIngestionAddress")) {
       backupIngestionAddress = json["backupIngestionAddress"];
     }
@@ -2486,8 +2751,8 @@ STREAM_URL/STREAM_NAME */
   }
 
   /** Create JSON Object for LiveStreamCdnIngestionInfo */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (backupIngestionAddress != null) {
       output["backupIngestionAddress"] = backupIngestionAddress;
@@ -2503,7 +2768,7 @@ STREAM_URL/STREAM_NAME */
   }
 
   /** Return String representation of LiveStreamCdnIngestionInfo */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2511,25 +2776,25 @@ STREAM_URL/STREAM_NAME */
 class LiveStreamList {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of live streams that match the request criteria. */
-  List<LiveStream> items;
+  core.List<LiveStream> items;
 
   /** The type of the API response. For this operation, the value will be youtube#liveStreamList. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new LiveStreamList from JSON data */
-  LiveStreamList.fromJson(Map json) {
+  LiveStreamList.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2554,14 +2819,14 @@ class LiveStreamList {
   }
 
   /** Create JSON Object for LiveStreamList */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -2583,7 +2848,7 @@ class LiveStreamList {
   }
 
   /** Return String representation of LiveStreamList */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2591,19 +2856,19 @@ class LiveStreamList {
 class LiveStreamSnippet {
 
   /** The ID that YouTube uses to uniquely identify the channel that is transmitting the stream. */
-  String channelId;
+  core.String channelId;
 
   /** The stream's description. The value cannot be longer than 10000 characters. */
-  String description;
+  core.String description;
 
   /** The date and time that the stream was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** The stream's title. The value must be between 1 and 128 characters long. */
-  String title;
+  core.String title;
 
   /** Create new LiveStreamSnippet from JSON data */
-  LiveStreamSnippet.fromJson(Map json) {
+  LiveStreamSnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -2619,8 +2884,8 @@ class LiveStreamSnippet {
   }
 
   /** Create JSON Object for LiveStreamSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -2639,7 +2904,7 @@ class LiveStreamSnippet {
   }
 
   /** Return String representation of LiveStreamSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2647,18 +2912,18 @@ class LiveStreamSnippet {
 class LiveStreamStatus {
 
   /** The stream's status. */
-  String streamStatus;
+  core.String streamStatus;
 
   /** Create new LiveStreamStatus from JSON data */
-  LiveStreamStatus.fromJson(Map json) {
+  LiveStreamStatus.fromJson(core.Map json) {
     if (json.containsKey("streamStatus")) {
       streamStatus = json["streamStatus"];
     }
   }
 
   /** Create JSON Object for LiveStreamStatus */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (streamStatus != null) {
       output["streamStatus"] = streamStatus;
@@ -2668,17 +2933,21 @@ class LiveStreamStatus {
   }
 
   /** Return String representation of LiveStreamStatus */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 /** Represent a property available in different languages. */
 class LocalizedProperty {
-  String default;
-  List<LocalizedString> localized;
+
+  /** Default value for the localized property. */
+  core.String default;
+
+  /** The localized values. */
+  core.List<LocalizedString> localized;
 
   /** Create new LocalizedProperty from JSON data */
-  LocalizedProperty.fromJson(Map json) {
+  LocalizedProperty.fromJson(core.Map json) {
     if (json.containsKey("default")) {
       default = json["default"];
     }
@@ -2691,14 +2960,14 @@ class LocalizedProperty {
   }
 
   /** Create JSON Object for LocalizedProperty */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (default != null) {
       output["default"] = default;
     }
     if (localized != null) {
-      output["localized"] = new List();
+      output["localized"] = new core.List();
       localized.forEach((item) {
         output["localized"].add(item.toJson());
       });
@@ -2708,17 +2977,21 @@ class LocalizedProperty {
   }
 
   /** Return String representation of LocalizedProperty */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 /** A localized string. */
 class LocalizedString {
-  String language;
-  String value;
+
+  /** Language associated to this value. */
+  core.String language;
+
+  /** Value of the property. */
+  core.String value;
 
   /** Create new LocalizedString from JSON data */
-  LocalizedString.fromJson(Map json) {
+  LocalizedString.fromJson(core.Map json) {
     if (json.containsKey("language")) {
       language = json["language"];
     }
@@ -2728,8 +3001,8 @@ class LocalizedString {
   }
 
   /** Create JSON Object for LocalizedString */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (language != null) {
       output["language"] = language;
@@ -2742,7 +3015,7 @@ class LocalizedString {
   }
 
   /** Return String representation of LocalizedString */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2750,13 +3023,13 @@ class LocalizedString {
 class PageInfo {
 
   /** The number of results included in the API response. */
-  int resultsPerPage;
+  core.int resultsPerPage;
 
   /** The total number of results in the result set. */
-  int totalResults;
+  core.int totalResults;
 
   /** Create new PageInfo from JSON data */
-  PageInfo.fromJson(Map json) {
+  PageInfo.fromJson(core.Map json) {
     if (json.containsKey("resultsPerPage")) {
       resultsPerPage = json["resultsPerPage"];
     }
@@ -2766,8 +3039,8 @@ class PageInfo {
   }
 
   /** Create JSON Object for PageInfo */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (resultsPerPage != null) {
       output["resultsPerPage"] = resultsPerPage;
@@ -2780,7 +3053,7 @@ class PageInfo {
   }
 
   /** Return String representation of PageInfo */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2791,7 +3064,7 @@ class Player {
   PlayerAdsPlaylist adsPlaylist;
 
   /** The ETag for the player resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the resource. */
   ResourceId id;
@@ -2800,13 +3073,13 @@ class Player {
   InvideoFeature invideoFeature;
 
   /** The type of the API resource. */
-  String kind;
+  core.String kind;
 
   /** The videoUrls object either contains restriction information or URLs giving access to the content. */
   PlayerVideoUrls videoUrls;
 
   /** Create new Player from JSON data */
-  Player.fromJson(Map json) {
+  Player.fromJson(core.Map json) {
     if (json.containsKey("adsPlaylist")) {
       adsPlaylist = new PlayerAdsPlaylist.fromJson(json["adsPlaylist"]);
     }
@@ -2828,8 +3101,8 @@ class Player {
   }
 
   /** Create JSON Object for Player */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (adsPlaylist != null) {
       output["adsPlaylist"] = adsPlaylist.toJson();
@@ -2854,7 +3127,7 @@ class Player {
   }
 
   /** Return String representation of Player */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2862,18 +3135,18 @@ class Player {
 class PlayerAdsPlaylist {
 
   /** The VMAP XML document that describes where ads should be inserted and what ad formats should be used in those ad breaks. See http://www.iab.net/vmap. */
-  String vmap_xml;
+  core.String vmap_xml;
 
   /** Create new PlayerAdsPlaylist from JSON data */
-  PlayerAdsPlaylist.fromJson(Map json) {
+  PlayerAdsPlaylist.fromJson(core.Map json) {
     if (json.containsKey("vmap_xml")) {
       vmap_xml = json["vmap_xml"];
     }
   }
 
   /** Create JSON Object for PlayerAdsPlaylist */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (vmap_xml != null) {
       output["vmap_xml"] = vmap_xml;
@@ -2883,7 +3156,7 @@ class PlayerAdsPlaylist {
   }
 
   /** Return String representation of PlayerAdsPlaylist */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2891,16 +3164,16 @@ class PlayerAdsPlaylist {
 class PlayerListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** The type of the API response. For this operation, the value will be youtube#playerListResponse. */
-  String kind;
+  core.String kind;
 
   /** A list of players that match the request criteria. */
-  List<Player> players;
+  core.List<Player> players;
 
   /** Create new PlayerListResponse from JSON data */
-  PlayerListResponse.fromJson(Map json) {
+  PlayerListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -2916,8 +3189,8 @@ class PlayerListResponse {
   }
 
   /** Create JSON Object for PlayerListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
@@ -2926,7 +3199,7 @@ class PlayerListResponse {
       output["kind"] = kind;
     }
     if (players != null) {
-      output["players"] = new List();
+      output["players"] = new core.List();
       players.forEach((item) {
         output["players"].add(item.toJson());
       });
@@ -2936,7 +3209,7 @@ class PlayerListResponse {
   }
 
   /** Return String representation of PlayerListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2944,16 +3217,16 @@ class PlayerListResponse {
 class PlayerRestrictionDetails {
 
   /** Detailed information about the restriction */
-  String reason;
+  core.String reason;
 
   /** True iff the video can't be played. */
-  bool restricted;
+  core.bool restricted;
 
   /** A code describing the restriction class. */
-  String restriction;
+  core.String restriction;
 
   /** Create new PlayerRestrictionDetails from JSON data */
-  PlayerRestrictionDetails.fromJson(Map json) {
+  PlayerRestrictionDetails.fromJson(core.Map json) {
     if (json.containsKey("reason")) {
       reason = json["reason"];
     }
@@ -2966,8 +3239,8 @@ class PlayerRestrictionDetails {
   }
 
   /** Create JSON Object for PlayerRestrictionDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (reason != null) {
       output["reason"] = reason;
@@ -2983,7 +3256,7 @@ class PlayerRestrictionDetails {
   }
 
   /** Return String representation of PlayerRestrictionDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -2991,13 +3264,13 @@ class PlayerRestrictionDetails {
 class PlayerVideoUrl {
 
   /** itag of the video format. */
-  int itag;
+  core.int itag;
 
   /** Streamer URL serving the video. */
-  String url;
+  core.String url;
 
   /** Create new PlayerVideoUrl from JSON data */
-  PlayerVideoUrl.fromJson(Map json) {
+  PlayerVideoUrl.fromJson(core.Map json) {
     if (json.containsKey("itag")) {
       itag = json["itag"];
     }
@@ -3007,8 +3280,8 @@ class PlayerVideoUrl {
   }
 
   /** Create JSON Object for PlayerVideoUrl */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (itag != null) {
       output["itag"] = itag;
@@ -3021,7 +3294,7 @@ class PlayerVideoUrl {
   }
 
   /** Return String representation of PlayerVideoUrl */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3032,10 +3305,10 @@ class PlayerVideoUrls {
   PlayerRestrictionDetails restriction;
 
   /** URLs to the formats that are available to the caller. */
-  List<PlayerVideoUrl> url;
+  core.List<PlayerVideoUrl> url;
 
   /** Create new PlayerVideoUrls from JSON data */
-  PlayerVideoUrls.fromJson(Map json) {
+  PlayerVideoUrls.fromJson(core.Map json) {
     if (json.containsKey("restriction")) {
       restriction = new PlayerRestrictionDetails.fromJson(json["restriction"]);
     }
@@ -3048,14 +3321,14 @@ class PlayerVideoUrls {
   }
 
   /** Create JSON Object for PlayerVideoUrls */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (restriction != null) {
       output["restriction"] = restriction.toJson();
     }
     if (url != null) {
-      output["url"] = new List();
+      output["url"] = new core.List();
       url.forEach((item) {
         output["url"].add(item.toJson());
       });
@@ -3065,7 +3338,7 @@ class PlayerVideoUrls {
   }
 
   /** Return String representation of PlayerVideoUrls */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3085,13 +3358,13 @@ class Playlist {
   PlaylistContentDetails contentDetails;
 
   /** The ETag for the playlist resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the playlist. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For video resources, the value will be youtube#playlist. */
-  String kind;
+  core.String kind;
 
   /** The player object contains information that you would use to play the playlist in an embedded player. */
   PlaylistPlayer player;
@@ -3103,7 +3376,7 @@ class Playlist {
   PlaylistStatus status;
 
   /** Create new Playlist from JSON data */
-  Playlist.fromJson(Map json) {
+  Playlist.fromJson(core.Map json) {
     if (json.containsKey("contentDetails")) {
       contentDetails = new PlaylistContentDetails.fromJson(json["contentDetails"]);
     }
@@ -3128,8 +3401,8 @@ class Playlist {
   }
 
   /** Create JSON Object for Playlist */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -3157,7 +3430,7 @@ class Playlist {
   }
 
   /** Return String representation of Playlist */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3165,18 +3438,18 @@ class Playlist {
 class PlaylistContentDetails {
 
   /** The number of videos in the playlist. */
-  int itemCount;
+  core.int itemCount;
 
   /** Create new PlaylistContentDetails from JSON data */
-  PlaylistContentDetails.fromJson(Map json) {
+  PlaylistContentDetails.fromJson(core.Map json) {
     if (json.containsKey("itemCount")) {
       itemCount = json["itemCount"];
     }
   }
 
   /** Create JSON Object for PlaylistContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (itemCount != null) {
       output["itemCount"] = itemCount;
@@ -3186,7 +3459,7 @@ class PlaylistContentDetails {
   }
 
   /** Return String representation of PlaylistContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3206,19 +3479,22 @@ class PlaylistItem {
   PlaylistItemContentDetails contentDetails;
 
   /** The ETag for the playlist item resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the playlist item. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For playlist item resources, the value will be youtube#playlistItem. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the playlist item, such as its title and position in the playlist. */
   PlaylistItemSnippet snippet;
 
+  /** The status object contains information about the playlist item's privacy status. */
+  PlaylistItemStatus status;
+
   /** Create new PlaylistItem from JSON data */
-  PlaylistItem.fromJson(Map json) {
+  PlaylistItem.fromJson(core.Map json) {
     if (json.containsKey("contentDetails")) {
       contentDetails = new PlaylistItemContentDetails.fromJson(json["contentDetails"]);
     }
@@ -3234,11 +3510,14 @@ class PlaylistItem {
     if (json.containsKey("snippet")) {
       snippet = new PlaylistItemSnippet.fromJson(json["snippet"]);
     }
+    if (json.containsKey("status")) {
+      status = new PlaylistItemStatus.fromJson(json["status"]);
+    }
   }
 
   /** Create JSON Object for PlaylistItem */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -3255,12 +3534,15 @@ class PlaylistItem {
     if (snippet != null) {
       output["snippet"] = snippet.toJson();
     }
+    if (status != null) {
+      output["status"] = status.toJson();
+    }
 
     return output;
   }
 
   /** Return String representation of PlaylistItem */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3268,19 +3550,19 @@ class PlaylistItem {
 class PlaylistItemContentDetails {
 
   /** The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the video.endTime is the end of the video. */
-  String endAt;
+  core.String endAt;
 
   /** A user-generated note for this item. */
-  String note;
+  core.String note;
 
   /** The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is 0. */
-  String startAt;
+  core.String startAt;
 
   /** The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request. */
-  String videoId;
+  core.String videoId;
 
   /** Create new PlaylistItemContentDetails from JSON data */
-  PlaylistItemContentDetails.fromJson(Map json) {
+  PlaylistItemContentDetails.fromJson(core.Map json) {
     if (json.containsKey("endAt")) {
       endAt = json["endAt"];
     }
@@ -3296,8 +3578,8 @@ class PlaylistItemContentDetails {
   }
 
   /** Create JSON Object for PlaylistItemContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (endAt != null) {
       output["endAt"] = endAt;
@@ -3316,7 +3598,7 @@ class PlaylistItemContentDetails {
   }
 
   /** Return String representation of PlaylistItemContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3324,25 +3606,25 @@ class PlaylistItemContentDetails {
 class PlaylistItemListResponse {
 
   /** The ETag for the response. */
-  String etag;
+  core.String etag;
 
   /** A list of playlist items that match the request criteria. */
-  List<PlaylistItem> items;
+  core.List<PlaylistItem> items;
 
   /** The type of the API response. For this operation, the value will be youtube#playlistItemListResponse. */
-  String kind;
+  core.String kind;
 
   /** A token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** A token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new PlaylistItemListResponse from JSON data */
-  PlaylistItemListResponse.fromJson(Map json) {
+  PlaylistItemListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -3367,14 +3649,14 @@ class PlaylistItemListResponse {
   }
 
   /** Create JSON Object for PlaylistItemListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -3396,44 +3678,40 @@ class PlaylistItemListResponse {
   }
 
   /** Return String representation of PlaylistItemListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class PlaylistItemSnippet {
 
   /** The ID that YouTube uses to uniquely identify the user that added the item to the playlist. */
-  String channelId;
-
-  /** Channel title for the channel that the playlist item belongs to. */
-  String channelTitle;
+  core.String channelId;
 
   /** The item's description. */
-  String description;
+  core.String description;
 
   /** The ID that YouTube uses to uniquely identify the playlist that the playlist item is in. */
-  String playlistId;
+  core.String playlistId;
 
   /** The order in which the item appears in the playlist. The value uses a zero-based index, so the first item has a position of 0, the second item has a position of 1, and so forth. */
-  int position;
+  core.int position;
 
   /** The date and time that the item was added to the playlist. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item. */
   ResourceId resourceId;
+
+  /** A map of thumbnail images associated with the playlist item. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The item's title. */
-  String title;
+  core.String title;
 
   /** Create new PlaylistItemSnippet from JSON data */
-  PlaylistItemSnippet.fromJson(Map json) {
+  PlaylistItemSnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
-    }
-    if (json.containsKey("channelTitle")) {
-      channelTitle = json["channelTitle"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
@@ -3459,14 +3737,11 @@ class PlaylistItemSnippet {
   }
 
   /** Create JSON Object for PlaylistItemSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
-    }
-    if (channelTitle != null) {
-      output["channelTitle"] = channelTitle;
     }
     if (description != null) {
       output["description"] = description;
@@ -3494,7 +3769,33 @@ class PlaylistItemSnippet {
   }
 
   /** Return String representation of PlaylistItemSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+class PlaylistItemStatus {
+  core.String privacyStatus;
+
+  /** Create new PlaylistItemStatus from JSON data */
+  PlaylistItemStatus.fromJson(core.Map json) {
+    if (json.containsKey("privacyStatus")) {
+      privacyStatus = json["privacyStatus"];
+    }
+  }
+
+  /** Create JSON Object for PlaylistItemStatus */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (privacyStatus != null) {
+      output["privacyStatus"] = privacyStatus;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PlaylistItemStatus */
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3502,25 +3803,25 @@ class PlaylistItemSnippet {
 class PlaylistListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of playlists that match the request criteria. */
-  List<Playlist> items;
+  core.List<Playlist> items;
 
   /** The type of the API response. For this operation, the value will be youtube#playlistListResponse. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new PlaylistListResponse from JSON data */
-  PlaylistListResponse.fromJson(Map json) {
+  PlaylistListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -3545,14 +3846,14 @@ class PlaylistListResponse {
   }
 
   /** Create JSON Object for PlaylistListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -3574,7 +3875,7 @@ class PlaylistListResponse {
   }
 
   /** Return String representation of PlaylistListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3582,18 +3883,18 @@ class PlaylistListResponse {
 class PlaylistPlayer {
 
   /** An <iframe> tag that embeds a player that will play the playlist. */
-  String embedHtml;
+  core.String embedHtml;
 
   /** Create new PlaylistPlayer from JSON data */
-  PlaylistPlayer.fromJson(Map json) {
+  PlaylistPlayer.fromJson(core.Map json) {
     if (json.containsKey("embedHtml")) {
       embedHtml = json["embedHtml"];
     }
   }
 
   /** Create JSON Object for PlaylistPlayer */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (embedHtml != null) {
       output["embedHtml"] = embedHtml;
@@ -3603,7 +3904,7 @@ class PlaylistPlayer {
   }
 
   /** Return String representation of PlaylistPlayer */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3611,44 +3912,30 @@ class PlaylistPlayer {
 class PlaylistSnippet {
 
   /** The ID that YouTube uses to uniquely identify the channel that published the playlist. */
-  String channelId;
-
-  /** Channel title for the channel that the video belongs to. */
-  String channelTitle;
+  core.String channelId;
 
   /** The playlist's description. */
-  String description;
+  core.String description;
 
   /** The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAtMs;
-  List<String> tags;
+  core.String publishedAt;
 
   /** A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The playlist's title. */
-  String title;
-  String updatedAtMs;
+  core.String title;
 
   /** Create new PlaylistSnippet from JSON data */
-  PlaylistSnippet.fromJson(Map json) {
+  PlaylistSnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
-    }
-    if (json.containsKey("channelTitle")) {
-      channelTitle = json["channelTitle"];
     }
     if (json.containsKey("description")) {
       description = json["description"];
     }
-    if (json.containsKey("publishedAtMs")) {
-      publishedAtMs = json["publishedAtMs"];
-    }
-    if (json.containsKey("tags")) {
-      tags = [];
-      json["tags"].forEach((item) {
-        tags.add(item);
-      });
+    if (json.containsKey("publishedAt")) {
+      publishedAt = json["publishedAt"];
     }
     if (json.containsKey("thumbnails")) {
       thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
@@ -3656,32 +3943,20 @@ class PlaylistSnippet {
     if (json.containsKey("title")) {
       title = json["title"];
     }
-    if (json.containsKey("updatedAtMs")) {
-      updatedAtMs = json["updatedAtMs"];
-    }
   }
 
   /** Create JSON Object for PlaylistSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
     }
-    if (channelTitle != null) {
-      output["channelTitle"] = channelTitle;
-    }
     if (description != null) {
       output["description"] = description;
     }
-    if (publishedAtMs != null) {
-      output["publishedAtMs"] = publishedAtMs;
-    }
-    if (tags != null) {
-      output["tags"] = new List();
-      tags.forEach((item) {
-        output["tags"].add(item);
-      });
+    if (publishedAt != null) {
+      output["publishedAt"] = publishedAt;
     }
     if (thumbnails != null) {
       output["thumbnails"] = thumbnails.toJson();
@@ -3689,15 +3964,12 @@ class PlaylistSnippet {
     if (title != null) {
       output["title"] = title;
     }
-    if (updatedAtMs != null) {
-      output["updatedAtMs"] = updatedAtMs;
-    }
 
     return output;
   }
 
   /** Return String representation of PlaylistSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3705,18 +3977,18 @@ class PlaylistSnippet {
 class PlaylistStatus {
 
   /** The playlist's privacy status. */
-  String privacyStatus;
+  core.String privacyStatus;
 
   /** Create new PlaylistStatus from JSON data */
-  PlaylistStatus.fromJson(Map json) {
+  PlaylistStatus.fromJson(core.Map json) {
     if (json.containsKey("privacyStatus")) {
       privacyStatus = json["privacyStatus"];
     }
   }
 
   /** Create JSON Object for PlaylistStatus */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (privacyStatus != null) {
       output["privacyStatus"] = privacyStatus;
@@ -3726,17 +3998,17 @@ class PlaylistStatus {
   }
 
   /** Return String representation of PlaylistStatus */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 /** A pair Property / Value. */
 class PropertyValue {
-  String property;
-  String value;
+  core.String property;
+  core.String value;
 
   /** Create new PropertyValue from JSON data */
-  PropertyValue.fromJson(Map json) {
+  PropertyValue.fromJson(core.Map json) {
     if (json.containsKey("property")) {
       property = json["property"];
     }
@@ -3746,8 +4018,8 @@ class PropertyValue {
   }
 
   /** Create JSON Object for PropertyValue */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (property != null) {
       output["property"] = property;
@@ -3760,7 +4032,7 @@ class PropertyValue {
   }
 
   /** Return String representation of PropertyValue */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3768,17 +4040,17 @@ class PropertyValue {
 class ResourceId {
 
   /** The ID that YouTube uses to uniquely identify the referred resource, if that resource is a channel. This property is only present if the resourceId.kind value is youtube#channel. */
-  String channelId;
-  String kind;
+  core.String channelId;
+  core.String kind;
 
   /** The ID that YouTube uses to uniquely identify the referred resource, if that resource is a playlist. This property is only present if the resourceId.kind value is youtube#playlist. */
-  String playlistId;
+  core.String playlistId;
 
   /** The ID that YouTube uses to uniquely identify the referred resource, if that resource is a video. This property is only present if the resourceId.kind value is youtube#video. */
-  String videoId;
+  core.String videoId;
 
   /** Create new ResourceId from JSON data */
-  ResourceId.fromJson(Map json) {
+  ResourceId.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -3794,8 +4066,8 @@ class ResourceId {
   }
 
   /** Create JSON Object for ResourceId */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -3814,7 +4086,7 @@ class ResourceId {
   }
 
   /** Return String representation of ResourceId */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3822,25 +4094,25 @@ class ResourceId {
 class SearchListResponse {
 
   /** The ETag for the response. */
-  String etag;
+  core.String etag;
 
   /** A list of results that match the search criteria. */
-  List<SearchResult> items;
+  core.List<SearchResult> items;
 
   /** The type of the API response. For this operation, the value will be youtube#searchListResponse. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the search result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new SearchListResponse from JSON data */
-  SearchListResponse.fromJson(Map json) {
+  SearchListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -3865,14 +4137,14 @@ class SearchListResponse {
   }
 
   /** Create JSON Object for SearchListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -3894,7 +4166,7 @@ class SearchListResponse {
   }
 
   /** Return String representation of SearchListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -3902,19 +4174,19 @@ class SearchListResponse {
 class SearchResult {
 
   /** Etag of this resource. */
-  String etag;
+  core.String etag;
 
   /** The id object contains information that can be used to uniquely identify the resource that matches the search request. */
   ResourceId id;
 
   /** The kind, fixed to "youtube#searchResult". */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video's title and the description will be the video's description. */
   SearchResultSnippet snippet;
 
   /** Create new SearchResult from JSON data */
-  SearchResult.fromJson(Map json) {
+  SearchResult.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -3930,8 +4202,8 @@ class SearchResult {
   }
 
   /** Create JSON Object for SearchResult */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
@@ -3950,32 +4222,32 @@ class SearchResult {
   }
 
   /** Return String representation of SearchResult */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class SearchResultSnippet {
 
   /** The value that YouTube uses to uniquely identify the channel that published the resource that the search result identifies. */
-  String channelId;
+  core.String channelId;
 
   /** The title of the channel that published the resource that the search result identifies. */
-  String channelTitle;
+  core.String channelTitle;
 
   /** A description of the search result. */
-  String description;
+  core.String description;
 
   /** The creation date and time of the resource that the search result identifies. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** A map of thumbnail images associated with the search result. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The title of the search result. */
-  String title;
+  core.String title;
 
   /** Create new SearchResultSnippet from JSON data */
-  SearchResultSnippet.fromJson(Map json) {
+  SearchResultSnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -3997,8 +4269,8 @@ class SearchResultSnippet {
   }
 
   /** Create JSON Object for SearchResultSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -4023,7 +4295,7 @@ class SearchResultSnippet {
   }
 
   /** Return String representation of SearchResultSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4034,19 +4306,19 @@ class Subscription {
   SubscriptionContentDetails contentDetails;
 
   /** The ETag of the subscription resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the subscription. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For subscription resources, the value will be youtube#subscription. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to. */
   SubscriptionSnippet snippet;
 
   /** Create new Subscription from JSON data */
-  Subscription.fromJson(Map json) {
+  Subscription.fromJson(core.Map json) {
     if (json.containsKey("contentDetails")) {
       contentDetails = new SubscriptionContentDetails.fromJson(json["contentDetails"]);
     }
@@ -4065,8 +4337,8 @@ class Subscription {
   }
 
   /** Create JSON Object for Subscription */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -4088,7 +4360,7 @@ class Subscription {
   }
 
   /** Return String representation of Subscription */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4096,13 +4368,13 @@ class Subscription {
 class SubscriptionContentDetails {
 
   /** The number of new items in the subscription since its content was last read. */
-  int newItemCount;
+  core.int newItemCount;
 
   /** The approximate number of items that the subscription points to. */
-  int totalItemCount;
+  core.int totalItemCount;
 
   /** Create new SubscriptionContentDetails from JSON data */
-  SubscriptionContentDetails.fromJson(Map json) {
+  SubscriptionContentDetails.fromJson(core.Map json) {
     if (json.containsKey("newItemCount")) {
       newItemCount = json["newItemCount"];
     }
@@ -4112,8 +4384,8 @@ class SubscriptionContentDetails {
   }
 
   /** Create JSON Object for SubscriptionContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (newItemCount != null) {
       output["newItemCount"] = newItemCount;
@@ -4126,7 +4398,7 @@ class SubscriptionContentDetails {
   }
 
   /** Return String representation of SubscriptionContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4134,25 +4406,25 @@ class SubscriptionContentDetails {
 class SubscriptionListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of subscriptions that match the request criteria. */
-  List<Subscription> items;
+  core.List<Subscription> items;
 
   /** The type of the API response. For this operation, the value will be youtube#subscriptionListResponse. */
-  String kind;
+  core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
-  String nextPageToken;
+  core.String nextPageToken;
 
   /** The pageInfo object encapsulates paging information for the result set. */
   PageInfo pageInfo;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the previous page in the result set. */
-  String prevPageToken;
+  core.String prevPageToken;
 
   /** Create new SubscriptionListResponse from JSON data */
-  SubscriptionListResponse.fromJson(Map json) {
+  SubscriptionListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -4177,14 +4449,14 @@ class SubscriptionListResponse {
   }
 
   /** Create JSON Object for SubscriptionListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -4206,7 +4478,7 @@ class SubscriptionListResponse {
   }
 
   /** Return String representation of SubscriptionListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4214,13 +4486,13 @@ class SubscriptionListResponse {
 class SubscriptionSnippet {
 
   /** The ID that YouTube uses to uniquely identify the subscriber's channel. */
-  String channelId;
+  core.String channelId;
 
   /** The subscription's details. */
-  String description;
+  core.String description;
 
   /** The date and time that the subscription was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** The id object contains information about the channel that the user subscribed to. */
   ResourceId resourceId;
@@ -4229,10 +4501,10 @@ class SubscriptionSnippet {
   ThumbnailDetails thumbnails;
 
   /** The subscription's title. */
-  String title;
+  core.String title;
 
   /** Create new SubscriptionSnippet from JSON data */
-  SubscriptionSnippet.fromJson(Map json) {
+  SubscriptionSnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -4254,8 +4526,8 @@ class SubscriptionSnippet {
   }
 
   /** Create JSON Object for SubscriptionSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -4280,7 +4552,7 @@ class SubscriptionSnippet {
   }
 
   /** Return String representation of SubscriptionSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4288,16 +4560,16 @@ class SubscriptionSnippet {
 class Thumbnail {
 
   /** (Optional) Height of the thumbnail image. */
-  int height;
+  core.int height;
 
   /** The thumbnail image's URL. */
-  String url;
+  core.String url;
 
   /** (Optional) Width of the thumbnail image. */
-  int width;
+  core.int width;
 
   /** Create new Thumbnail from JSON data */
-  Thumbnail.fromJson(Map json) {
+  Thumbnail.fromJson(core.Map json) {
     if (json.containsKey("height")) {
       height = json["height"];
     }
@@ -4310,8 +4582,8 @@ class Thumbnail {
   }
 
   /** Create JSON Object for Thumbnail */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (height != null) {
       output["height"] = height;
@@ -4327,7 +4599,7 @@ class Thumbnail {
   }
 
   /** Return String representation of Thumbnail */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4339,7 +4611,7 @@ class ThumbnailDetails {
   Thumbnail standard;
 
   /** Create new ThumbnailDetails from JSON data */
-  ThumbnailDetails.fromJson(Map json) {
+  ThumbnailDetails.fromJson(core.Map json) {
     if (json.containsKey("default")) {
       default = new Thumbnail.fromJson(json["default"]);
     }
@@ -4358,8 +4630,8 @@ class ThumbnailDetails {
   }
 
   /** Create JSON Object for ThumbnailDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (default != null) {
       output["default"] = default.toJson();
@@ -4381,7 +4653,7 @@ class ThumbnailDetails {
   }
 
   /** Return String representation of ThumbnailDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4395,16 +4667,16 @@ class Video {
   VideoContentDetails contentDetails;
 
   /** The ETag of the video resource. */
-  String etag;
+  core.String etag;
 
   /** The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner. */
   VideoFileDetails fileDetails;
 
   /** The ID that YouTube uses to uniquely identify the video. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For video resources, the value will be youtube#video. */
-  String kind;
+  core.String kind;
 
   /** The monetizationDetails object encapsulates information about the monetization status of the video. */
   VideoMonetizationDetails monetizationDetails;
@@ -4439,7 +4711,7 @@ The processingProgress object is designed to be polled so that the video uploade
   VideoTopicDetails topicDetails;
 
   /** Create new Video from JSON data */
-  Video.fromJson(Map json) {
+  Video.fromJson(core.Map json) {
     if (json.containsKey("ageGatingDetails")) {
       ageGatingDetails = new VideoAgeGating.fromJson(json["ageGatingDetails"]);
     }
@@ -4491,8 +4763,8 @@ The processingProgress object is designed to be polled so that the video uploade
   }
 
   /** Create JSON Object for Video */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (ageGatingDetails != null) {
       output["ageGatingDetails"] = ageGatingDetails.toJson();
@@ -4547,23 +4819,23 @@ The processingProgress object is designed to be polled so that the video uploade
   }
 
   /** Return String representation of Video */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class VideoAgeGating {
 
   /** Indicates whether or not the video has alcoholic beverage content. Only users of legal purchasing age in a particular country, as identified by ICAP, can view the content. */
-  bool alcoholContent;
+  core.bool alcoholContent;
 
   /** Age-restricted trailers. For redband trailers and adult-rated video-games. Only users aged 18+ can view the content. The the field is true the content is restricted to viewers aged 18+. Otherwise The field won't be present. */
-  bool restricted;
+  core.bool restricted;
 
   /** Video game rating, if any. */
-  String videoGameRating;
+  core.String videoGameRating;
 
   /** Create new VideoAgeGating from JSON data */
-  VideoAgeGating.fromJson(Map json) {
+  VideoAgeGating.fromJson(core.Map json) {
     if (json.containsKey("alcoholContent")) {
       alcoholContent = json["alcoholContent"];
     }
@@ -4576,8 +4848,8 @@ class VideoAgeGating {
   }
 
   /** Create JSON Object for VideoAgeGating */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (alcoholContent != null) {
       output["alcoholContent"] = alcoholContent;
@@ -4593,7 +4865,7 @@ class VideoAgeGating {
   }
 
   /** Return String representation of VideoAgeGating */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4601,19 +4873,19 @@ class VideoAgeGating {
 class VideoCategory {
 
   /** The ETag of the videoCategory resource. */
-  String etag;
+  core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the video category. */
-  String id;
+  core.String id;
 
   /** The type of the API resource. For video category resources, the value will be youtube#videoCategory. */
-  String kind;
+  core.String kind;
 
   /** The snippet object contains basic details about the video category, including its title. */
   VideoCategorySnippet snippet;
 
   /** Create new VideoCategory from JSON data */
-  VideoCategory.fromJson(Map json) {
+  VideoCategory.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -4629,8 +4901,8 @@ class VideoCategory {
   }
 
   /** Create JSON Object for VideoCategory */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
@@ -4649,7 +4921,7 @@ class VideoCategory {
   }
 
   /** Return String representation of VideoCategory */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4657,16 +4929,16 @@ class VideoCategory {
 class VideoCategoryListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of video categories that can be associated with YouTube videos. In this map, the video category ID is the map key, and its value is the corresponding videoCategory resource. */
-  List<VideoCategory> items;
+  core.List<VideoCategory> items;
 
   /** The type of the API response. For this operation, the value will be youtube#videoCategoryListResponse. */
-  String kind;
+  core.String kind;
 
   /** Create new VideoCategoryListResponse from JSON data */
-  VideoCategoryListResponse.fromJson(Map json) {
+  VideoCategoryListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -4682,14 +4954,14 @@ class VideoCategoryListResponse {
   }
 
   /** Create JSON Object for VideoCategoryListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -4702,18 +4974,18 @@ class VideoCategoryListResponse {
   }
 
   /** Return String representation of VideoCategoryListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 class VideoCategorySnippet {
 
   /** The YouTube channel that created the video category. */
-  String channelId;
-  String title;
+  core.String channelId;
+  core.String title;
 
   /** Create new VideoCategorySnippet from JSON data */
-  VideoCategorySnippet.fromJson(Map json) {
+  VideoCategorySnippet.fromJson(core.Map json) {
     if (json.containsKey("channelId")) {
       channelId = json["channelId"];
     }
@@ -4723,8 +4995,8 @@ class VideoCategorySnippet {
   }
 
   /** Create JSON Object for VideoCategorySnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (channelId != null) {
       output["channelId"] = channelId;
@@ -4737,7 +5009,7 @@ class VideoCategorySnippet {
   }
 
   /** Return String representation of VideoCategorySnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4745,30 +5017,36 @@ class VideoCategorySnippet {
 class VideoContentDetails {
 
   /** The value of captions indicates whether the video has captions or not. */
-  String caption;
+  core.String caption;
+
+  /** Specifies the ratings that the video received under various rating schemes. */
+  ContentRating contentRating;
 
   /** The countryRestriction object contains information about the countries where a video is (or is not) viewable. */
   AccessPolicy countryRestriction;
 
   /** The value of definition indicates whether the video is available in high definition or only in standard definition. */
-  String definition;
+  core.String definition;
 
   /** The value of dimension indicates whether the video is available in 3D or in 2D. */
-  String dimension;
+  core.String dimension;
 
   /** The length of the video. The tag value is an ISO 8601 duration in the format PT#M#S, in which the letters PT indicate that the value specifies a period of time, and the letters M and S refer to length in minutes and seconds, respectively. The # characters preceding the M and S letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of PT15M51S indicates that the video is 15 minutes and 51 seconds long. */
-  String duration;
+  core.String duration;
 
   /** The value of is_license_content indicates whether the video is licensed content. */
-  bool licensedContent;
+  core.bool licensedContent;
 
   /** The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property. */
   VideoContentDetailsRegionRestriction regionRestriction;
 
   /** Create new VideoContentDetails from JSON data */
-  VideoContentDetails.fromJson(Map json) {
+  VideoContentDetails.fromJson(core.Map json) {
     if (json.containsKey("caption")) {
       caption = json["caption"];
+    }
+    if (json.containsKey("contentRating")) {
+      contentRating = new ContentRating.fromJson(json["contentRating"]);
     }
     if (json.containsKey("countryRestriction")) {
       countryRestriction = new AccessPolicy.fromJson(json["countryRestriction"]);
@@ -4791,11 +5069,14 @@ class VideoContentDetails {
   }
 
   /** Create JSON Object for VideoContentDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (caption != null) {
       output["caption"] = caption;
+    }
+    if (contentRating != null) {
+      output["contentRating"] = contentRating.toJson();
     }
     if (countryRestriction != null) {
       output["countryRestriction"] = countryRestriction.toJson();
@@ -4820,7 +5101,7 @@ class VideoContentDetails {
   }
 
   /** Return String representation of VideoContentDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4828,13 +5109,13 @@ class VideoContentDetails {
 class VideoContentDetailsRegionRestriction {
 
   /** A list of region codes that identify countries where the video is viewable. If this property is present and a country is not listed in its value, then the video is blocked from appearing in that country. If this property is present and contains an empty list, the video is blocked in all countries. */
-  List<String> allowed;
+  core.List<core.String> allowed;
 
   /** A list of region codes that identify countries where the video is blocked. If this property is present and a country is not listed in its value, then the video is viewable in that country. If this property is present and contains an empty list, the video is viewable in all countries. */
-  List<String> blocked;
+  core.List<core.String> blocked;
 
   /** Create new VideoContentDetailsRegionRestriction from JSON data */
-  VideoContentDetailsRegionRestriction.fromJson(Map json) {
+  VideoContentDetailsRegionRestriction.fromJson(core.Map json) {
     if (json.containsKey("allowed")) {
       allowed = [];
       json["allowed"].forEach((item) {
@@ -4850,17 +5131,17 @@ class VideoContentDetailsRegionRestriction {
   }
 
   /** Create JSON Object for VideoContentDetailsRegionRestriction */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (allowed != null) {
-      output["allowed"] = new List();
+      output["allowed"] = new core.List();
       allowed.forEach((item) {
         output["allowed"].add(item);
       });
     }
     if (blocked != null) {
-      output["blocked"] = new List();
+      output["blocked"] = new core.List();
       blocked.forEach((item) {
         output["blocked"].add(item);
       });
@@ -4870,7 +5151,7 @@ class VideoContentDetailsRegionRestriction {
   }
 
   /** Return String representation of VideoContentDetailsRegionRestriction */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -4878,40 +5159,40 @@ class VideoContentDetailsRegionRestriction {
 class VideoFileDetails {
 
   /** A list of audio streams contained in the uploaded video file. Each item in the list contains detailed metadata about an audio stream. */
-  List<VideoFileDetailsAudioStream> audioStreams;
+  core.List<VideoFileDetailsAudioStream> audioStreams;
 
   /** The uploaded video file's combined (video and audio) bitrate in bits per second. */
-  String bitrateBps;
+  core.String bitrateBps;
 
   /** The uploaded video file's container format. */
-  String container;
+  core.String container;
 
   /** The date and time when the uploaded video file was created. The value is specified in ISO 8601 format. Currently, the following ISO 8601 formats are supported:  
 - Date only: YYYY-MM-DD 
 - Naive time: YYYY-MM-DDTHH:MM:SS 
 - Time with timezone: YYYY-MM-DDTHH:MM:SS+HH:MM */
-  String creationTime;
+  core.String creationTime;
 
   /** The length of the uploaded video in milliseconds. */
-  String durationMs;
+  core.String durationMs;
 
   /** The uploaded file's name. This field is present whether a video file or another type of file was uploaded. */
-  String fileName;
+  core.String fileName;
 
   /** The uploaded file's size in bytes. This field is present whether a video file or another type of file was uploaded. */
-  String fileSize;
+  core.String fileSize;
 
   /** The uploaded file's type as detected by YouTube's video processing engine. Currently, YouTube only processes video files, but this field is present whether a video file or another type of file was uploaded. */
-  String fileType;
+  core.String fileType;
 
   /** Geographic coordinates that identify the place where the uploaded video was recorded. Coordinates are defined using WGS 84. */
   GeoPoint recordingLocation;
 
   /** A list of video streams contained in the uploaded video file. Each item in the list contains detailed metadata about a video stream. */
-  List<VideoFileDetailsVideoStream> videoStreams;
+  core.List<VideoFileDetailsVideoStream> videoStreams;
 
   /** Create new VideoFileDetails from JSON data */
-  VideoFileDetails.fromJson(Map json) {
+  VideoFileDetails.fromJson(core.Map json) {
     if (json.containsKey("audioStreams")) {
       audioStreams = [];
       json["audioStreams"].forEach((item) {
@@ -4951,11 +5232,11 @@ class VideoFileDetails {
   }
 
   /** Create JSON Object for VideoFileDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (audioStreams != null) {
-      output["audioStreams"] = new List();
+      output["audioStreams"] = new core.List();
       audioStreams.forEach((item) {
         output["audioStreams"].add(item.toJson());
       });
@@ -4985,7 +5266,7 @@ class VideoFileDetails {
       output["recordingLocation"] = recordingLocation.toJson();
     }
     if (videoStreams != null) {
-      output["videoStreams"] = new List();
+      output["videoStreams"] = new core.List();
       videoStreams.forEach((item) {
         output["videoStreams"].add(item.toJson());
       });
@@ -4995,7 +5276,7 @@ class VideoFileDetails {
   }
 
   /** Return String representation of VideoFileDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5003,19 +5284,19 @@ class VideoFileDetails {
 class VideoFileDetailsAudioStream {
 
   /** The audio stream's bitrate, in bits per second. */
-  String bitrateBps;
+  core.String bitrateBps;
 
   /** The number of audio channels that the stream contains. */
-  int channelCount;
+  core.int channelCount;
 
   /** The audio codec that the stream uses. */
-  String codec;
+  core.String codec;
 
   /** A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code. */
-  String vendor;
+  core.String vendor;
 
   /** Create new VideoFileDetailsAudioStream from JSON data */
-  VideoFileDetailsAudioStream.fromJson(Map json) {
+  VideoFileDetailsAudioStream.fromJson(core.Map json) {
     if (json.containsKey("bitrateBps")) {
       bitrateBps = json["bitrateBps"];
     }
@@ -5031,8 +5312,8 @@ class VideoFileDetailsAudioStream {
   }
 
   /** Create JSON Object for VideoFileDetailsAudioStream */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (bitrateBps != null) {
       output["bitrateBps"] = bitrateBps;
@@ -5051,7 +5332,7 @@ class VideoFileDetailsAudioStream {
   }
 
   /** Return String representation of VideoFileDetailsAudioStream */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5059,31 +5340,31 @@ class VideoFileDetailsAudioStream {
 class VideoFileDetailsVideoStream {
 
   /** The video content's display aspect ratio, which specifies the aspect ratio in which the video should be displayed. */
-  num aspectRatio;
+  core.num aspectRatio;
 
   /** The video stream's bitrate, in bits per second. */
-  String bitrateBps;
+  core.String bitrateBps;
 
   /** The video codec that the stream uses. */
-  String codec;
+  core.String codec;
 
   /** The video stream's frame rate, in frames per second. */
-  num frameRateFps;
+  core.num frameRateFps;
 
   /** The encoded video content's height in pixels. */
-  int heightPixels;
+  core.int heightPixels;
 
   /** The amount that YouTube needs to rotate the original source content to properly display the video. */
-  String rotation;
+  core.String rotation;
 
   /** A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code. */
-  String vendor;
+  core.String vendor;
 
   /** The encoded video content's width in pixels. You can calculate the video's encoding aspect ratio as width_pixelsÂ /Â height_pixels. */
-  int widthPixels;
+  core.int widthPixels;
 
   /** Create new VideoFileDetailsVideoStream from JSON data */
-  VideoFileDetailsVideoStream.fromJson(Map json) {
+  VideoFileDetailsVideoStream.fromJson(core.Map json) {
     if (json.containsKey("aspectRatio")) {
       aspectRatio = json["aspectRatio"];
     }
@@ -5111,8 +5392,8 @@ class VideoFileDetailsVideoStream {
   }
 
   /** Create JSON Object for VideoFileDetailsVideoStream */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (aspectRatio != null) {
       output["aspectRatio"] = aspectRatio;
@@ -5143,7 +5424,7 @@ class VideoFileDetailsVideoStream {
   }
 
   /** Return String representation of VideoFileDetailsVideoStream */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5151,16 +5432,16 @@ class VideoFileDetailsVideoStream {
 class VideoListResponse {
 
   /** The ETag of the response. */
-  String etag;
+  core.String etag;
 
   /** A list of videos that match the request criteria. */
-  List<Video> items;
+  core.List<Video> items;
 
   /** The type of the API response. For this operation, the value will be youtube#videoListResponse. */
-  String kind;
+  core.String kind;
 
   /** Create new VideoListResponse from JSON data */
-  VideoListResponse.fromJson(Map json) {
+  VideoListResponse.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -5176,14 +5457,14 @@ class VideoListResponse {
   }
 
   /** Create JSON Object for VideoListResponse */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (etag != null) {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new List();
+      output["items"] = new core.List();
       items.forEach((item) {
         output["items"].add(item.toJson());
       });
@@ -5196,7 +5477,7 @@ class VideoListResponse {
   }
 
   /** Return String representation of VideoListResponse */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5207,15 +5488,15 @@ class VideoMonetizationDetails {
   AccessPolicy access;
 
   /** Create new VideoMonetizationDetails from JSON data */
-  VideoMonetizationDetails.fromJson(Map json) {
+  VideoMonetizationDetails.fromJson(core.Map json) {
     if (json.containsKey("access")) {
       access = new AccessPolicy.fromJson(json["access"]);
     }
   }
 
   /** Create JSON Object for VideoMonetizationDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (access != null) {
       output["access"] = access.toJson();
@@ -5225,7 +5506,7 @@ class VideoMonetizationDetails {
   }
 
   /** Return String representation of VideoMonetizationDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5233,18 +5514,18 @@ class VideoMonetizationDetails {
 class VideoPlayer {
 
   /** An <iframe> tag that embeds a player that will play the video. */
-  String embedHtml;
+  core.String embedHtml;
 
   /** Create new VideoPlayer from JSON data */
-  VideoPlayer.fromJson(Map json) {
+  VideoPlayer.fromJson(core.Map json) {
     if (json.containsKey("embedHtml")) {
       embedHtml = json["embedHtml"];
     }
   }
 
   /** Create JSON Object for VideoPlayer */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (embedHtml != null) {
       output["embedHtml"] = embedHtml;
@@ -5254,7 +5535,7 @@ class VideoPlayer {
   }
 
   /** Return String representation of VideoPlayer */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5262,31 +5543,31 @@ class VideoPlayer {
 class VideoProcessingDetails {
 
   /** This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
-  String editorSuggestionsAvailability;
+  core.String editorSuggestionsAvailability;
 
   /** This value indicates whether file details are available for the uploaded video. You can retrieve a video's file details by requesting the fileDetails part in your videos.list() request. */
-  String fileDetailsAvailability;
+  core.String fileDetailsAvailability;
 
   /** The reason that YouTube failed to process the video. This property will only have a value if the processingStatus property's value is failed. */
-  String processingFailureReason;
+  core.String processingFailureReason;
 
   /** This value indicates whether the video processing engine has generated suggestions that might improve YouTube's ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
-  String processingIssuesAvailability;
+  core.String processingIssuesAvailability;
 
   /** The processingProgress object contains information about the progress YouTube has made in processing the video. The values are really only relevant if the video's processing status is processing. */
   VideoProcessingDetailsProcessingProgress processingProgress;
 
   /** The video's processing status. This value indicates whether YouTube was able to process the video or if the video is still being processed. */
-  String processingStatus;
+  core.String processingStatus;
 
   /** This value indicates whether keyword (tag) suggestions are available for the video. Tags can be added to a video's metadata to make it easier for other users to find the video. You can retrieve these suggestions by requesting the suggestions part in your videos.list() request. */
-  String tagSuggestionsAvailability;
+  core.String tagSuggestionsAvailability;
 
   /** This value indicates whether thumbnail images have been generated for the video. */
-  String thumbnailsAvailability;
+  core.String thumbnailsAvailability;
 
   /** Create new VideoProcessingDetails from JSON data */
-  VideoProcessingDetails.fromJson(Map json) {
+  VideoProcessingDetails.fromJson(core.Map json) {
     if (json.containsKey("editorSuggestionsAvailability")) {
       editorSuggestionsAvailability = json["editorSuggestionsAvailability"];
     }
@@ -5314,8 +5595,8 @@ class VideoProcessingDetails {
   }
 
   /** Create JSON Object for VideoProcessingDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (editorSuggestionsAvailability != null) {
       output["editorSuggestionsAvailability"] = editorSuggestionsAvailability;
@@ -5346,7 +5627,7 @@ class VideoProcessingDetails {
   }
 
   /** Return String representation of VideoProcessingDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5357,16 +5638,16 @@ class VideoProcessingDetailsProcessingProgress {
 100 * parts_processed / parts_total
 
 Note that since the estimated number of parts could increase without a corresponding increase in the number of parts that have already been processed, it is possible that the calculated progress could periodically decrease while YouTube processes a video. */
-  String partsProcessed;
+  core.String partsProcessed;
 
   /** An estimate of the total number of parts that need to be processed for the video. The number may be updated with more precise estimates while YouTube processes the video. */
-  String partsTotal;
+  core.String partsTotal;
 
   /** An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video. */
-  String timeLeftMs;
+  core.String timeLeftMs;
 
   /** Create new VideoProcessingDetailsProcessingProgress from JSON data */
-  VideoProcessingDetailsProcessingProgress.fromJson(Map json) {
+  VideoProcessingDetailsProcessingProgress.fromJson(core.Map json) {
     if (json.containsKey("partsProcessed")) {
       partsProcessed = json["partsProcessed"];
     }
@@ -5379,8 +5660,8 @@ Note that since the estimated number of parts could increase without a correspon
   }
 
   /** Create JSON Object for VideoProcessingDetailsProcessingProgress */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (partsProcessed != null) {
       output["partsProcessed"] = partsProcessed;
@@ -5396,7 +5677,7 @@ Note that since the estimated number of parts could increase without a correspon
   }
 
   /** Return String representation of VideoProcessingDetailsProcessingProgress */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5404,10 +5685,10 @@ Note that since the estimated number of parts could increase without a correspon
 class VideoProjectDetails {
 
   /** A list of project tags associated with the video during the upload. */
-  List<String> tags;
+  core.List<core.String> tags;
 
   /** Create new VideoProjectDetails from JSON data */
-  VideoProjectDetails.fromJson(Map json) {
+  VideoProjectDetails.fromJson(core.Map json) {
     if (json.containsKey("tags")) {
       tags = [];
       json["tags"].forEach((item) {
@@ -5417,11 +5698,11 @@ class VideoProjectDetails {
   }
 
   /** Create JSON Object for VideoProjectDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (tags != null) {
-      output["tags"] = new List();
+      output["tags"] = new core.List();
       tags.forEach((item) {
         output["tags"].add(item);
       });
@@ -5431,7 +5712,7 @@ class VideoProjectDetails {
   }
 
   /** Return String representation of VideoProjectDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5442,13 +5723,13 @@ class VideoRecordingDetails {
   GeoPoint location;
 
   /** The text description of the location where the video was recorded. */
-  String locationDescription;
+  core.String locationDescription;
 
   /** The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String recordingDate;
+  core.String recordingDate;
 
   /** Create new VideoRecordingDetails from JSON data */
-  VideoRecordingDetails.fromJson(Map json) {
+  VideoRecordingDetails.fromJson(core.Map json) {
     if (json.containsKey("location")) {
       location = new GeoPoint.fromJson(json["location"]);
     }
@@ -5461,8 +5742,8 @@ class VideoRecordingDetails {
   }
 
   /** Create JSON Object for VideoRecordingDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (location != null) {
       output["location"] = location.toJson();
@@ -5478,7 +5759,7 @@ class VideoRecordingDetails {
   }
 
   /** Return String representation of VideoRecordingDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5486,31 +5767,31 @@ class VideoRecordingDetails {
 class VideoSnippet {
 
   /** The YouTube video category associated with the video. */
-  String categoryId;
+  core.String categoryId;
 
   /** The ID that YouTube uses to uniquely identify the channel that the video was uploaded to. */
-  String channelId;
+  core.String channelId;
 
   /** Channel title for the channel that the video belongs to. */
-  String channelTitle;
+  core.String channelTitle;
 
   /** The video's description. */
-  String description;
+  core.String description;
 
   /** The date and time that the video was uploaded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
-  String publishedAt;
+  core.String publishedAt;
 
   /** A list of keyword tags associated with the video. Tags may contain spaces. This field is only visible to the video's uploader. */
-  List<String> tags;
+  core.List<core.String> tags;
 
   /** A map of thumbnail images associated with the video. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
   ThumbnailDetails thumbnails;
 
   /** The video's title. */
-  String title;
+  core.String title;
 
   /** Create new VideoSnippet from JSON data */
-  VideoSnippet.fromJson(Map json) {
+  VideoSnippet.fromJson(core.Map json) {
     if (json.containsKey("categoryId")) {
       categoryId = json["categoryId"];
     }
@@ -5541,8 +5822,8 @@ class VideoSnippet {
   }
 
   /** Create JSON Object for VideoSnippet */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (categoryId != null) {
       output["categoryId"] = categoryId;
@@ -5560,7 +5841,7 @@ class VideoSnippet {
       output["publishedAt"] = publishedAt;
     }
     if (tags != null) {
-      output["tags"] = new List();
+      output["tags"] = new core.List();
       tags.forEach((item) {
         output["tags"].add(item);
       });
@@ -5576,7 +5857,7 @@ class VideoSnippet {
   }
 
   /** Return String representation of VideoSnippet */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5584,22 +5865,22 @@ class VideoSnippet {
 class VideoStatistics {
 
   /** The number of comments for the video. */
-  String commentCount;
+  core.String commentCount;
 
   /** The number of users who have indicated that they disliked the video by giving it a negative rating. */
-  String dislikeCount;
+  core.String dislikeCount;
 
   /** The number of users who currently have the video marked as a favorite video. */
-  String favoriteCount;
+  core.String favoriteCount;
 
   /** The number of users who have indicated that they liked the video by giving it a positive rating. */
-  String likeCount;
+  core.String likeCount;
 
   /** The number of times the video has been viewed. */
-  String viewCount;
+  core.String viewCount;
 
   /** Create new VideoStatistics from JSON data */
-  VideoStatistics.fromJson(Map json) {
+  VideoStatistics.fromJson(core.Map json) {
     if (json.containsKey("commentCount")) {
       commentCount = json["commentCount"];
     }
@@ -5618,8 +5899,8 @@ class VideoStatistics {
   }
 
   /** Create JSON Object for VideoStatistics */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (commentCount != null) {
       output["commentCount"] = commentCount;
@@ -5641,36 +5922,35 @@ class VideoStatistics {
   }
 
   /** Return String representation of VideoStatistics */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
-/** The status of a video details the video's upload status and privacy status. */
 class VideoStatus {
 
   /** This value indicates if the video can be embedded on another website. */
-  bool embeddable;
+  core.bool embeddable;
 
   /** This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed. */
-  String failureReason;
+  core.String failureReason;
 
   /** The video's license. */
-  String license;
+  core.String license;
 
   /** The video's privacy status. */
-  String privacyStatus;
+  core.String privacyStatus;
 
   /** This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled. */
-  bool publicStatsViewable;
+  core.bool publicStatsViewable;
 
   /** This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected. */
-  String rejectionReason;
+  core.String rejectionReason;
 
   /** The status of the uploaded video. */
-  String uploadStatus;
+  core.String uploadStatus;
 
   /** Create new VideoStatus from JSON data */
-  VideoStatus.fromJson(Map json) {
+  VideoStatus.fromJson(core.Map json) {
     if (json.containsKey("embeddable")) {
       embeddable = json["embeddable"];
     }
@@ -5695,8 +5975,8 @@ class VideoStatus {
   }
 
   /** Create JSON Object for VideoStatus */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (embeddable != null) {
       output["embeddable"] = embeddable;
@@ -5724,7 +6004,7 @@ class VideoStatus {
   }
 
   /** Return String representation of VideoStatus */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5732,22 +6012,22 @@ class VideoStatus {
 class VideoSuggestions {
 
   /** A list of video editing operations that might improve the video quality or playback experience of the uploaded video. */
-  List<String> editorSuggestions;
+  core.List<core.String> editorSuggestions;
 
   /** A list of errors that will prevent YouTube from successfully processing the uploaded video video. These errors indicate that, regardless of the video's current processing status, eventually, that status will almost certainly be failed. */
-  List<String> processingErrors;
+  core.List<core.String> processingErrors;
 
   /** A list of suggestions that may improve YouTube's ability to process the video. */
-  List<String> processingHints;
+  core.List<core.String> processingHints;
 
   /** A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding. These warnings are generated before YouTube actually processes the uploaded video file. In addition, they identify issues that are unlikely to cause the video processing to fail but that might cause problems such as sync issues, video artifacts, or a missing audio track. */
-  List<String> processingWarnings;
+  core.List<core.String> processingWarnings;
 
   /** A list of keyword tags that could be added to the video's metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube. */
-  List<VideoSuggestionsTagSuggestion> tagSuggestions;
+  core.List<VideoSuggestionsTagSuggestion> tagSuggestions;
 
   /** Create new VideoSuggestions from JSON data */
-  VideoSuggestions.fromJson(Map json) {
+  VideoSuggestions.fromJson(core.Map json) {
     if (json.containsKey("editorSuggestions")) {
       editorSuggestions = [];
       json["editorSuggestions"].forEach((item) {
@@ -5781,35 +6061,35 @@ class VideoSuggestions {
   }
 
   /** Create JSON Object for VideoSuggestions */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (editorSuggestions != null) {
-      output["editorSuggestions"] = new List();
+      output["editorSuggestions"] = new core.List();
       editorSuggestions.forEach((item) {
         output["editorSuggestions"].add(item);
       });
     }
     if (processingErrors != null) {
-      output["processingErrors"] = new List();
+      output["processingErrors"] = new core.List();
       processingErrors.forEach((item) {
         output["processingErrors"].add(item);
       });
     }
     if (processingHints != null) {
-      output["processingHints"] = new List();
+      output["processingHints"] = new core.List();
       processingHints.forEach((item) {
         output["processingHints"].add(item);
       });
     }
     if (processingWarnings != null) {
-      output["processingWarnings"] = new List();
+      output["processingWarnings"] = new core.List();
       processingWarnings.forEach((item) {
         output["processingWarnings"].add(item);
       });
     }
     if (tagSuggestions != null) {
-      output["tagSuggestions"] = new List();
+      output["tagSuggestions"] = new core.List();
       tagSuggestions.forEach((item) {
         output["tagSuggestions"].add(item.toJson());
       });
@@ -5819,7 +6099,7 @@ class VideoSuggestions {
   }
 
   /** Return String representation of VideoSuggestions */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5827,13 +6107,13 @@ class VideoSuggestions {
 class VideoSuggestionsTagSuggestion {
 
   /** A set of video categories for which the tag is relevant. You can use this information to display appropriate tag suggestions based on the video category that the video uploader associates with the video. By default, tag suggestions are relevant for all categories if there are no restricts defined for the keyword. */
-  List<String> categoryRestricts;
+  core.List<core.String> categoryRestricts;
 
   /** The keyword tag suggested for the video. */
-  String tag;
+  core.String tag;
 
   /** Create new VideoSuggestionsTagSuggestion from JSON data */
-  VideoSuggestionsTagSuggestion.fromJson(Map json) {
+  VideoSuggestionsTagSuggestion.fromJson(core.Map json) {
     if (json.containsKey("categoryRestricts")) {
       categoryRestricts = [];
       json["categoryRestricts"].forEach((item) {
@@ -5846,11 +6126,11 @@ class VideoSuggestionsTagSuggestion {
   }
 
   /** Create JSON Object for VideoSuggestionsTagSuggestion */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (categoryRestricts != null) {
-      output["categoryRestricts"] = new List();
+      output["categoryRestricts"] = new core.List();
       categoryRestricts.forEach((item) {
         output["categoryRestricts"].add(item);
       });
@@ -5863,7 +6143,7 @@ class VideoSuggestionsTagSuggestion {
   }
 
   /** Return String representation of VideoSuggestionsTagSuggestion */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
@@ -5871,10 +6151,10 @@ class VideoSuggestionsTagSuggestion {
 class VideoTopicDetails {
 
   /** A list of Freebase topic IDs associated with the video. You can retrieve information about each topic using the Freebase Topic API. */
-  List<String> topicIds;
+  core.List<core.String> topicIds;
 
   /** Create new VideoTopicDetails from JSON data */
-  VideoTopicDetails.fromJson(Map json) {
+  VideoTopicDetails.fromJson(core.Map json) {
     if (json.containsKey("topicIds")) {
       topicIds = [];
       json["topicIds"].forEach((item) {
@@ -5884,11 +6164,11 @@ class VideoTopicDetails {
   }
 
   /** Create JSON Object for VideoTopicDetails */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (topicIds != null) {
-      output["topicIds"] = new List();
+      output["topicIds"] = new core.List();
       topicIds.forEach((item) {
         output["topicIds"].add(item);
       });
@@ -5898,18 +6178,24 @@ class VideoTopicDetails {
   }
 
   /** Return String representation of VideoTopicDetails */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
 /** Branding properties for the watch. */
 class WatchSettings {
-  String backgroundColor;
-  String featuredPlaylistId;
-  String textColor;
+
+  /** The text color for the video watch page's branded area. */
+  core.String backgroundColor;
+
+  /** An ID that uniquely identifies a playlist that displays next to the video player. */
+  core.String featuredPlaylistId;
+
+  /** The background color for the video watch page's branded area. */
+  core.String textColor;
 
   /** Create new WatchSettings from JSON data */
-  WatchSettings.fromJson(Map json) {
+  WatchSettings.fromJson(core.Map json) {
     if (json.containsKey("backgroundColor")) {
       backgroundColor = json["backgroundColor"];
     }
@@ -5922,8 +6208,8 @@ class WatchSettings {
   }
 
   /** Create JSON Object for WatchSettings */
-  Map toJson() {
-    var output = new Map();
+  core.Map toJson() {
+    var output = new core.Map();
 
     if (backgroundColor != null) {
       output["backgroundColor"] = backgroundColor;
@@ -5939,7 +6225,7 @@ class WatchSettings {
   }
 
   /** Return String representation of WatchSettings */
-  String toString() => JSON.stringify(this.toJson());
+  core.String toString() => JSON.stringify(this.toJson());
 
 }
 
