@@ -4,30 +4,30 @@ part of youtube_v3_api_console;
 /** Programmatic access to YouTube features. */
 class Youtube extends ConsoleClient {
 
-  ActivitiesResource _activities;
-  ActivitiesResource get activities => _activities;
-  ChannelsResource _channels;
-  ChannelsResource get channels => _channels;
-  GuideCategoriesResource _guideCategories;
-  GuideCategoriesResource get guideCategories => _guideCategories;
-  LiveBroadcastsResource _liveBroadcasts;
-  LiveBroadcastsResource get liveBroadcasts => _liveBroadcasts;
-  LiveStreamsResource _liveStreams;
-  LiveStreamsResource get liveStreams => _liveStreams;
-  PlayersResource _players;
-  PlayersResource get players => _players;
-  PlaylistItemsResource _playlistItems;
-  PlaylistItemsResource get playlistItems => _playlistItems;
-  PlaylistsResource _playlists;
-  PlaylistsResource get playlists => _playlists;
-  SearchResource _search;
-  SearchResource get search => _search;
-  SubscriptionsResource _subscriptions;
-  SubscriptionsResource get subscriptions => _subscriptions;
-  VideoCategoriesResource _videoCategories;
-  VideoCategoriesResource get videoCategories => _videoCategories;
-  VideosResource _videos;
-  VideosResource get videos => _videos;
+  ActivitiesResource_ _activities;
+  ActivitiesResource_ get activities => _activities;
+  ChannelsResource_ _channels;
+  ChannelsResource_ get channels => _channels;
+  GuideCategoriesResource_ _guideCategories;
+  GuideCategoriesResource_ get guideCategories => _guideCategories;
+  LiveBroadcastsResource_ _liveBroadcasts;
+  LiveBroadcastsResource_ get liveBroadcasts => _liveBroadcasts;
+  LiveStreamsResource_ _liveStreams;
+  LiveStreamsResource_ get liveStreams => _liveStreams;
+  PlayersResource_ _players;
+  PlayersResource_ get players => _players;
+  PlaylistItemsResource_ _playlistItems;
+  PlaylistItemsResource_ get playlistItems => _playlistItems;
+  PlaylistsResource_ _playlists;
+  PlaylistsResource_ get playlists => _playlists;
+  SearchResource_ _search;
+  SearchResource_ get search => _search;
+  SubscriptionsResource_ _subscriptions;
+  SubscriptionsResource_ get subscriptions => _subscriptions;
+  VideoCategoriesResource_ _videoCategories;
+  VideoCategoriesResource_ get videoCategories => _videoCategories;
+  VideosResource_ _videos;
+  VideosResource_ get videos => _videos;
 
   /** OAuth Scope2: Manage your YouTube account */
   static const core.String YOUTUBE_SCOPE = "https://www.googleapis.com/auth/youtube";
@@ -93,17 +93,17 @@ class Youtube extends ConsoleClient {
   Youtube([oauth2.OAuth2Console auth]) : super(auth) {
     basePath = "/youtube/v3/";
     rootUrl = "https://www.googleapis.com:443/";
-    _activities = new ActivitiesResource(this);
-    _channels = new ChannelsResource(this);
-    _guideCategories = new GuideCategoriesResource(this);
-    _liveBroadcasts = new LiveBroadcastsResource(this);
-    _liveStreams = new LiveStreamsResource(this);
-    _players = new PlayersResource(this);
-    _playlistItems = new PlaylistItemsResource(this);
-    _playlists = new PlaylistsResource(this);
-    _search = new SearchResource(this);
-    _subscriptions = new SubscriptionsResource(this);
-    _videoCategories = new VideoCategoriesResource(this);
-    _videos = new VideosResource(this);
+    _activities = new ActivitiesResource_(this);
+    _channels = new ChannelsResource_(this);
+    _guideCategories = new GuideCategoriesResource_(this);
+    _liveBroadcasts = new LiveBroadcastsResource_(this);
+    _liveStreams = new LiveStreamsResource_(this);
+    _players = new PlayersResource_(this);
+    _playlistItems = new PlaylistItemsResource_(this);
+    _playlists = new PlaylistsResource_(this);
+    _search = new SearchResource_(this);
+    _subscriptions = new SubscriptionsResource_(this);
+    _videoCategories = new VideoCategoriesResource_(this);
+    _videos = new VideosResource_(this);
   }
 }

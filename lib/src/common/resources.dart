@@ -1,8 +1,8 @@
 part of youtube_v3_api_client;
 
-class ActivitiesResource extends Resource {
+class ActivitiesResource_ extends Resource {
 
-  ActivitiesResource(Client client) : super(client) {
+  ActivitiesResource_(Client client) : super(client) {
   }
 
   /**
@@ -34,7 +34,7 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -97,7 +97,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -110,9 +110,9 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class ChannelsResource extends Resource {
+class ChannelsResource_ extends Resource {
 
-  ChannelsResource(Client client) : super(client) {
+  ChannelsResource_(Client client) : super(client) {
   }
 
   /**
@@ -169,7 +169,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -182,9 +182,9 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class GuideCategoriesResource extends Resource {
+class GuideCategoriesResource_ extends Resource {
 
-  GuideCategoriesResource(Client client) : super(client) {
+  GuideCategoriesResource_(Client client) : super(client) {
   }
 
   /**
@@ -224,7 +224,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -237,9 +237,9 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class LiveBroadcastsResource extends Resource {
+class LiveBroadcastsResource_ extends Resource {
 
-  LiveBroadcastsResource(Client client) : super(client) {
+  LiveBroadcastsResource_(Client client) : super(client) {
   }
 
   /**
@@ -274,7 +274,7 @@ class LiveBroadcastsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -311,7 +311,7 @@ class LiveBroadcastsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -352,7 +352,7 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -415,7 +415,7 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -467,7 +467,7 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -510,7 +510,7 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -523,9 +523,9 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class LiveStreamsResource extends Resource {
+class LiveStreamsResource_ extends Resource {
 
-  LiveStreamsResource(Client client) : super(client) {
+  LiveStreamsResource_(Client client) : super(client) {
   }
 
   /**
@@ -553,7 +553,7 @@ class LiveStreamsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -594,7 +594,7 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -620,13 +620,11 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [mine] - The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
    *
-   * [onBehalfOf] - ID of the Google+ Page for the channel on whose behalf this request is made
-   *
    * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveStreamList> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String onBehalfOf, core.String pageToken, core.Map optParams}) {
+  async.Future<LiveStreamList> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
     var completer = new async.Completer();
     var url = "liveStreams";
     var urlParams = new core.Map();
@@ -636,7 +634,6 @@ The part properties that you can include in the parameter value are id, snippet,
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (mine != null) queryParams["mine"] = mine;
-    if (onBehalfOf != null) queryParams["onBehalfOf"] = onBehalfOf;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
@@ -649,7 +646,7 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -692,7 +689,7 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -705,9 +702,9 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class PlayersResource extends Resource {
+class PlayersResource_ extends Resource {
 
-  PlayersResource(Client client) : super(client) {
+  PlayersResource_(Client client) : super(client) {
   }
 
   /**
@@ -741,7 +738,7 @@ class PlayersResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -754,9 +751,9 @@ class PlayersResource extends Resource {
   }
 }
 
-class PlaylistItemsResource extends Resource {
+class PlaylistItemsResource_ extends Resource {
 
-  PlaylistItemsResource(Client client) : super(client) {
+  PlaylistItemsResource_(Client client) : super(client) {
   }
 
   /**
@@ -784,7 +781,7 @@ class PlaylistItemsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -825,7 +822,7 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -882,7 +879,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -925,7 +922,7 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -938,9 +935,9 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class PlaylistsResource extends Resource {
+class PlaylistsResource_ extends Resource {
 
-  PlaylistsResource(Client client) : super(client) {
+  PlaylistsResource_(Client client) : super(client) {
   }
 
   /**
@@ -968,7 +965,7 @@ class PlaylistsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1009,7 +1006,7 @@ The part names that you can include in the parameter value are snippet and statu
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1066,7 +1063,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1109,7 +1106,7 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1122,9 +1119,9 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class SearchResource extends Resource {
+class SearchResource_ extends Resource {
 
-  SearchResource(Client client) : super(client) {
+  SearchResource_(Client client) : super(client) {
   }
 
   /**
@@ -1312,7 +1309,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1325,9 +1322,9 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class SubscriptionsResource extends Resource {
+class SubscriptionsResource_ extends Resource {
 
-  SubscriptionsResource(Client client) : super(client) {
+  SubscriptionsResource_(Client client) : super(client) {
   }
 
   /**
@@ -1355,7 +1352,7 @@ class SubscriptionsResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1370,7 +1367,7 @@ class SubscriptionsResource extends Resource {
   /**
    * Adds a subscription for the authenticated user's channel.
    *
-   * [request] - Subscription to send in this request
+   * [request] - Subscription2 to send in this request
    *
    * [part] - The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.
 
@@ -1378,7 +1375,7 @@ The part names that you can include in the parameter value are snippet and conte
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<Subscription> insert(Subscription request, core.String part, {core.Map optParams}) {
+  async.Future<Subscription2> insert(Subscription2 request, core.String part, {core.Map optParams}) {
     var completer = new async.Completer();
     var url = "subscriptions";
     var urlParams = new core.Map();
@@ -1396,14 +1393,14 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     response
-      .then((data) => completer.complete(new Subscription.fromJson(data)))
+      .then((data) => completer.complete(new Subscription2.fromJson(data)))
       .catchError((e) { completer.completeError(e); return true; });
     return completer.future;
   }
@@ -1467,7 +1464,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1478,11 +1475,45 @@ If the parameter identifies a property that contains child properties, the child
       .catchError((e) { completer.completeError(e); return true; });
     return completer.future;
   }
+
+  /**
+   *
+   * [request] - Subscription to send in this request
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<core.Map> unsubscribe(Subscription request, {core.Map optParams}) {
+    var completer = new async.Completer();
+    var url = "subscriptions/unsubscribe";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
+      return completer.future;
+    }
+
+    var response;
+    response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
+    response
+      .then((data) => completer.complete(data))
+      .catchError((e) { completer.completeError(e); return true; });
+    return completer.future;
+  }
 }
 
-class VideoCategoriesResource extends Resource {
+class VideoCategoriesResource_ extends Resource {
 
-  VideoCategoriesResource(Client client) : super(client) {
+  VideoCategoriesResource_(Client client) : super(client) {
   }
 
   /**
@@ -1520,7 +1551,7 @@ class VideoCategoriesResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1533,9 +1564,9 @@ class VideoCategoriesResource extends Resource {
   }
 }
 
-class VideosResource extends Resource {
+class VideosResource_ extends Resource {
 
-  VideosResource(Client client) : super(client) {
+  VideosResource_(Client client) : super(client) {
   }
 
   /**
@@ -1563,7 +1594,7 @@ class VideosResource extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1609,7 +1640,7 @@ The part names that you can include in the parameter value are snippet, contentD
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1659,7 +1690,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1707,7 +1738,7 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
@@ -1752,7 +1783,7 @@ In addition, not all of those parts contain properties that can be set when sett
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new ArgumentError(paramErrors.join(" / ")));
+      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
       return completer.future;
     }
 
