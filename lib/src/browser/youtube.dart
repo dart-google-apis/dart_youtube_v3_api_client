@@ -6,6 +6,8 @@ class Youtube extends BrowserClient {
 
   ActivitiesResource_ _activities;
   ActivitiesResource_ get activities => _activities;
+  ChannelBannersResource_ _channelBanners;
+  ChannelBannersResource_ get channelBanners => _channelBanners;
   ChannelsResource_ _channels;
   ChannelsResource_ get channels => _channels;
   GuideCategoriesResource_ _guideCategories;
@@ -14,8 +16,6 @@ class Youtube extends BrowserClient {
   LiveBroadcastsResource_ get liveBroadcasts => _liveBroadcasts;
   LiveStreamsResource_ _liveStreams;
   LiveStreamsResource_ get liveStreams => _liveStreams;
-  PlayersResource_ _players;
-  PlayersResource_ get players => _players;
   PlaylistItemsResource_ _playlistItems;
   PlaylistItemsResource_ get playlistItems => _playlistItems;
   PlaylistsResource_ _playlists;
@@ -24,6 +24,8 @@ class Youtube extends BrowserClient {
   SearchResource_ get search => _search;
   SubscriptionsResource_ _subscriptions;
   SubscriptionsResource_ get subscriptions => _subscriptions;
+  ThumbnailsResource_ _thumbnails;
+  ThumbnailsResource_ get thumbnails => _thumbnails;
   VideoCategoriesResource_ _videoCategories;
   VideoCategoriesResource_ get videoCategories => _videoCategories;
   VideosResource_ _videos;
@@ -92,17 +94,18 @@ class Youtube extends BrowserClient {
 
   Youtube([oauth.OAuth2 auth]) : super(auth) {
     basePath = "/youtube/v3/";
-    rootUrl = "https://www.googleapis.com:443/";
+    rootUrl = "https://www.googleapis.com/";
     _activities = new ActivitiesResource_(this);
+    _channelBanners = new ChannelBannersResource_(this);
     _channels = new ChannelsResource_(this);
     _guideCategories = new GuideCategoriesResource_(this);
     _liveBroadcasts = new LiveBroadcastsResource_(this);
     _liveStreams = new LiveStreamsResource_(this);
-    _players = new PlayersResource_(this);
     _playlistItems = new PlaylistItemsResource_(this);
     _playlists = new PlaylistsResource_(this);
     _search = new SearchResource_(this);
     _subscriptions = new SubscriptionsResource_(this);
+    _thumbnails = new ThumbnailsResource_(this);
     _videoCategories = new VideoCategoriesResource_(this);
     _videos = new VideosResource_(this);
   }
