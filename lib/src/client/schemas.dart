@@ -44,19 +44,19 @@ class AccessPolicy {
 
 }
 
-/** An activity resource contains information about an action that a particular channel, or user, has taken on YouTube. The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded. */
+/** An activity resource contains information about an action that a particular channel, or user, has taken on YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of action, the channel associated with the action, and the resource(s) associated with the action, such as the video that was rated or uploaded. */
 class Activity {
 
   /** The contentDetails object contains information about the content associated with the activity. For example, if the snippet.type value is videoRated, then the contentDetails object's content identifies the rated video. */
   ActivityContentDetails contentDetails;
 
-  /** The ETag of the activity resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the activity. */
   core.String id;
 
-  /** The type of the API resource. For activity resources, the value will be youtube#activity. */
+  /** The kind, fixed to "youtube#activity". */
   core.String kind;
 
   /** The snippet object contains basic details about the activity, including the activity's type and group ID. */
@@ -228,36 +228,36 @@ class ActivityContentDetails {
 
 }
 
-/** The upload object contains information about the uploaded video. This property is only present if the snippet.type is upload. */
-class ActivityContentDetailsUpload {
+/** Details about a channel bulletin post. */
+class ActivityContentDetailsBulletin {
 
-  /** The ID that YouTube uses to uniquely identify the uploaded video. */
-  core.String videoId;
+  /** The resourceId object contains information that identifies the resource associated with a bulletin post. */
+  ResourceId resourceId;
 
-  /** Create new ActivityContentDetailsUpload from JSON data */
-  ActivityContentDetailsUpload.fromJson(core.Map json) {
-    if (json.containsKey("videoId")) {
-      videoId = json["videoId"];
+  /** Create new ActivityContentDetailsBulletin from JSON data */
+  ActivityContentDetailsBulletin.fromJson(core.Map json) {
+    if (json.containsKey("resourceId")) {
+      resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
-  /** Create JSON Object for ActivityContentDetailsUpload */
+  /** Create JSON Object for ActivityContentDetailsBulletin */
   core.Map toJson() {
     var output = new core.Map();
 
-    if (videoId != null) {
-      output["videoId"] = videoId;
+    if (resourceId != null) {
+      output["resourceId"] = resourceId.toJson();
     }
 
     return output;
   }
 
-  /** Return String representation of ActivityContentDetailsUpload */
+  /** Return String representation of ActivityContentDetailsBulletin */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
 
-/** The channelItem object contains details about a resource which was added to a channel. This property is only present if the snippet.type is channelItem. */
+/** Details about a resource which was added to a channel. */
 class ActivityContentDetailsChannelItem {
 
   /** The resourceId object contains information that identifies the resource that was added to the channel. */
@@ -286,7 +286,94 @@ class ActivityContentDetailsChannelItem {
 
 }
 
-/** The playlistItem object contains information about a new playlist item. This property is only present if the snippet.type is playlistItem. */
+/** Information about a resource that received a comment. */
+class ActivityContentDetailsComment {
+
+  /** The resourceId object contains information that identifies the resource associated with the comment. */
+  ResourceId resourceId;
+
+  /** Create new ActivityContentDetailsComment from JSON data */
+  ActivityContentDetailsComment.fromJson(core.Map json) {
+    if (json.containsKey("resourceId")) {
+      resourceId = new ResourceId.fromJson(json["resourceId"]);
+    }
+  }
+
+  /** Create JSON Object for ActivityContentDetailsComment */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (resourceId != null) {
+      output["resourceId"] = resourceId.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ActivityContentDetailsComment */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about a video that was marked as a favorite video. */
+class ActivityContentDetailsFavorite {
+
+  /** The resourceId object contains information that identifies the resource that was marked as a favorite. */
+  ResourceId resourceId;
+
+  /** Create new ActivityContentDetailsFavorite from JSON data */
+  ActivityContentDetailsFavorite.fromJson(core.Map json) {
+    if (json.containsKey("resourceId")) {
+      resourceId = new ResourceId.fromJson(json["resourceId"]);
+    }
+  }
+
+  /** Create JSON Object for ActivityContentDetailsFavorite */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (resourceId != null) {
+      output["resourceId"] = resourceId.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ActivityContentDetailsFavorite */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about a resource that received a positive (like) rating. */
+class ActivityContentDetailsLike {
+
+  /** The resourceId object contains information that identifies the rated resource. */
+  ResourceId resourceId;
+
+  /** Create new ActivityContentDetailsLike from JSON data */
+  ActivityContentDetailsLike.fromJson(core.Map json) {
+    if (json.containsKey("resourceId")) {
+      resourceId = new ResourceId.fromJson(json["resourceId"]);
+    }
+  }
+
+  /** Create JSON Object for ActivityContentDetailsLike */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (resourceId != null) {
+      output["resourceId"] = resourceId.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ActivityContentDetailsLike */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about a new playlist item. */
 class ActivityContentDetailsPlaylistItem {
 
   /** The value that YouTube uses to uniquely identify the playlist. */
@@ -333,112 +420,7 @@ class ActivityContentDetailsPlaylistItem {
 
 }
 
-/** The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation. */
-class ActivityContentDetailsRecommendation {
-
-  /** The reason that the resource is recommended to the user. */
-  core.String reason;
-
-  /** The resourceId object contains information that identifies the recommended resource. */
-  ResourceId resourceId;
-
-  /** The seedResourceId object contains information about the resource that caused the recommendation. */
-  ResourceId seedResourceId;
-
-  /** Create new ActivityContentDetailsRecommendation from JSON data */
-  ActivityContentDetailsRecommendation.fromJson(core.Map json) {
-    if (json.containsKey("reason")) {
-      reason = json["reason"];
-    }
-    if (json.containsKey("resourceId")) {
-      resourceId = new ResourceId.fromJson(json["resourceId"]);
-    }
-    if (json.containsKey("seedResourceId")) {
-      seedResourceId = new ResourceId.fromJson(json["seedResourceId"]);
-    }
-  }
-
-  /** Create JSON Object for ActivityContentDetailsRecommendation */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (reason != null) {
-      output["reason"] = reason;
-    }
-    if (resourceId != null) {
-      output["resourceId"] = resourceId.toJson();
-    }
-    if (seedResourceId != null) {
-      output["seedResourceId"] = seedResourceId.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ActivityContentDetailsRecommendation */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The bulletin object contains details about a channel bulletin post. This object is only present if the snippet.type is bulletin. */
-class ActivityContentDetailsBulletin {
-
-  /** The resourceId object contains information that identifies the resource associated with a bulletin post. */
-  ResourceId resourceId;
-
-  /** Create new ActivityContentDetailsBulletin from JSON data */
-  ActivityContentDetailsBulletin.fromJson(core.Map json) {
-    if (json.containsKey("resourceId")) {
-      resourceId = new ResourceId.fromJson(json["resourceId"]);
-    }
-  }
-
-  /** Create JSON Object for ActivityContentDetailsBulletin */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (resourceId != null) {
-      output["resourceId"] = resourceId.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ActivityContentDetailsBulletin */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The subscription object contains information about a channel that a user subscribed to. This property is only present if the snippet.type is subscription. */
-class ActivityContentDetailsSubscription {
-
-  /** The resourceId object contains information that identifies the resource that the user subscribed to. */
-  ResourceId resourceId;
-
-  /** Create new ActivityContentDetailsSubscription from JSON data */
-  ActivityContentDetailsSubscription.fromJson(core.Map json) {
-    if (json.containsKey("resourceId")) {
-      resourceId = new ResourceId.fromJson(json["resourceId"]);
-    }
-  }
-
-  /** Create JSON Object for ActivityContentDetailsSubscription */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (resourceId != null) {
-      output["resourceId"] = resourceId.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ActivityContentDetailsSubscription */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The promotedItem object contains details about a resource which is being promoted. This property is only present if the snippet.type is promotedItem. */
+/** Details about a resource which is being promoted. */
 class ActivityContentDetailsPromotedItem {
 
   /** The URL the client should fetch to request a promoted item. */
@@ -521,65 +503,54 @@ class ActivityContentDetailsPromotedItem {
 
 }
 
-/** The favorite object contains information about a video that was marked as a favorite video. This property is only present if the snippet.type is favorite. */
-class ActivityContentDetailsFavorite {
+/** Information that identifies the recommended resource. */
+class ActivityContentDetailsRecommendation {
 
-  /** The resourceId object contains information that identifies the resource that was marked as a favorite. */
+  /** The reason that the resource is recommended to the user. */
+  core.String reason;
+
+  /** The resourceId object contains information that identifies the recommended resource. */
   ResourceId resourceId;
 
-  /** Create new ActivityContentDetailsFavorite from JSON data */
-  ActivityContentDetailsFavorite.fromJson(core.Map json) {
+  /** The seedResourceId object contains information about the resource that caused the recommendation. */
+  ResourceId seedResourceId;
+
+  /** Create new ActivityContentDetailsRecommendation from JSON data */
+  ActivityContentDetailsRecommendation.fromJson(core.Map json) {
+    if (json.containsKey("reason")) {
+      reason = json["reason"];
+    }
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
+    if (json.containsKey("seedResourceId")) {
+      seedResourceId = new ResourceId.fromJson(json["seedResourceId"]);
+    }
   }
 
-  /** Create JSON Object for ActivityContentDetailsFavorite */
+  /** Create JSON Object for ActivityContentDetailsRecommendation */
   core.Map toJson() {
     var output = new core.Map();
 
+    if (reason != null) {
+      output["reason"] = reason;
+    }
     if (resourceId != null) {
       output["resourceId"] = resourceId.toJson();
+    }
+    if (seedResourceId != null) {
+      output["seedResourceId"] = seedResourceId.toJson();
     }
 
     return output;
   }
 
-  /** Return String representation of ActivityContentDetailsFavorite */
+  /** Return String representation of ActivityContentDetailsRecommendation */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
 
-/** The like object contains information about a resource that received a positive (like) rating. This property is only present if the snippet.type is like. */
-class ActivityContentDetailsLike {
-
-  /** The resourceId object contains information that identifies the rated resource. */
-  ResourceId resourceId;
-
-  /** Create new ActivityContentDetailsLike from JSON data */
-  ActivityContentDetailsLike.fromJson(core.Map json) {
-    if (json.containsKey("resourceId")) {
-      resourceId = new ResourceId.fromJson(json["resourceId"]);
-    }
-  }
-
-  /** Create JSON Object for ActivityContentDetailsLike */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (resourceId != null) {
-      output["resourceId"] = resourceId.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ActivityContentDetailsLike */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The social object contains details about a social network post. This property is only present if the snippet.type is social. */
+/** Details about a social network post. */
 class ActivityContentDetailsSocial {
 
   /** The author of the social network post. */
@@ -644,20 +615,20 @@ class ActivityContentDetailsSocial {
 
 }
 
-/** The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment. */
-class ActivityContentDetailsComment {
+/** Information about a channel that a user subscribed to. */
+class ActivityContentDetailsSubscription {
 
-  /** The resourceId object contains information that identifies the resource associated with the comment. */
+  /** The resourceId object contains information that identifies the resource that the user subscribed to. */
   ResourceId resourceId;
 
-  /** Create new ActivityContentDetailsComment from JSON data */
-  ActivityContentDetailsComment.fromJson(core.Map json) {
+  /** Create new ActivityContentDetailsSubscription from JSON data */
+  ActivityContentDetailsSubscription.fromJson(core.Map json) {
     if (json.containsKey("resourceId")) {
       resourceId = new ResourceId.fromJson(json["resourceId"]);
     }
   }
 
-  /** Create JSON Object for ActivityContentDetailsComment */
+  /** Create JSON Object for ActivityContentDetailsSubscription */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -668,7 +639,36 @@ class ActivityContentDetailsComment {
     return output;
   }
 
-  /** Return String representation of ActivityContentDetailsComment */
+  /** Return String representation of ActivityContentDetailsSubscription */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Information about the uploaded video. */
+class ActivityContentDetailsUpload {
+
+  /** The ID that YouTube uses to uniquely identify the uploaded video. */
+  core.String videoId;
+
+  /** Create new ActivityContentDetailsUpload from JSON data */
+  ActivityContentDetailsUpload.fromJson(core.Map json) {
+    if (json.containsKey("videoId")) {
+      videoId = json["videoId"];
+    }
+  }
+
+  /** Create JSON Object for ActivityContentDetailsUpload */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (videoId != null) {
+      output["videoId"] = videoId;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ActivityContentDetailsUpload */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -875,7 +875,7 @@ class Channel {
   /** The conversionPings object encapsulates information about conversion pings that need to be respected by the channel. */
   ChannelConversionPings conversionPings;
 
-  /** The ETag for the channel resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the channel. */
@@ -884,7 +884,7 @@ class Channel {
   /** The invideoPromotion object encapsulates information about promotion campaign associated with the channel. */
   InvideoPromotion invideoPromotion;
 
-  /** The type of the API resource. For channel resources, the value will be youtube#channel. */
+  /** The kind, fixed to "youtube#channel". */
   core.String kind;
 
   /** The snippet object contains basic details about the channel, such as its title, description, and thumbnail images. */
@@ -983,19 +983,19 @@ class Channel {
 }
 
 /** A channel banner returned as the response to a channel_banner.insert call. */
-class ChannelBannerInsertResponse {
+class ChannelBannerResource {
 
-  /** The ETag of the response. */
+  /** Etag of this resource. */
   core.String etag;
 
-  /** The type of the API response. For this operation, the value will be youtube#channelBannerInsertResponse. */
+  /** The kind, fixed to "youtube#channelBannerResource". */
   core.String kind;
 
   /** The URL of this banner image. */
   core.String url;
 
-  /** Create new ChannelBannerInsertResponse from JSON data */
-  ChannelBannerInsertResponse.fromJson(core.Map json) {
+  /** Create new ChannelBannerResource from JSON data */
+  ChannelBannerResource.fromJson(core.Map json) {
     if (json.containsKey("etag")) {
       etag = json["etag"];
     }
@@ -1007,7 +1007,7 @@ class ChannelBannerInsertResponse {
     }
   }
 
-  /** Create JSON Object for ChannelBannerInsertResponse */
+  /** Create JSON Object for ChannelBannerResource */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1024,7 +1024,7 @@ class ChannelBannerInsertResponse {
     return output;
   }
 
-  /** Return String representation of ChannelBannerInsertResponse */
+  /** Return String representation of ChannelBannerResource */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1096,8 +1096,6 @@ class ChannelContentDetails {
 
   /** The googlePlusUserId object identifies the Google+ profile ID associated with this channel. */
   core.String googlePlusUserId;
-
-  /** The relatedPlaylists object is a map that identifies playlists associated with the channel, such as the channel's uploaded videos or favorite videos. You can retrieve any of these playlists using the playlists.list method. */
   ChannelContentDetailsRelatedPlaylists relatedPlaylists;
 
   /** Create new ChannelContentDetails from JSON data */
@@ -1129,22 +1127,21 @@ class ChannelContentDetails {
 
 }
 
-/** The relatedPlaylists object is a map that identifies playlists associated with the channel, such as the channel's uploaded videos or favorite videos. You can retrieve any of these playlists using the playlists.list method. */
 class ChannelContentDetailsRelatedPlaylists {
 
-  /** The ID of the playlist that contains the channel's favorite videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
+  /** The ID of the playlist that contains the channel"s favorite videos. Use the  playlistItems.insert and  playlistItems.delete to add or remove items from that list. */
   core.String favorites;
 
-  /** The ID of the playlist that contains the channel's liked videos. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
+  /** The ID of the playlist that contains the channel"s liked videos. Use the   playlistItems.insert and  playlistItems.delete to add or remove items from that list. */
   core.String likes;
 
-  /** The ID of the playlist that contains the channel's uploaded videos. Use the videos.insert method to upload new videos and the videos.delete method to delete previously uploaded videos. */
+  /** The ID of the playlist that contains the channel"s uploaded videos. Use the  videos.insert method to upload new videos and the videos.delete method to delete previously uploaded videos. */
   core.String uploads;
 
-  /** The ID of the playlist that contains the channel's watch history. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
+  /** The ID of the playlist that contains the channel"s watch history. Use the  playlistItems.insert and  playlistItems.delete to add or remove items from that list. */
   core.String watchHistory;
 
-  /** The ID of the channel's watch later playlist. Use the playlistItems.insert and playlistItems.delete to add or remove items from that list. */
+  /** The ID of the playlist that contains the channel"s watch later playlist. Use the playlistItems.insert and  playlistItems.delete to add or remove items from that list. */
   core.String watchLater;
 
   /** Create new ChannelContentDetailsRelatedPlaylists from JSON data */
@@ -1386,6 +1383,9 @@ class ChannelSettings {
   /** Whether user-submitted comments left on the channel page need to be approved by the channel owner to be publicly visible. */
   core.bool moderateComments;
 
+  /** A prominent color that can be rendered on this channel page. */
+  core.String profileColor;
+
   /** Whether the tab to browse the videos should be displayed. */
   core.bool showBrowseView;
 
@@ -1423,6 +1423,9 @@ class ChannelSettings {
     }
     if (json.containsKey("moderateComments")) {
       moderateComments = json["moderateComments"];
+    }
+    if (json.containsKey("profileColor")) {
+      profileColor = json["profileColor"];
     }
     if (json.containsKey("showBrowseView")) {
       showBrowseView = json["showBrowseView"];
@@ -1465,6 +1468,9 @@ class ChannelSettings {
     }
     if (moderateComments != null) {
       output["moderateComments"] = moderateComments;
+    }
+    if (profileColor != null) {
+      output["profileColor"] = profileColor;
     }
     if (showBrowseView != null) {
       output["showBrowseView"] = showBrowseView;
@@ -1839,11 +1845,11 @@ class ContentRating {
 
 }
 
-/** A geoPoint holds geo location information associated with a YouTube resource. */
+/** Geographical coordinates of a point, in WGS84. */
 class GeoPoint {
 
-  /** Altitude above the Earth, in meters. */
-  core.num elevation;
+  /** Altitude above the reference ellipsoid, in meters. */
+  core.num altitude;
 
   /** Latitude in degrees. */
   core.num latitude;
@@ -1853,8 +1859,8 @@ class GeoPoint {
 
   /** Create new GeoPoint from JSON data */
   GeoPoint.fromJson(core.Map json) {
-    if (json.containsKey("elevation")) {
-      elevation = json["elevation"];
+    if (json.containsKey("altitude")) {
+      altitude = json["altitude"];
     }
     if (json.containsKey("latitude")) {
       latitude = json["latitude"];
@@ -1868,8 +1874,8 @@ class GeoPoint {
   core.Map toJson() {
     var output = new core.Map();
 
-    if (elevation != null) {
-      output["elevation"] = elevation;
+    if (altitude != null) {
+      output["altitude"] = altitude;
     }
     if (latitude != null) {
       output["latitude"] = latitude;
@@ -1889,13 +1895,13 @@ class GeoPoint {
 /** A guideCategory resource identifies a category that YouTube algorithmically assigns based on a channel's content or other indicators, such as the channel's popularity. The list is similar to video categories, with the difference being that a video's uploader can assign a video category but only YouTube can assign a channel category. */
 class GuideCategory {
 
-  /** The ETag of the guideCategory resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the guide category. */
   core.String id;
 
-  /** The type of the API resource. For guideCategory resources, the value will be youtube#guideCategory/code>. */
+  /** The kind, fixed to "youtube#guideCategory". */
   core.String kind;
 
   /** The snippet object contains basic details about the category, such as its title. */
@@ -2015,11 +2021,9 @@ class GuideCategoryListResponse {
 
 /** Basic details about a guide category. */
 class GuideCategorySnippet {
-
-  /** The ID that YouTube uses to uniquely identify the channel publishing the guide category. */
   core.String channelId;
 
-  /** The category's title. */
+  /** Description of the guide category. */
   core.String title;
 
   /** Create new GuideCategorySnippet from JSON data */
@@ -2242,6 +2246,57 @@ class ImageSettings {
 
 }
 
+/** Describes information necessary for ingesting an RTMP or an HTTP stream. */
+class IngestionInfo {
+
+  /** The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL. */
+  core.String backupIngestionAddress;
+
+  /** The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.
+
+Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:
+
+STREAM_URL/STREAM_NAME */
+  core.String ingestionAddress;
+
+  /** The HTTP or RTMP stream name that YouTube assigns to the video stream. */
+  core.String streamName;
+
+  /** Create new IngestionInfo from JSON data */
+  IngestionInfo.fromJson(core.Map json) {
+    if (json.containsKey("backupIngestionAddress")) {
+      backupIngestionAddress = json["backupIngestionAddress"];
+    }
+    if (json.containsKey("ingestionAddress")) {
+      ingestionAddress = json["ingestionAddress"];
+    }
+    if (json.containsKey("streamName")) {
+      streamName = json["streamName"];
+    }
+  }
+
+  /** Create JSON Object for IngestionInfo */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (backupIngestionAddress != null) {
+      output["backupIngestionAddress"] = backupIngestionAddress;
+    }
+    if (ingestionAddress != null) {
+      output["ingestionAddress"] = ingestionAddress;
+    }
+    if (streamName != null) {
+      output["streamName"] = streamName;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of IngestionInfo */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Describes the spatial position of a visual widget inside a video. It is a union of various position types, out of which only will be set one. */
 class InvideoPosition {
 
@@ -2377,13 +2432,13 @@ class LiveBroadcast {
   /** The contentDetails object contains information about the event's video content, such as whether the content can be shown in an embedded video player or if it will be archived and therefore available for viewing after the event has concluded. */
   LiveBroadcastContentDetails contentDetails;
 
-  /** The ETag of the broadcast. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube assigns to uniquely identify the broadcast. */
   core.String id;
 
-  /** The type of the API resource. For live broadcast resources, the value will be youtube#liveBroadcast. */
+  /** The kind, fixed to "youtube#liveBroadcast". */
   core.String kind;
 
   /** The snippet object contains basic details about the event, including its title, description, start time, and end time. */
@@ -2456,6 +2511,8 @@ class LiveBroadcastContentDetails {
 
   /** This setting determines whether viewers can access DVR controls while watching the video. DVR controls enable the viewer to control the video playback experience by pausing, rewinding, or fast forwarding content. The default value for this property is true.
 
+
+
 Important: You must set the value to true and also set the enableArchive property's value to true if you want to make playback available immediately after the broadcast ends. */
   core.bool enableDvr;
 
@@ -2463,9 +2520,11 @@ Important: You must set the value to true and also set the enableArchive propert
   core.bool enableEmbed;
 
   /** The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly. */
-  LiveBroadcastContentDetailsMonitorStream monitorStream;
+  MonitorStreamInfo monitorStream;
 
   /** Automatically start recording after the event goes live. The default value for this property is true.
+
+
 
 Important: You must also set the enableDvr property's value to true if you want the playback to be available immediately after the broadcast ends. If you set this property's value to true but do not also set the enableDvr property to true, there may be a delay of around one day before the archived video will be available for playback. */
   core.bool recordFromStart;
@@ -2488,7 +2547,7 @@ Important: You must also set the enableDvr property's value to true if you want 
       enableEmbed = json["enableEmbed"];
     }
     if (json.containsKey("monitorStream")) {
-      monitorStream = new LiveBroadcastContentDetailsMonitorStream.fromJson(json["monitorStream"]);
+      monitorStream = new MonitorStreamInfo.fromJson(json["monitorStream"]);
     }
     if (json.containsKey("recordFromStart")) {
       recordFromStart = json["recordFromStart"];
@@ -2528,57 +2587,6 @@ Important: You must also set the enableDvr property's value to true if you want 
   }
 
   /** Return String representation of LiveBroadcastContentDetails */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly. */
-class LiveBroadcastContentDetailsMonitorStream {
-
-  /** If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay. */
-  core.int broadcastStreamDelayMs;
-
-  /** HTML code that embeds a player that plays the monitor stream. */
-  core.String embedHtml;
-
-  /** This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster's consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.
-
-You need to set this value to true if you intend to have a broadcast delay for your event.
-
-Note: This property cannot be updated once the broadcast is in the testing or live state. */
-  core.bool enableMonitorStream;
-
-  /** Create new LiveBroadcastContentDetailsMonitorStream from JSON data */
-  LiveBroadcastContentDetailsMonitorStream.fromJson(core.Map json) {
-    if (json.containsKey("broadcastStreamDelayMs")) {
-      broadcastStreamDelayMs = json["broadcastStreamDelayMs"];
-    }
-    if (json.containsKey("embedHtml")) {
-      embedHtml = json["embedHtml"];
-    }
-    if (json.containsKey("enableMonitorStream")) {
-      enableMonitorStream = json["enableMonitorStream"];
-    }
-  }
-
-  /** Create JSON Object for LiveBroadcastContentDetailsMonitorStream */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (broadcastStreamDelayMs != null) {
-      output["broadcastStreamDelayMs"] = broadcastStreamDelayMs;
-    }
-    if (embedHtml != null) {
-      output["embedHtml"] = embedHtml;
-    }
-    if (enableMonitorStream != null) {
-      output["enableMonitorStream"] = enableMonitorStream;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of LiveBroadcastContentDetailsMonitorStream */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -2681,7 +2689,6 @@ class LiveBroadcastList {
 
 }
 
-/** Basic details about a live broadcast, including title, description and thumbnails. */
 class LiveBroadcastSnippet {
 
   /** The date and time that the broadcast actually ended. This information is only available once the broadcast's state is complete. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
@@ -2782,7 +2789,6 @@ class LiveBroadcastSnippet {
 
 }
 
-/** The status of a live broadcast. */
 class LiveBroadcastStatus {
 
   /** The broadcast's status. The status can be updated using the API's liveBroadcasts.transition method. */
@@ -2910,7 +2916,7 @@ class LiveStreamCdn {
   core.String format;
 
   /** The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube. */
-  LiveStreamCdnIngestionInfo ingestionInfo;
+  IngestionInfo ingestionInfo;
 
   /** The method or protocol used to transmit the video stream. */
   core.String ingestionType;
@@ -2921,7 +2927,7 @@ class LiveStreamCdn {
       format = json["format"];
     }
     if (json.containsKey("ingestionInfo")) {
-      ingestionInfo = new LiveStreamCdnIngestionInfo.fromJson(json["ingestionInfo"]);
+      ingestionInfo = new IngestionInfo.fromJson(json["ingestionInfo"]);
     }
     if (json.containsKey("ingestionType")) {
       ingestionType = json["ingestionType"];
@@ -2946,57 +2952,6 @@ class LiveStreamCdn {
   }
 
   /** Return String representation of LiveStreamCdn */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** Brief description of the live stream cdn settings. */
-class LiveStreamCdnIngestionInfo {
-
-  /** The backup ingestion URL that you should use to stream video to YouTube. You have the option of simultaneously streaming the content that you are sending to the ingestionAddress to this URL. */
-  core.String backupIngestionAddress;
-
-  /** The primary ingestion URL that you should use to stream video to YouTube. You must stream video to this URL.
-
-Depending on which application or tool you use to encode your video stream, you may need to enter the stream URL and stream name separately or you may need to concatenate them in the following format:
-
-STREAM_URL/STREAM_NAME */
-  core.String ingestionAddress;
-
-  /** The HTTP or RTMP stream name that YouTube assigns to the video stream. */
-  core.String streamName;
-
-  /** Create new LiveStreamCdnIngestionInfo from JSON data */
-  LiveStreamCdnIngestionInfo.fromJson(core.Map json) {
-    if (json.containsKey("backupIngestionAddress")) {
-      backupIngestionAddress = json["backupIngestionAddress"];
-    }
-    if (json.containsKey("ingestionAddress")) {
-      ingestionAddress = json["ingestionAddress"];
-    }
-    if (json.containsKey("streamName")) {
-      streamName = json["streamName"];
-    }
-  }
-
-  /** Create JSON Object for LiveStreamCdnIngestionInfo */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (backupIngestionAddress != null) {
-      output["backupIngestionAddress"] = backupIngestionAddress;
-    }
-    if (ingestionAddress != null) {
-      output["ingestionAddress"] = ingestionAddress;
-    }
-    if (streamName != null) {
-      output["streamName"] = streamName;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of LiveStreamCdnIngestionInfo */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -3099,7 +3054,6 @@ class LiveStreamList {
 
 }
 
-/** Basic details about a live stream, including title and description. */
 class LiveStreamSnippet {
 
   /** The ID that YouTube uses to uniquely identify the channel that is transmitting the stream. */
@@ -3157,8 +3111,6 @@ class LiveStreamSnippet {
 
 /** Brief description of the live stream status. */
 class LiveStreamStatus {
-
-  /** The stream's status. */
   core.String streamStatus;
 
   /** Create new LiveStreamStatus from JSON data */
@@ -3266,6 +3218,57 @@ class LocalizedString {
 
 }
 
+/** Settings and Info of the monitor stream */
+class MonitorStreamInfo {
+
+  /** If you have set the enableMonitorStream property to true, then this property determines the length of the live broadcast delay. */
+  core.int broadcastStreamDelayMs;
+
+  /** HTML code that embeds a player that plays the monitor stream. */
+  core.String embedHtml;
+
+  /** This value determines whether the monitor stream is enabled for the broadcast. If the monitor stream is enabled, then YouTube will broadcast the event content on a special stream intended only for the broadcaster's consumption. The broadcaster can use the stream to review the event content and also to identify the optimal times to insert cuepoints.
+
+You need to set this value to true if you intend to have a broadcast delay for your event.
+
+Note: This property cannot be updated once the broadcast is in the testing or live state. */
+  core.bool enableMonitorStream;
+
+  /** Create new MonitorStreamInfo from JSON data */
+  MonitorStreamInfo.fromJson(core.Map json) {
+    if (json.containsKey("broadcastStreamDelayMs")) {
+      broadcastStreamDelayMs = json["broadcastStreamDelayMs"];
+    }
+    if (json.containsKey("embedHtml")) {
+      embedHtml = json["embedHtml"];
+    }
+    if (json.containsKey("enableMonitorStream")) {
+      enableMonitorStream = json["enableMonitorStream"];
+    }
+  }
+
+  /** Create JSON Object for MonitorStreamInfo */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (broadcastStreamDelayMs != null) {
+      output["broadcastStreamDelayMs"] = broadcastStreamDelayMs;
+    }
+    if (embedHtml != null) {
+      output["embedHtml"] = embedHtml;
+    }
+    if (enableMonitorStream != null) {
+      output["enableMonitorStream"] = enableMonitorStream;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of MonitorStreamInfo */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
 /** Paging details for lists of resources, including total number of items available and number of resources returned in a single page. */
 class PageInfo {
 
@@ -3311,21 +3314,21 @@ YouTube also uses playlists to identify special collections of videos for a chan
 - favorite videos 
 - positively rated (liked) videos 
 - watch history 
-- watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel.
+- watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information. You can retrieve the playlist IDs for each of these lists from the  channel resource for a given channel.
 
-You can then use the playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the playlistItems.insert and playlistItems.delete methods. */
+You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods. */
 class Playlist {
 
   /** The contentDetails object contains information like video count. */
   PlaylistContentDetails contentDetails;
 
-  /** The ETag for the playlist resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the playlist. */
   core.String id;
 
-  /** The type of the API resource. For video resources, the value will be youtube#playlist. */
+  /** The kind, fixed to "youtube#playlist". */
   core.String kind;
 
   /** The player object contains information that you would use to play the playlist in an embedded player. */
@@ -3396,7 +3399,6 @@ class Playlist {
 
 }
 
-/** Details about the content of a playlist, such as the video count. */
 class PlaylistContentDetails {
 
   /** The number of videos in the playlist. */
@@ -3425,7 +3427,7 @@ class PlaylistContentDetails {
 
 }
 
-/** A playlistItem resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem resource contains details about the included resource that pertain specifically to how that resource is used in that playlist.
+/** A playlistItem resource identifies another resource, such as a video, that is included in a playlist. In addition, the playlistItem  resource contains details about the included resource that pertain specifically to how that resource is used in that playlist.
 
 YouTube uses playlists to identify special collections of videos for a channel, such as:  
 - uploaded videos 
@@ -3434,19 +3436,19 @@ YouTube uses playlists to identify special collections of videos for a channel, 
 - watch history 
 - watch later  To be more specific, these lists are associated with a channel, which is a collection of a person, group, or company's videos, playlists, and other YouTube information.
 
-You can retrieve the playlist IDs for each of these lists from the channel resource for a given channel. You can then use the playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the playlistItems.insert and playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user's channel. */
+You can retrieve the playlist IDs for each of these lists from the  channel resource  for a given channel. You can then use the   playlistItems.list method to retrieve any of those lists. You can also add or remove items from those lists by calling the   playlistItems.insert and   playlistItems.delete methods. For example, if a user gives a positive rating to a video, you would insert that video into the liked videos playlist for that user's channel. */
 class PlaylistItem {
 
   /** The contentDetails object is included in the resource if the included item is a YouTube video. The object contains additional information about the video. */
   PlaylistItemContentDetails contentDetails;
 
-  /** The ETag for the playlist item resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the playlist item. */
   core.String id;
 
-  /** The type of the API resource. For playlist item resources, the value will be youtube#playlistItem. */
+  /** The kind, fixed to "youtube#playlistItem". */
   core.String kind;
 
   /** The snippet object contains basic details about the playlist item, such as its title and position in the playlist. */
@@ -3508,31 +3510,30 @@ class PlaylistItem {
 
 }
 
-/** Details about the content of a playlist item, such as the video or the video fragment start and end time included in the playlist. */
 class PlaylistItemContentDetails {
 
   /** The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the video.endTime is the end of the video. */
-  core.String endAt;
+  core.String endAtMs;
 
   /** A user-generated note for this item. */
   core.String note;
 
   /** The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is 0. */
-  core.String startAt;
+  core.String startAtMs;
 
   /** The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request. */
   core.String videoId;
 
   /** Create new PlaylistItemContentDetails from JSON data */
   PlaylistItemContentDetails.fromJson(core.Map json) {
-    if (json.containsKey("endAt")) {
-      endAt = json["endAt"];
+    if (json.containsKey("endAtMs")) {
+      endAtMs = json["endAtMs"];
     }
     if (json.containsKey("note")) {
       note = json["note"];
     }
-    if (json.containsKey("startAt")) {
-      startAt = json["startAt"];
+    if (json.containsKey("startAtMs")) {
+      startAtMs = json["startAtMs"];
     }
     if (json.containsKey("videoId")) {
       videoId = json["videoId"];
@@ -3543,14 +3544,14 @@ class PlaylistItemContentDetails {
   core.Map toJson() {
     var output = new core.Map();
 
-    if (endAt != null) {
-      output["endAt"] = endAt;
+    if (endAtMs != null) {
+      output["endAtMs"] = endAtMs;
     }
     if (note != null) {
       output["note"] = note;
     }
-    if (startAt != null) {
-      output["startAt"] = startAt;
+    if (startAtMs != null) {
+      output["startAtMs"] = startAtMs;
     }
     if (videoId != null) {
       output["videoId"] = videoId;
@@ -3890,7 +3891,6 @@ class PlaylistListResponse {
 
 }
 
-/** Player to be used for a playlist playback. */
 class PlaylistPlayer {
 
   /** An <iframe> tag that embeds a player that will play the playlist. */
@@ -3925,7 +3925,7 @@ class PlaylistSnippet {
   /** The ID that YouTube uses to uniquely identify the channel that published the playlist. */
   core.String channelId;
 
-  /** Channel title for the channel that the video belongs to. */
+  /** The channel title of the channel that the video belongs to. */
   core.String channelTitle;
 
   /** The playlist's description. */
@@ -3933,6 +3933,8 @@ class PlaylistSnippet {
 
   /** The date and time that the playlist was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
   core.String publishedAt;
+
+  /** Keyword tags associated with the playlist. */
   core.List<core.String> tags;
 
   /** A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail. */
@@ -4006,7 +4008,6 @@ class PlaylistSnippet {
 
 }
 
-/** The status details of a playlist describes whether the playlist is private. */
 class PlaylistStatus {
 
   /** The playlist's privacy status. */
@@ -4401,19 +4402,19 @@ class Subscription {
   /** The contentDetails object contains basic statistics about the subscription. */
   SubscriptionContentDetails contentDetails;
 
-  /** The ETag of the subscription resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the subscription. */
   core.String id;
 
-  /** The type of the API resource. For subscription resources, the value will be youtube#subscription. */
+  /** The kind, fixed to "youtube#subscription". */
   core.String kind;
 
   /** The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to. */
   SubscriptionSnippet snippet;
 
-  /** The subscriberSnippet object contains basic details about the subscriber. */
+  /** The subscriberSnippet object contains basic details about the sbuscriber. */
   SubscriptionSubscriberSnippet subscriberSnippet;
 
   /** Create new Subscription from JSON data */
@@ -4922,7 +4923,7 @@ class ThumbnailListResponse {
 class Video {
 
   /** Age restriction details related to a video. */
-  VideoAgeGating ageGatingDetails;
+  VideoAgeGating ageGating;
 
   /** The contentDetails object contains information about the video content, including the length of the video and its aspect ratio. */
   VideoContentDetails contentDetails;
@@ -4930,7 +4931,7 @@ class Video {
   /** The conversionPings object encapsulates information about url pings that need to be respected by the App in different video contexts. */
   VideoConversionPings conversionPings;
 
-  /** The ETag of the video resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner. */
@@ -4939,7 +4940,7 @@ class Video {
   /** The ID that YouTube uses to uniquely identify the video. */
   core.String id;
 
-  /** The type of the API resource. For video resources, the value will be youtube#video. */
+  /** The kind, fixed to "youtube#video". */
   core.String kind;
 
   /** The monetizationDetails object encapsulates information about the monetization status of the video. */
@@ -4976,8 +4977,8 @@ The processingProgress object is designed to be polled so that the video uploade
 
   /** Create new Video from JSON data */
   Video.fromJson(core.Map json) {
-    if (json.containsKey("ageGatingDetails")) {
-      ageGatingDetails = new VideoAgeGating.fromJson(json["ageGatingDetails"]);
+    if (json.containsKey("ageGating")) {
+      ageGating = new VideoAgeGating.fromJson(json["ageGating"]);
     }
     if (json.containsKey("contentDetails")) {
       contentDetails = new VideoContentDetails.fromJson(json["contentDetails"]);
@@ -5033,8 +5034,8 @@ The processingProgress object is designed to be polled so that the video uploade
   core.Map toJson() {
     var output = new core.Map();
 
-    if (ageGatingDetails != null) {
-      output["ageGatingDetails"] = ageGatingDetails.toJson();
+    if (ageGating != null) {
+      output["ageGating"] = ageGating.toJson();
     }
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
@@ -5142,13 +5143,13 @@ class VideoAgeGating {
 /** A videoCategory resource identifies a category that has been or could be associated with uploaded videos. */
 class VideoCategory {
 
-  /** The ETag of the videoCategory resource. */
+  /** Etag of this resource. */
   core.String etag;
 
   /** The ID that YouTube uses to uniquely identify the video category. */
   core.String id;
 
-  /** The type of the API resource. For video category resources, the value will be youtube#videoCategory. */
+  /** The kind, fixed to "youtube#videoCategory". */
   core.String kind;
 
   /** The snippet object contains basic details about the video category, including its title. */

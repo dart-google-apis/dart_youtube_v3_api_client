@@ -17,7 +17,6 @@ The part names that you can include in the parameter value are snippet and conte
    * [optParams] - Additional query parameters
    */
   async.Future<Activity> insert(Activity request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "activities";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -34,16 +33,13 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Activity.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Activity.fromJson(data));
   }
 
   /**
@@ -74,8 +70,7 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<ActivityListResponse> list(core.String part, {core.String channelId, core.String home, core.int maxResults, core.bool mine, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String regionCode, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<ActivityListResponse> list(core.String part, {core.String channelId, core.bool home, core.int maxResults, core.bool mine, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String regionCode, core.Map optParams}) {
     var url = "activities";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -100,16 +95,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new ActivityListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new ActivityListResponse.fromJson(data));
   }
 }
 
@@ -121,22 +113,24 @@ class ChannelBannersResource_ extends Resource {
   /**
    * Uploads a channel banner to YouTube.
    *
-   * [request] - ChannelBannerInsertResponse to send in this request
+   * [request] - ChannelBannerResource to send in this request
    *
    * [content] - Base64 Data of the file content to be uploaded
    *
    * [contentType] - MimeType of the file to be uploaded
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<ChannelBannerInsertResponse> insert(ChannelBannerInsertResponse request, {core.String content, core.String contentType, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<ChannelBannerResource> insert(ChannelBannerResource request, {core.String content, core.String contentType, core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "channelBanners/insert";
     var uploadUrl = "/upload/youtube/v3/channelBanners/insert";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -146,8 +140,7 @@ class ChannelBannersResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
@@ -156,10 +149,8 @@ class ChannelBannersResource_ extends Resource {
     } else {
       response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     }
-    response
-      .then((data) => completer.complete(new ChannelBannerInsertResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new ChannelBannerResource.fromJson(data));
   }
 }
 
@@ -198,8 +189,7 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<ChannelListResponse> list(core.String part, {core.String categoryId, core.String forUsername, core.String id, core.bool managedByMe, core.int maxResults, core.bool mine, core.String mySubscribers, core.String onBehalfOfContentOwner, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<ChannelListResponse> list(core.String part, {core.String categoryId, core.String forUsername, core.String id, core.bool managedByMe, core.int maxResults, core.bool mine, core.bool mySubscribers, core.String onBehalfOfContentOwner, core.String pageToken, core.Map optParams}) {
     var url = "channels";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -225,16 +215,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new ChannelListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new ChannelListResponse.fromJson(data));
   }
 
   /**
@@ -248,15 +235,17 @@ The part names that you can include in the parameter value are id and invideoPro
 
 Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies.
    *
+   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<Channel> update(Channel request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<Channel> update(Channel request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "channels";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -268,16 +257,13 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Channel.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Channel.fromJson(data));
   }
 }
 
@@ -303,7 +289,6 @@ If the parameter identifies a property that contains child properties, the child
    * [optParams] - Additional query parameters
    */
   async.Future<GuideCategoryListResponse> list(core.String part, {core.String hl, core.String id, core.String regionCode, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "guideCategories";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -323,16 +308,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new GuideCategoryListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new GuideCategoryListResponse.fromJson(data));
   }
 }
 
@@ -348,12 +330,13 @@ class LiveBroadcastsResource_ extends Resource {
    *
    * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [streamId] - The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> bind(core.String id, core.String part, {core.String streamId, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<LiveBroadcast> bind(core.String id, core.String part, {core.String onBehalfOfContentOwner, core.String streamId, core.Map optParams}) {
     var url = "liveBroadcasts/bind";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -361,6 +344,7 @@ class LiveBroadcastsResource_ extends Resource {
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (streamId != null) queryParams["streamId"] = streamId;
@@ -373,16 +357,13 @@ class LiveBroadcastsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcast.fromJson(data));
   }
 
   /**
@@ -396,10 +377,11 @@ class LiveBroadcastsResource_ extends Resource {
    *
    * [offsetTimeMs] - The offsetTimeMs parameter specifies a point in time in the video when the specified action (e.g. display a slate) is executed. The property value identifies a positive time offset, in milliseconds, from the beginning of the monitor stream. Though measured in milliseconds, the value is actually an approximation, and YouTube will act as closely as possible to that time. If not specified, it indicates that the action should be performed as soon as possible. If your broadcast stream is not delayed, then it should not be specified. However, if your broadcast stream is delayed, then the parameter can specify the time when the operation should be executed. See the Getting started guide for more details. Note: The offset is measured from the time that the testing phase began.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> control(core.String id, core.String part, {core.bool displaySlate, core.String offsetTimeMs, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<LiveBroadcast> control(core.String id, core.String part, {core.bool displaySlate, core.String offsetTimeMs, core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "liveBroadcasts/control";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -409,6 +391,7 @@ class LiveBroadcastsResource_ extends Resource {
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (offsetTimeMs != null) queryParams["offsetTimeMs"] = offsetTimeMs;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -420,16 +403,13 @@ class LiveBroadcastsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcast.fromJson(data));
   }
 
   /**
@@ -437,10 +417,11 @@ class LiveBroadcastsResource_ extends Resource {
    *
    * [id] - The id parameter specifies the YouTube live broadcast ID for the resource that is being deleted.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<core.Map> delete(core.String id, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -448,6 +429,7 @@ class LiveBroadcastsResource_ extends Resource {
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -457,16 +439,12 @@ class LiveBroadcastsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -478,15 +456,17 @@ class LiveBroadcastsResource_ extends Resource {
 
 The part properties that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> insert(LiveBroadcast request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<LiveBroadcast> insert(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -498,16 +478,13 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcast.fromJson(data));
   }
 
   /**
@@ -536,7 +513,6 @@ The part properties that you can include in the parameter value are id, snippet,
    * [optParams] - Additional query parameters
    */
   async.Future<LiveBroadcastList> list(core.String part, {core.String broadcastStatus, core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -561,16 +537,13 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcastList.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcastList.fromJson(data));
   }
 
   /**
@@ -586,10 +559,11 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [part] - The part parameter specifies a comma-separated list of one or more liveBroadcast resource properties that the API response will include. The part names that you can include in the parameter value are id, snippet, contentDetails, and status.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> transition(core.String broadcastStatus, core.String id, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<LiveBroadcast> transition(core.String broadcastStatus, core.String id, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "liveBroadcasts/transition";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -602,6 +576,7 @@ The part properties that you can include in the parameter value are id, snippet,
     if (broadcastStatus != null) queryParams["broadcastStatus"] = broadcastStatus;
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -613,16 +588,13 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcast.fromJson(data));
   }
 
   /**
@@ -636,15 +608,17 @@ The part properties that you can include in the parameter value are id, snippet,
 
 Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a broadcast's privacy status is defined in the status part. As such, if your request is updating a private or unlisted broadcast, and the request's part parameter value includes the status part, the broadcast's privacy setting will be updated to whatever value the request body specifies. If the request body does not specify a value, the existing privacy setting will be removed and the broadcast will revert to the default privacy setting.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> update(LiveBroadcast request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<LiveBroadcast> update(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -656,16 +630,13 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveBroadcast.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveBroadcast.fromJson(data));
   }
 }
 
@@ -682,7 +653,6 @@ class LiveStreamsResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -699,16 +669,12 @@ class LiveStreamsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -723,7 +689,6 @@ The part properties that you can include in the parameter value are id, snippet,
    * [optParams] - Additional query parameters
    */
   async.Future<LiveStream> insert(LiveStream request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -740,16 +705,13 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveStream.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveStream.fromJson(data));
   }
 
   /**
@@ -771,7 +733,6 @@ The part properties that you can include in the parameter value are id, snippet,
    * [optParams] - Additional query parameters
    */
   async.Future<LiveStreamList> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -792,16 +753,13 @@ The part properties that you can include in the parameter value are id, snippet,
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveStreamList.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveStreamList.fromJson(data));
   }
 
   /**
@@ -818,7 +776,6 @@ Note that this method will override the existing values for all of the mutable p
    * [optParams] - Additional query parameters
    */
   async.Future<LiveStream> update(LiveStream request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -835,16 +792,13 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new LiveStream.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new LiveStream.fromJson(data));
   }
 }
 
@@ -861,7 +815,6 @@ class PlaylistItemsResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -878,16 +831,12 @@ class PlaylistItemsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -902,7 +851,6 @@ The part names that you can include in the parameter value are snippet and conte
    * [optParams] - Additional query parameters
    */
   async.Future<PlaylistItem> insert(PlaylistItem request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -919,16 +867,13 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new PlaylistItem.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new PlaylistItem.fromJson(data));
   }
 
   /**
@@ -954,7 +899,6 @@ If the parameter identifies a property that contains child properties, the child
    * [optParams] - Additional query parameters
    */
   async.Future<PlaylistItemListResponse> list(core.String part, {core.String id, core.int maxResults, core.String pageToken, core.String playlistId, core.String videoId, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -976,16 +920,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new PlaylistItemListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new PlaylistItemListResponse.fromJson(data));
   }
 
   /**
@@ -1002,7 +943,6 @@ Note that this method will override the existing values for all of the mutable p
    * [optParams] - Additional query parameters
    */
   async.Future<PlaylistItem> update(PlaylistItem request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1019,16 +959,13 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new PlaylistItem.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new PlaylistItem.fromJson(data));
   }
 }
 
@@ -1045,7 +982,6 @@ class PlaylistsResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlists";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1062,16 +998,12 @@ class PlaylistsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -1086,7 +1018,6 @@ The part names that you can include in the parameter value are snippet and statu
    * [optParams] - Additional query parameters
    */
   async.Future<Playlist> insert(Playlist request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlists";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1103,16 +1034,13 @@ The part names that you can include in the parameter value are snippet and statu
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Playlist.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Playlist.fromJson(data));
   }
 
   /**
@@ -1138,7 +1066,6 @@ If the parameter identifies a property that contains child properties, the child
    * [optParams] - Additional query parameters
    */
   async.Future<PlaylistListResponse> list(core.String part, {core.String channelId, core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlists";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1160,16 +1087,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new PlaylistListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new PlaylistListResponse.fromJson(data));
   }
 
   /**
@@ -1186,7 +1110,6 @@ Note that this method will override the existing values for all of the mutable p
    * [optParams] - Additional query parameters
    */
   async.Future<Playlist> update(Playlist request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "playlists";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1203,16 +1126,13 @@ Note that this method will override the existing values for all of the mutable p
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Playlist.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Playlist.fromJson(data));
   }
 }
 
@@ -1244,7 +1164,7 @@ If the parameter identifies a property that contains child properties, the child
    *   Minimum: 0
    *   Maximum: 50
    *
-   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
    *
    * [order] - The order parameter specifies the method that will be used to order resources in the API response.
    *   Default: SEARCH_SORT_RELEVANCE
@@ -1331,7 +1251,6 @@ If the parameter identifies a property that contains child properties, the child
    * [optParams] - Additional query parameters
    */
   async.Future<SearchListResponse> list(core.String part, {core.String channelId, core.String channelType, core.bool forContentOwner, core.bool forMine, core.int maxResults, core.String onBehalfOfContentOwner, core.String order, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String q, core.String regionCode, core.String relatedToVideoId, core.String safeSearch, core.String topicId, core.String type, core.String videoCaption, core.String videoCategoryId, core.String videoDefinition, core.String videoDimension, core.String videoDuration, core.String videoEmbeddable, core.String videoLicense, core.String videoSyndicated, core.String videoType, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "search";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1406,16 +1325,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new SearchListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new SearchListResponse.fromJson(data));
   }
 }
 
@@ -1432,7 +1348,6 @@ class SubscriptionsResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "subscriptions";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1449,16 +1364,12 @@ class SubscriptionsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -1473,7 +1384,6 @@ The part names that you can include in the parameter value are snippet and conte
    * [optParams] - Additional query parameters
    */
   async.Future<Subscription> insert(Subscription request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "subscriptions";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1490,16 +1400,13 @@ The part names that you can include in the parameter value are snippet and conte
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Subscription.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Subscription.fromJson(data));
   }
 
   /**
@@ -1536,7 +1443,6 @@ If the parameter identifies a property that contains child properties, the child
    * [optParams] - Additional query parameters
    */
   async.Future<SubscriptionListResponse> list(core.String part, {core.String channelId, core.String forChannelId, core.String id, core.int maxResults, core.bool mine, core.bool mySubscribers, core.String order, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "subscriptions";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1564,16 +1470,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new SubscriptionListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new SubscriptionListResponse.fromJson(data));
   }
 }
 
@@ -1594,7 +1497,6 @@ class ThumbnailsResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<ThumbnailListResponse> set(core.String videoId, {core.String content, core.String contentType, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "thumbnails/set";
     var uploadUrl = "/upload/youtube/v3/thumbnails/set";
     var urlParams = new core.Map();
@@ -1612,8 +1514,7 @@ class ThumbnailsResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
@@ -1622,10 +1523,8 @@ class ThumbnailsResource_ extends Resource {
     } else {
       response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
     }
-    response
-      .then((data) => completer.complete(new ThumbnailListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new ThumbnailListResponse.fromJson(data));
   }
 }
 
@@ -1649,7 +1548,6 @@ class VideoCategoriesResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<VideoCategoryListResponse> list(core.String part, {core.String hl, core.String id, core.String regionCode, core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "videoCategories";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1669,16 +1567,13 @@ class VideoCategoriesResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new VideoCategoryListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new VideoCategoryListResponse.fromJson(data));
   }
 }
 
@@ -1692,10 +1587,11 @@ class VideosResource_ extends Resource {
    *
    * [id] - The id parameter specifies the YouTube video ID for the resource that is being deleted. In a video resource, the id property specifies the video's ID.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<core.Map> delete(core.String id, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "videos";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1703,6 +1599,7 @@ class VideosResource_ extends Resource {
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1712,16 +1609,12 @@ class VideosResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "DELETE", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -1729,10 +1622,11 @@ class VideosResource_ extends Resource {
    *
    * [id] - The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<VideoGetRatingResponse> getRating(core.String id, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<VideoGetRatingResponse> getRating(core.String id, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "videos/getRating";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1740,6 +1634,7 @@ class VideosResource_ extends Resource {
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1749,16 +1644,13 @@ class VideosResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new VideoGetRatingResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new VideoGetRatingResponse.fromJson(data));
   }
 
   /**
@@ -1776,12 +1668,19 @@ The part names that you can include in the parameter value are snippet, contentD
    *
    * [autoLevels] - The autoLevels parameter specifies whether the video should be auto-leveled by YouTube.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the channel specified in the parameter value. This parameter must be used in conjunction with the onBehalfOfContentOwner parameter, and the user must be authenticated using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. In addition, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [stabilize] - The stabilize parameter specifies whether the video should be stabilized by YouTube.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<Video> insert(Video request, core.String part, {core.String content, core.String contentType, core.bool autoLevels, core.bool stabilize, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<Video> insert(Video request, core.String part, {core.String content, core.String contentType, core.bool autoLevels, core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.bool stabilize, core.Map optParams}) {
     var url = "videos";
     var uploadUrl = "/upload/youtube/v3/videos";
     var urlParams = new core.Map();
@@ -1789,6 +1688,8 @@ The part names that you can include in the parameter value are snippet, contentD
 
     var paramErrors = new core.List();
     if (autoLevels != null) queryParams["autoLevels"] = autoLevels;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (stabilize != null) queryParams["stabilize"] = stabilize;
@@ -1801,8 +1702,7 @@ The part names that you can include in the parameter value are snippet, contentD
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
@@ -1811,10 +1711,8 @@ The part names that you can include in the parameter value are snippet, contentD
     } else {
       response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
     }
-    response
-      .then((data) => completer.complete(new Video.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Video.fromJson(data));
   }
 
   /**
@@ -1824,7 +1722,14 @@ The part names that you can include in the parameter value are snippet, contentD
 
 If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a video resource, the snippet property contains the channelId, title, description, tags, and categoryId properties. As such, if you set part=snippet, the API response will contain all of those properties.
    *
+   * [chart] - Set this parameter's value to mostPopular to instruct the API to return videos belonging to the chart of most popular videos.
+   *   Allowed values:
+   *     mostPopular - Returns videos belonging to most popular video chart.
+   *
    * [id] - The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
+   *
+   * [locale] - The locale parameter selects a video chart available in the specified locale. If using this parameter, chart must also be set. The parameter value is an BCP 47 locale. Supported locales include ar_AE, ar_DZ, ar_EG, ar_JO, ar_MA, ar_SA, ar_TN, ar_YE, cs_CZ, de_DE, el_GR, en_AU, en_BE, en_CA, en_GB, en_GH, en_IE, en_IL, en_IN, en_KE, en_NG, en_NZ, en_SG, en_UG, en_US, en_ZA, es_AR, es_CL, es_CO, es_ES, es_MX, es_PE, fil_PH, fr_FR, hu_HU, id_ID, it_IT, ja_JP, ko_KR, ms_MY, nl_NL, pl_PL, pt_BR, ru_RU, sv_SE, tr_TR, zh_HK, zh_TW
+   *   Default: en_US
    *
    * [maxResults] - USE_DESCRIPTION --- channels:list:maxResults
    *   Default: 5
@@ -1836,20 +1741,27 @@ If the parameter identifies a property that contains child properties, the child
    *     dislike - Returns only videos disliked by the authenticated user.
    *     like - Returns only video liked by the authenticated user.
    *
-   * [onBehalfOfContentOwner] - The onBehalfOfContentOwner parameter indicates that the authenticated user is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The actual CMS account that the user authenticates with needs to be linked to the specified YouTube content owner.
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
    *
    * [pageToken] - USE_DESCRIPTION --- channels:list:pageToken
    *
+   * [videoCategoryId] - The videoCategoryId parameter selects a video chart based on the category. If using this parameter, chart must also be set.
+   *   Default: 0
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<VideoListResponse> list(core.String part, {core.String id, core.int maxResults, core.String myRating, core.String onBehalfOfContentOwner, core.String pageToken, core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<VideoListResponse> list(core.String part, {core.String chart, core.String id, core.String locale, core.int maxResults, core.String myRating, core.String onBehalfOfContentOwner, core.String pageToken, core.String videoCategoryId, core.Map optParams}) {
     var url = "videos";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (chart != null && !["mostPopular"].contains(chart)) {
+      paramErrors.add("Allowed values for chart: mostPopular");
+    }
+    if (chart != null) queryParams["chart"] = chart;
     if (id != null) queryParams["id"] = id;
+    if (locale != null) queryParams["locale"] = locale;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (myRating != null && !["dislike", "like"].contains(myRating)) {
       paramErrors.add("Allowed values for myRating: dislike, like");
@@ -1859,6 +1771,7 @@ If the parameter identifies a property that contains child properties, the child
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
+    if (videoCategoryId != null) queryParams["videoCategoryId"] = videoCategoryId;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -1868,16 +1781,13 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new VideoListResponse.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new VideoListResponse.fromJson(data));
   }
 
   /**
@@ -1891,10 +1801,11 @@ If the parameter identifies a property that contains child properties, the child
    *     like - Records that the authenticated user liked the video.
    *     none - Removes any vote (like or dislike) the authenticated user had for the video.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> rate(core.String id, core.String rating, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<core.Map> rate(core.String id, core.String rating, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "videos/rate";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1902,6 +1813,7 @@ If the parameter identifies a property that contains child properties, the child
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (rating == null) paramErrors.add("rating is required");
     if (rating != null && !["dislike", "like", "none"].contains(rating)) {
       paramErrors.add("Allowed values for rating: dislike, like, none");
@@ -1916,16 +1828,12 @@ If the parameter identifies a property that contains child properties, the child
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(data))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response;
   }
 
   /**
@@ -1941,15 +1849,17 @@ Note that this method will override the existing values for all of the mutable p
 
 In addition, not all of those parts contain properties that can be set when setting or updating a video's metadata. For example, the statistics object encapsulates statistics that YouTube calculates for a video and does not contain values that you can set or modify. If the parameter value specifies a part that does not contain mutable values, that part will still be included in the API response.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<Video> update(Video request, core.String part, {core.Map optParams}) {
-    var completer = new async.Completer();
+  async.Future<Video> update(Video request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "videos";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -1961,16 +1871,13 @@ In addition, not all of those parts contain properties that can be set when sett
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "PUT", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Video.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Video.fromJson(data));
   }
 }
 
