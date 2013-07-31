@@ -1,9 +1,11 @@
-part of youtube_v3_api_client;
+part of youtube_v3_api;
 
-class ActivitiesResource_ extends Resource {
+class ActivitiesResource_ {
 
-  ActivitiesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ActivitiesResource_(Client client) :
+      _client = client;
 
   /**
    * Posts a bulletin for a specific channel. (The user submitting the request must be authorized to act on the channel's behalf.)
@@ -105,10 +107,12 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class ChannelBannersResource_ extends Resource {
+class ChannelBannersResource_ {
 
-  ChannelBannersResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ChannelBannersResource_(Client client) :
+      _client = client;
 
   /**
    * Uploads a channel banner to YouTube.
@@ -144,7 +148,7 @@ class ChannelBannersResource_ extends Resource {
     }
 
     var response;
-    if (?content && content != null) {
+    if (content != null) {
       response = _client.upload(uploadUrl, "POST", request.toString(), content, contentType, urlParams: urlParams, queryParams: queryParams);
     } else {
       response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);
@@ -154,10 +158,12 @@ class ChannelBannersResource_ extends Resource {
   }
 }
 
-class ChannelsResource_ extends Resource {
+class ChannelsResource_ {
 
-  ChannelsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ChannelsResource_(Client client) :
+      _client = client;
 
   /**
    * Returns a collection of zero or more channel resources that match the request criteria.
@@ -267,10 +273,12 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class GuideCategoriesResource_ extends Resource {
+class GuideCategoriesResource_ {
 
-  GuideCategoriesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  GuideCategoriesResource_(Client client) :
+      _client = client;
 
   /**
    * Returns a list of categories that can be associated with YouTube channels.
@@ -318,10 +326,12 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class LiveBroadcastsResource_ extends Resource {
+class LiveBroadcastsResource_ {
 
-  LiveBroadcastsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  LiveBroadcastsResource_(Client client) :
+      _client = client;
 
   /**
    * Binds a YouTube broadcast to a stream or removes an existing binding between a broadcast and a stream. A broadcast can only be bound to one video stream.
@@ -640,10 +650,12 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class LiveStreamsResource_ extends Resource {
+class LiveStreamsResource_ {
 
-  LiveStreamsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  LiveStreamsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a video stream.
@@ -802,10 +814,12 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class PlaylistItemsResource_ extends Resource {
+class PlaylistItemsResource_ {
 
-  PlaylistItemsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  PlaylistItemsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a playlist item.
@@ -969,10 +983,12 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class PlaylistsResource_ extends Resource {
+class PlaylistsResource_ {
 
-  PlaylistsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  PlaylistsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a playlist.
@@ -1136,10 +1152,12 @@ Note that this method will override the existing values for all of the mutable p
   }
 }
 
-class SearchResource_ extends Resource {
+class SearchResource_ {
 
-  SearchResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  SearchResource_(Client client) :
+      _client = client;
 
   /**
    * Returns a collection of search results that match the query parameters specified in the API request. By default, a search result set identifies matching video, channel, and playlist resources, but you can also configure queries to only retrieve a specific type of resource.
@@ -1335,10 +1353,12 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class SubscriptionsResource_ extends Resource {
+class SubscriptionsResource_ {
 
-  SubscriptionsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  SubscriptionsResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a subscription.
@@ -1480,10 +1500,12 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
-class ThumbnailsResource_ extends Resource {
+class ThumbnailsResource_ {
 
-  ThumbnailsResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  ThumbnailsResource_(Client client) :
+      _client = client;
 
   /**
    * Uploads a custom video thumbnail to YouTube and sets it for a video.
@@ -1518,7 +1540,7 @@ class ThumbnailsResource_ extends Resource {
     }
 
     var response;
-    if (?content && content != null) {
+    if (content != null) {
       response = _client.upload(uploadUrl, "POST", null, content, contentType, urlParams: urlParams, queryParams: queryParams);
     } else {
       response = _client.request(url, "POST", urlParams: urlParams, queryParams: queryParams);
@@ -1528,10 +1550,12 @@ class ThumbnailsResource_ extends Resource {
   }
 }
 
-class VideoCategoriesResource_ extends Resource {
+class VideoCategoriesResource_ {
 
-  VideoCategoriesResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  VideoCategoriesResource_(Client client) :
+      _client = client;
 
   /**
    * Returns a list of categories that can be associated with YouTube videos.
@@ -1577,10 +1601,12 @@ class VideoCategoriesResource_ extends Resource {
   }
 }
 
-class VideosResource_ extends Resource {
+class VideosResource_ {
 
-  VideosResource_(Client client) : super(client) {
-  }
+  final Client _client;
+
+  VideosResource_(Client client) :
+      _client = client;
 
   /**
    * Deletes a YouTube video.
@@ -1706,7 +1732,7 @@ This parameter is intended for YouTube content partners that own and manage many
     }
 
     var response;
-    if (?content && content != null) {
+    if (content != null) {
       response = _client.upload(uploadUrl, "POST", request.toString(), content, contentType, urlParams: urlParams, queryParams: queryParams);
     } else {
       response = _client.request(url, "POST", body: request.toString(), urlParams: urlParams, queryParams: queryParams);

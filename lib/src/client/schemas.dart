@@ -1,4 +1,4 @@
-part of youtube_v3_api_client;
+part of youtube_v3_api;
 
 /** Rights management policy for YouTube resources. */
 class AccessPolicy {
@@ -15,10 +15,7 @@ class AccessPolicy {
       allowed = json["allowed"];
     }
     if (json.containsKey("exception")) {
-      exception = [];
-      json["exception"].forEach((item) {
-        exception.add(item);
-      });
+      exception = json["exception"].toList();
     }
   }
 
@@ -30,10 +27,7 @@ class AccessPolicy {
       output["allowed"] = allowed;
     }
     if (exception != null) {
-      output["exception"] = new core.List();
-      exception.forEach((item) {
-        output["exception"].add(item);
-      });
+      output["exception"] = exception.toList();
     }
 
     return output;
@@ -709,10 +703,7 @@ class ActivityListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Activity.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Activity.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -742,10 +733,7 @@ class ActivityListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1050,10 +1038,7 @@ class ChannelBrandingSettings {
       channel = new ChannelSettings.fromJson(json["channel"]);
     }
     if (json.containsKey("hints")) {
-      hints = [];
-      json["hints"].forEach((item) {
-        hints.add(new PropertyValue.fromJson(item));
-      });
+      hints = json["hints"].map((hintsItem) => new PropertyValue.fromJson(hintsItem)).toList();
     }
     if (json.containsKey("image")) {
       image = new ImageSettings.fromJson(json["image"]);
@@ -1071,10 +1056,7 @@ class ChannelBrandingSettings {
       output["channel"] = channel.toJson();
     }
     if (hints != null) {
-      output["hints"] = new core.List();
-      hints.forEach((item) {
-        output["hints"].add(item.toJson());
-      });
+      output["hints"] = hints.map((hintsItem) => hintsItem.toJson()).toList();
     }
     if (image != null) {
       output["image"] = image.toJson();
@@ -1096,6 +1078,7 @@ class ChannelContentDetails {
 
   /** The googlePlusUserId object identifies the Google+ profile ID associated with this channel. */
   core.String googlePlusUserId;
+
   ChannelContentDetailsRelatedPlaylists relatedPlaylists;
 
   /** Create new ChannelContentDetails from JSON data */
@@ -1238,10 +1221,7 @@ class ChannelConversionPings {
   /** Create new ChannelConversionPings from JSON data */
   ChannelConversionPings.fromJson(core.Map json) {
     if (json.containsKey("pings")) {
-      pings = [];
-      json["pings"].forEach((item) {
-        pings.add(new ChannelConversionPing.fromJson(item));
-      });
+      pings = json["pings"].map((pingsItem) => new ChannelConversionPing.fromJson(pingsItem)).toList();
     }
   }
 
@@ -1250,10 +1230,7 @@ class ChannelConversionPings {
     var output = new core.Map();
 
     if (pings != null) {
-      output["pings"] = new core.List();
-      pings.forEach((item) {
-        output["pings"].add(item.toJson());
-      });
+      output["pings"] = pings.map((pingsItem) => pingsItem.toJson()).toList();
     }
 
     return output;
@@ -1300,10 +1277,7 @@ class ChannelListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Channel.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Channel.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1333,10 +1307,7 @@ class ChannelListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1413,10 +1384,7 @@ class ChannelSettings {
       featuredChannelsTitle = json["featuredChannelsTitle"];
     }
     if (json.containsKey("featuredChannelsUrls")) {
-      featuredChannelsUrls = [];
-      json["featuredChannelsUrls"].forEach((item) {
-        featuredChannelsUrls.add(item);
-      });
+      featuredChannelsUrls = json["featuredChannelsUrls"].toList();
     }
     if (json.containsKey("keywords")) {
       keywords = json["keywords"];
@@ -1458,10 +1426,7 @@ class ChannelSettings {
       output["featuredChannelsTitle"] = featuredChannelsTitle;
     }
     if (featuredChannelsUrls != null) {
-      output["featuredChannelsUrls"] = new core.List();
-      featuredChannelsUrls.forEach((item) {
-        output["featuredChannelsUrls"].add(item);
-      });
+      output["featuredChannelsUrls"] = featuredChannelsUrls.toList();
     }
     if (keywords != null) {
       output["keywords"] = keywords;
@@ -1655,10 +1620,7 @@ class ChannelTopicDetails {
   /** Create new ChannelTopicDetails from JSON data */
   ChannelTopicDetails.fromJson(core.Map json) {
     if (json.containsKey("topicIds")) {
-      topicIds = [];
-      json["topicIds"].forEach((item) {
-        topicIds.add(item);
-      });
+      topicIds = json["topicIds"].toList();
     }
   }
 
@@ -1667,10 +1629,7 @@ class ChannelTopicDetails {
     var output = new core.Map();
 
     if (topicIds != null) {
-      output["topicIds"] = new core.List();
-      topicIds.forEach((item) {
-        output["topicIds"].add(item);
-      });
+      output["topicIds"] = topicIds.toList();
     }
 
     return output;
@@ -1975,10 +1934,7 @@ class GuideCategoryListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new GuideCategory.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new GuideCategory.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1999,10 +1955,7 @@ class GuideCategoryListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2021,6 +1974,7 @@ class GuideCategoryListResponse {
 
 /** Basic details about a guide category. */
 class GuideCategorySnippet {
+
   core.String channelId;
 
   /** Description of the guide category. */
@@ -2338,28 +2292,25 @@ class InvideoPosition {
 /** Describes an invideo promotion campaign consisting of multiple promoted items. A campaign belongs to a single channel_id. */
 class InvideoPromotion {
 
+  /** The default temporal position within the video where the promoted item will be displayed. Can be overriden by more specific timing in the item. */
+  InvideoTiming defaultTiming;
+
   /** List of promoted items in decreasing priority. */
-  core.List<PromotedItemId> items;
+  core.List<PromotedItem> items;
 
   /** The spatial position within the video where the promoted item will be displayed. */
   InvideoPosition position;
 
-  /** The temporal position within the video where the promoted item will be displayed. */
-  InvideoTiming timing;
-
   /** Create new InvideoPromotion from JSON data */
   InvideoPromotion.fromJson(core.Map json) {
+    if (json.containsKey("defaultTiming")) {
+      defaultTiming = new InvideoTiming.fromJson(json["defaultTiming"]);
+    }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new PromotedItemId.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new PromotedItem.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("position")) {
       position = new InvideoPosition.fromJson(json["position"]);
-    }
-    if (json.containsKey("timing")) {
-      timing = new InvideoTiming.fromJson(json["timing"]);
     }
   }
 
@@ -2367,17 +2318,14 @@ class InvideoPromotion {
   core.Map toJson() {
     var output = new core.Map();
 
+    if (defaultTiming != null) {
+      output["defaultTiming"] = defaultTiming.toJson();
+    }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (position != null) {
       output["position"] = position.toJson();
-    }
-    if (timing != null) {
-      output["timing"] = timing.toJson();
     }
 
     return output;
@@ -2391,6 +2339,9 @@ class InvideoPromotion {
 /** Describes a temporal position of a visual widget inside a video. */
 class InvideoTiming {
 
+  /** Defines the duration in milliseconds for which the promotion should be displayed. If missing, the client should use the default. */
+  core.String durationMs;
+
   /** Defines the time at which the promotion will appear. Depending on the value of type the value of the offsetMs field will represent a time offset from the start or from the end of the video, expressed in milliseconds. */
   core.String offsetMs;
 
@@ -2399,6 +2350,9 @@ class InvideoTiming {
 
   /** Create new InvideoTiming from JSON data */
   InvideoTiming.fromJson(core.Map json) {
+    if (json.containsKey("durationMs")) {
+      durationMs = json["durationMs"];
+    }
     if (json.containsKey("offsetMs")) {
       offsetMs = json["offsetMs"];
     }
@@ -2411,6 +2365,9 @@ class InvideoTiming {
   core.Map toJson() {
     var output = new core.Map();
 
+    if (durationMs != null) {
+      output["durationMs"] = durationMs;
+    }
     if (offsetMs != null) {
       output["offsetMs"] = offsetMs;
     }
@@ -2627,10 +2584,7 @@ class LiveBroadcastList {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new LiveBroadcast.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new LiveBroadcast.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2660,10 +2614,7 @@ class LiveBroadcastList {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2992,10 +2943,7 @@ class LiveStreamList {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new LiveStream.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new LiveStream.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -3025,10 +2973,7 @@ class LiveStreamList {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -3111,6 +3056,7 @@ class LiveStreamSnippet {
 
 /** Brief description of the live stream status. */
 class LiveStreamStatus {
+
   core.String streamStatus;
 
   /** Create new LiveStreamStatus from JSON data */
@@ -3151,10 +3097,7 @@ class LocalizedProperty {
       defaultProperty = json["default"];
     }
     if (json.containsKey("localized")) {
-      localized = [];
-      json["localized"].forEach((item) {
-        localized.add(new LocalizedString.fromJson(item));
-      });
+      localized = json["localized"].map((localizedItem) => new LocalizedString.fromJson(localizedItem)).toList();
     }
   }
 
@@ -3166,10 +3109,7 @@ class LocalizedProperty {
       output["default"] = defaultProperty;
     }
     if (localized != null) {
-      output["localized"] = new core.List();
-      localized.forEach((item) {
-        output["localized"].add(item.toJson());
-      });
+      output["localized"] = localized.map((localizedItem) => localizedItem.toJson()).toList();
     }
 
     return output;
@@ -3513,27 +3453,27 @@ class PlaylistItem {
 class PlaylistItemContentDetails {
 
   /** The time, measured in seconds from the start of the video, when the video should stop playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) By default, assume that the video.endTime is the end of the video. */
-  core.String endAtMs;
+  core.String endAt;
 
   /** A user-generated note for this item. */
   core.String note;
 
   /** The time, measured in seconds from the start of the video, when the video should start playing. (The playlist owner can specify the times when the video should start and stop playing when the video is played in the context of the playlist.) The default value is 0. */
-  core.String startAtMs;
+  core.String startAt;
 
   /** The ID that YouTube uses to uniquely identify a video. To retrieve the video resource, set the id query parameter to this value in your API request. */
   core.String videoId;
 
   /** Create new PlaylistItemContentDetails from JSON data */
   PlaylistItemContentDetails.fromJson(core.Map json) {
-    if (json.containsKey("endAtMs")) {
-      endAtMs = json["endAtMs"];
+    if (json.containsKey("endAt")) {
+      endAt = json["endAt"];
     }
     if (json.containsKey("note")) {
       note = json["note"];
     }
-    if (json.containsKey("startAtMs")) {
-      startAtMs = json["startAtMs"];
+    if (json.containsKey("startAt")) {
+      startAt = json["startAt"];
     }
     if (json.containsKey("videoId")) {
       videoId = json["videoId"];
@@ -3544,14 +3484,14 @@ class PlaylistItemContentDetails {
   core.Map toJson() {
     var output = new core.Map();
 
-    if (endAtMs != null) {
-      output["endAtMs"] = endAtMs;
+    if (endAt != null) {
+      output["endAt"] = endAt;
     }
     if (note != null) {
       output["note"] = note;
     }
-    if (startAtMs != null) {
-      output["startAtMs"] = startAtMs;
+    if (startAt != null) {
+      output["startAt"] = startAt;
     }
     if (videoId != null) {
       output["videoId"] = videoId;
@@ -3601,10 +3541,7 @@ class PlaylistItemListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new PlaylistItem.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new PlaylistItem.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -3634,10 +3571,7 @@ class PlaylistItemListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -3829,10 +3763,7 @@ class PlaylistListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Playlist.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Playlist.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -3862,10 +3793,7 @@ class PlaylistListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -3958,10 +3886,7 @@ class PlaylistSnippet {
       publishedAt = json["publishedAt"];
     }
     if (json.containsKey("tags")) {
-      tags = [];
-      json["tags"].forEach((item) {
-        tags.add(item);
-      });
+      tags = json["tags"].toList();
     }
     if (json.containsKey("thumbnails")) {
       thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
@@ -3988,10 +3913,7 @@ class PlaylistSnippet {
       output["publishedAt"] = publishedAt;
     }
     if (tags != null) {
-      output["tags"] = new core.List();
-      tags.forEach((item) {
-        output["tags"].add(item);
-      });
+      output["tags"] = tags.toList();
     }
     if (thumbnails != null) {
       output["thumbnails"] = thumbnails.toJson();
@@ -4036,7 +3958,54 @@ class PlaylistStatus {
 
 }
 
-/** Describes a single promoted item. It is a union of various possible types. */
+/** Describes a single promoted item. */
+class PromotedItem {
+
+  /** A custom message to display for this promotion. This field is currently ignored unless the promoted item is a website. */
+  core.String customMessage;
+
+  /** Identifies the promoted item. */
+  PromotedItemId id;
+
+  /** The temporal position within the video where the promoted item will be displayed. If present, it overrides the default timing. */
+  InvideoTiming timing;
+
+  /** Create new PromotedItem from JSON data */
+  PromotedItem.fromJson(core.Map json) {
+    if (json.containsKey("customMessage")) {
+      customMessage = json["customMessage"];
+    }
+    if (json.containsKey("id")) {
+      id = new PromotedItemId.fromJson(json["id"]);
+    }
+    if (json.containsKey("timing")) {
+      timing = new InvideoTiming.fromJson(json["timing"]);
+    }
+  }
+
+  /** Create JSON Object for PromotedItem */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (customMessage != null) {
+      output["customMessage"] = customMessage;
+    }
+    if (id != null) {
+      output["id"] = id.toJson();
+    }
+    if (timing != null) {
+      output["timing"] = timing.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of PromotedItem */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** Describes a single promoted item id. It is a union of various possible types. */
 class PromotedItemId {
 
   /** Describes the type of the promoted item. */
@@ -4045,6 +4014,9 @@ class PromotedItemId {
   /** If the promoted item represents a video, this field represents the unique YouTube ID identifying it. This field will be present only if type has the value video. */
   core.String videoId;
 
+  /** If the promoted item represents a website, this field represents the url pointing to the website. This field will be present only if type has the value website. */
+  core.String websiteUrl;
+
   /** Create new PromotedItemId from JSON data */
   PromotedItemId.fromJson(core.Map json) {
     if (json.containsKey("type")) {
@@ -4052,6 +4024,9 @@ class PromotedItemId {
     }
     if (json.containsKey("videoId")) {
       videoId = json["videoId"];
+    }
+    if (json.containsKey("websiteUrl")) {
+      websiteUrl = json["websiteUrl"];
     }
   }
 
@@ -4064,6 +4039,9 @@ class PromotedItemId {
     }
     if (videoId != null) {
       output["videoId"] = videoId;
+    }
+    if (websiteUrl != null) {
+      output["websiteUrl"] = websiteUrl;
     }
 
     return output;
@@ -4204,10 +4182,7 @@ class SearchListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new SearchResult.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new SearchResult.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -4237,10 +4212,7 @@ class SearchListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -4473,6 +4445,9 @@ class Subscription {
 /** Details about the content to witch a subscription refers. */
 class SubscriptionContentDetails {
 
+  /** The type of activity this subscription is for (only uploads, everything). */
+  core.String activityType;
+
   /** The number of new items in the subscription since its content was last read. */
   core.int newItemCount;
 
@@ -4481,6 +4456,9 @@ class SubscriptionContentDetails {
 
   /** Create new SubscriptionContentDetails from JSON data */
   SubscriptionContentDetails.fromJson(core.Map json) {
+    if (json.containsKey("activityType")) {
+      activityType = json["activityType"];
+    }
     if (json.containsKey("newItemCount")) {
       newItemCount = json["newItemCount"];
     }
@@ -4493,6 +4471,9 @@ class SubscriptionContentDetails {
   core.Map toJson() {
     var output = new core.Map();
 
+    if (activityType != null) {
+      output["activityType"] = activityType;
+    }
     if (newItemCount != null) {
       output["newItemCount"] = newItemCount;
     }
@@ -4544,10 +4525,7 @@ class SubscriptionListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Subscription.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Subscription.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -4577,10 +4555,7 @@ class SubscriptionListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -4878,10 +4853,7 @@ class ThumbnailListResponse {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new ThumbnailDetails.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new ThumbnailDetails.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -4899,10 +4871,7 @@ class ThumbnailListResponse {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -5223,10 +5192,7 @@ class VideoCategoryListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new VideoCategory.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new VideoCategory.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -5247,10 +5213,7 @@ class VideoCategoryListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -5409,16 +5372,10 @@ class VideoContentDetailsRegionRestriction {
   /** Create new VideoContentDetailsRegionRestriction from JSON data */
   VideoContentDetailsRegionRestriction.fromJson(core.Map json) {
     if (json.containsKey("allowed")) {
-      allowed = [];
-      json["allowed"].forEach((item) {
-        allowed.add(item);
-      });
+      allowed = json["allowed"].toList();
     }
     if (json.containsKey("blocked")) {
-      blocked = [];
-      json["blocked"].forEach((item) {
-        blocked.add(item);
-      });
+      blocked = json["blocked"].toList();
     }
   }
 
@@ -5427,16 +5384,10 @@ class VideoContentDetailsRegionRestriction {
     var output = new core.Map();
 
     if (allowed != null) {
-      output["allowed"] = new core.List();
-      allowed.forEach((item) {
-        output["allowed"].add(item);
-      });
+      output["allowed"] = allowed.toList();
     }
     if (blocked != null) {
-      output["blocked"] = new core.List();
-      blocked.forEach((item) {
-        output["blocked"].add(item);
-      });
+      output["blocked"] = blocked.toList();
     }
 
     return output;
@@ -5492,10 +5443,7 @@ class VideoConversionPings {
   /** Create new VideoConversionPings from JSON data */
   VideoConversionPings.fromJson(core.Map json) {
     if (json.containsKey("pings")) {
-      pings = [];
-      json["pings"].forEach((item) {
-        pings.add(new VideoConversionPing.fromJson(item));
-      });
+      pings = json["pings"].map((pingsItem) => new VideoConversionPing.fromJson(pingsItem)).toList();
     }
   }
 
@@ -5504,10 +5452,7 @@ class VideoConversionPings {
     var output = new core.Map();
 
     if (pings != null) {
-      output["pings"] = new core.List();
-      pings.forEach((item) {
-        output["pings"].add(item.toJson());
-      });
+      output["pings"] = pings.map((pingsItem) => pingsItem.toJson()).toList();
     }
 
     return output;
@@ -5557,10 +5502,7 @@ class VideoFileDetails {
   /** Create new VideoFileDetails from JSON data */
   VideoFileDetails.fromJson(core.Map json) {
     if (json.containsKey("audioStreams")) {
-      audioStreams = [];
-      json["audioStreams"].forEach((item) {
-        audioStreams.add(new VideoFileDetailsAudioStream.fromJson(item));
-      });
+      audioStreams = json["audioStreams"].map((audioStreamsItem) => new VideoFileDetailsAudioStream.fromJson(audioStreamsItem)).toList();
     }
     if (json.containsKey("bitrateBps")) {
       bitrateBps = json["bitrateBps"];
@@ -5587,10 +5529,7 @@ class VideoFileDetails {
       recordingLocation = new GeoPoint.fromJson(json["recordingLocation"]);
     }
     if (json.containsKey("videoStreams")) {
-      videoStreams = [];
-      json["videoStreams"].forEach((item) {
-        videoStreams.add(new VideoFileDetailsVideoStream.fromJson(item));
-      });
+      videoStreams = json["videoStreams"].map((videoStreamsItem) => new VideoFileDetailsVideoStream.fromJson(videoStreamsItem)).toList();
     }
   }
 
@@ -5599,10 +5538,7 @@ class VideoFileDetails {
     var output = new core.Map();
 
     if (audioStreams != null) {
-      output["audioStreams"] = new core.List();
-      audioStreams.forEach((item) {
-        output["audioStreams"].add(item.toJson());
-      });
+      output["audioStreams"] = audioStreams.map((audioStreamsItem) => audioStreamsItem.toJson()).toList();
     }
     if (bitrateBps != null) {
       output["bitrateBps"] = bitrateBps;
@@ -5629,10 +5565,7 @@ class VideoFileDetails {
       output["recordingLocation"] = recordingLocation.toJson();
     }
     if (videoStreams != null) {
-      output["videoStreams"] = new core.List();
-      videoStreams.forEach((item) {
-        output["videoStreams"].add(item.toJson());
-      });
+      output["videoStreams"] = videoStreams.map((videoStreamsItem) => videoStreamsItem.toJson()).toList();
     }
 
     return output;
@@ -5723,7 +5656,7 @@ class VideoFileDetailsVideoStream {
   /** A value that uniquely identifies a video vendor. Typically, the value is a four-letter vendor code. */
   core.String vendor;
 
-  /** The encoded video content's width in pixels. You can calculate the video's encoding aspect ratio as width_pixelsÂ /Â height_pixels. */
+  /** The encoded video content's width in pixels. You can calculate the video's encoding aspect ratio as width_pixels / height_pixels. */
   core.int widthPixels;
 
   /** Create new VideoFileDetailsVideoStream from JSON data */
@@ -5809,10 +5742,7 @@ class VideoGetRatingResponse {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new VideoRating.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new VideoRating.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -5827,10 +5757,7 @@ class VideoGetRatingResponse {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -5880,10 +5807,7 @@ class VideoListResponse {
       eventId = json["eventId"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Video.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Video.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -5913,10 +5837,7 @@ class VideoListResponse {
       output["eventId"] = eventId;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -6151,10 +6072,7 @@ class VideoProjectDetails {
   /** Create new VideoProjectDetails from JSON data */
   VideoProjectDetails.fromJson(core.Map json) {
     if (json.containsKey("tags")) {
-      tags = [];
-      json["tags"].forEach((item) {
-        tags.add(item);
-      });
+      tags = json["tags"].toList();
     }
   }
 
@@ -6163,10 +6081,7 @@ class VideoProjectDetails {
     var output = new core.Map();
 
     if (tags != null) {
-      output["tags"] = new core.List();
-      tags.forEach((item) {
-        output["tags"].add(item);
-      });
+      output["tags"] = tags.toList();
     }
 
     return output;
@@ -6307,10 +6222,7 @@ class VideoSnippet {
       publishedAt = json["publishedAt"];
     }
     if (json.containsKey("tags")) {
-      tags = [];
-      json["tags"].forEach((item) {
-        tags.add(item);
-      });
+      tags = json["tags"].toList();
     }
     if (json.containsKey("thumbnails")) {
       thumbnails = new ThumbnailDetails.fromJson(json["thumbnails"]);
@@ -6340,10 +6252,7 @@ class VideoSnippet {
       output["publishedAt"] = publishedAt;
     }
     if (tags != null) {
-      output["tags"] = new core.List();
-      tags.forEach((item) {
-        output["tags"].add(item);
-      });
+      output["tags"] = tags.toList();
     }
     if (thumbnails != null) {
       output["thumbnails"] = thumbnails.toJson();
@@ -6529,34 +6438,19 @@ class VideoSuggestions {
   /** Create new VideoSuggestions from JSON data */
   VideoSuggestions.fromJson(core.Map json) {
     if (json.containsKey("editorSuggestions")) {
-      editorSuggestions = [];
-      json["editorSuggestions"].forEach((item) {
-        editorSuggestions.add(item);
-      });
+      editorSuggestions = json["editorSuggestions"].toList();
     }
     if (json.containsKey("processingErrors")) {
-      processingErrors = [];
-      json["processingErrors"].forEach((item) {
-        processingErrors.add(item);
-      });
+      processingErrors = json["processingErrors"].toList();
     }
     if (json.containsKey("processingHints")) {
-      processingHints = [];
-      json["processingHints"].forEach((item) {
-        processingHints.add(item);
-      });
+      processingHints = json["processingHints"].toList();
     }
     if (json.containsKey("processingWarnings")) {
-      processingWarnings = [];
-      json["processingWarnings"].forEach((item) {
-        processingWarnings.add(item);
-      });
+      processingWarnings = json["processingWarnings"].toList();
     }
     if (json.containsKey("tagSuggestions")) {
-      tagSuggestions = [];
-      json["tagSuggestions"].forEach((item) {
-        tagSuggestions.add(new VideoSuggestionsTagSuggestion.fromJson(item));
-      });
+      tagSuggestions = json["tagSuggestions"].map((tagSuggestionsItem) => new VideoSuggestionsTagSuggestion.fromJson(tagSuggestionsItem)).toList();
     }
   }
 
@@ -6565,34 +6459,19 @@ class VideoSuggestions {
     var output = new core.Map();
 
     if (editorSuggestions != null) {
-      output["editorSuggestions"] = new core.List();
-      editorSuggestions.forEach((item) {
-        output["editorSuggestions"].add(item);
-      });
+      output["editorSuggestions"] = editorSuggestions.toList();
     }
     if (processingErrors != null) {
-      output["processingErrors"] = new core.List();
-      processingErrors.forEach((item) {
-        output["processingErrors"].add(item);
-      });
+      output["processingErrors"] = processingErrors.toList();
     }
     if (processingHints != null) {
-      output["processingHints"] = new core.List();
-      processingHints.forEach((item) {
-        output["processingHints"].add(item);
-      });
+      output["processingHints"] = processingHints.toList();
     }
     if (processingWarnings != null) {
-      output["processingWarnings"] = new core.List();
-      processingWarnings.forEach((item) {
-        output["processingWarnings"].add(item);
-      });
+      output["processingWarnings"] = processingWarnings.toList();
     }
     if (tagSuggestions != null) {
-      output["tagSuggestions"] = new core.List();
-      tagSuggestions.forEach((item) {
-        output["tagSuggestions"].add(item.toJson());
-      });
+      output["tagSuggestions"] = tagSuggestions.map((tagSuggestionsItem) => tagSuggestionsItem.toJson()).toList();
     }
 
     return output;
@@ -6615,10 +6494,7 @@ class VideoSuggestionsTagSuggestion {
   /** Create new VideoSuggestionsTagSuggestion from JSON data */
   VideoSuggestionsTagSuggestion.fromJson(core.Map json) {
     if (json.containsKey("categoryRestricts")) {
-      categoryRestricts = [];
-      json["categoryRestricts"].forEach((item) {
-        categoryRestricts.add(item);
-      });
+      categoryRestricts = json["categoryRestricts"].toList();
     }
     if (json.containsKey("tag")) {
       tag = json["tag"];
@@ -6630,10 +6506,7 @@ class VideoSuggestionsTagSuggestion {
     var output = new core.Map();
 
     if (categoryRestricts != null) {
-      output["categoryRestricts"] = new core.List();
-      categoryRestricts.forEach((item) {
-        output["categoryRestricts"].add(item);
-      });
+      output["categoryRestricts"] = categoryRestricts.toList();
     }
     if (tag != null) {
       output["tag"] = tag;
@@ -6650,16 +6523,19 @@ class VideoSuggestionsTagSuggestion {
 /** Freebase topic information related to the video. */
 class VideoTopicDetails {
 
-  /** A list of Freebase topic IDs associated with the video. You can retrieve information about each topic using the Freebase Topic API. */
+  /** Similar to topic_id, except that these topics are merely relevant to the video. These are topics that may be mentioned in, or appear in the video. You can retrieve information about each topic using Freebase Topic API. */
+  core.List<core.String> relevantTopicIds;
+
+  /** A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the Freebase Topic API. */
   core.List<core.String> topicIds;
 
   /** Create new VideoTopicDetails from JSON data */
   VideoTopicDetails.fromJson(core.Map json) {
+    if (json.containsKey("relevantTopicIds")) {
+      relevantTopicIds = json["relevantTopicIds"].toList();
+    }
     if (json.containsKey("topicIds")) {
-      topicIds = [];
-      json["topicIds"].forEach((item) {
-        topicIds.add(item);
-      });
+      topicIds = json["topicIds"].toList();
     }
   }
 
@@ -6667,11 +6543,11 @@ class VideoTopicDetails {
   core.Map toJson() {
     var output = new core.Map();
 
+    if (relevantTopicIds != null) {
+      output["relevantTopicIds"] = relevantTopicIds.toList();
+    }
     if (topicIds != null) {
-      output["topicIds"] = new core.List();
-      topicIds.forEach((item) {
-        output["topicIds"].add(item);
-      });
+      output["topicIds"] = topicIds.toList();
     }
 
     return output;
@@ -6729,3 +6605,16 @@ class WatchSettings {
 
 }
 
+core.Map _mapMap(core.Map source, [core.Object convert(core.Object source) = null]) {
+  assert(source != null);
+  var result = new dart_collection.LinkedHashMap();
+  source.forEach((core.String key, value) {
+    assert(key != null);
+    if(convert == null) {
+      result[key] = value;
+    } else {
+      result[key] = convert(value);
+    }
+  });
+  return result;
+}

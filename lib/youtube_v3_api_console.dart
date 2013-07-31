@@ -1,14 +1,27 @@
-library youtube_v3_api_console;
+library youtube_v3_api.console;
 
-import "youtube_v3_api_client.dart";
-export "youtube_v3_api_client.dart";
-
-import "dart:core" as core;
-import "dart:io" as io;
-import "dart:async" as async;
-import "dart:json" as JSON;
-import "package:http/http.dart" as http;
 import "package:google_oauth2_client/google_oauth2_console.dart" as oauth2;
 
-part "src/console/console_client.dart";
-part "src/console/youtube.dart";
+import 'package:google_youtube_v3_api/src/cloud_api_console.dart';
+
+import "package:google_youtube_v3_api/youtube_v3_api_client.dart";
+
+/** Programmatic access to YouTube features. */
+class Youtube extends Client with ConsoleClient {
+
+  /** OAuth Scope2: Manage your YouTube account */
+  static const String YOUTUBE_SCOPE = "https://www.googleapis.com/auth/youtube";
+
+  /** OAuth Scope2: View your YouTube account */
+  static const String YOUTUBE_READONLY_SCOPE = "https://www.googleapis.com/auth/youtube.readonly";
+
+  /** OAuth Scope2: Manage your YouTube videos */
+  static const String YOUTUBE_UPLOAD_SCOPE = "https://www.googleapis.com/auth/youtube.upload";
+
+  /** OAuth Scope2: View and manage your assets and associated content on YouTube */
+  static const String YOUTUBEPARTNER_SCOPE = "https://www.googleapis.com/auth/youtubepartner";
+
+  final oauth2.OAuth2Console auth;
+
+  Youtube([oauth2.OAuth2Console this.auth]);
+}
