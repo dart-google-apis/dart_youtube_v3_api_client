@@ -21,6 +21,7 @@ abstract class Client extends ClientBase {
   ThumbnailsResource_ get thumbnails => new ThumbnailsResource_(this);
   VideoCategoriesResource_ get videoCategories => new VideoCategoriesResource_(this);
   VideosResource_ get videos => new VideosResource_(this);
+  WatermarksResource_ get watermarks => new WatermarksResource_(this);
 
   //
   // Parameters
