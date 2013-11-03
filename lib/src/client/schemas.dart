@@ -50,7 +50,7 @@ class Activity {
   /** The ID that YouTube uses to uniquely identify the activity. */
   core.String id;
 
-  /** The kind, fixed to "youtube#activity". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#activity". */
   core.String kind;
 
   /** The snippet object contains basic details about the activity, including the activity's type and group ID. */
@@ -705,7 +705,7 @@ class ActivityListResponse {
   /** A list of activities, or events, that match the request criteria. */
   core.List<Activity> items;
 
-  /** The kind, fixed to "youtube#activityListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#activityListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -955,7 +955,7 @@ class Channel {
   /** The invideoPromotion object encapsulates information about promotion campaign associated with the channel. */
   InvideoPromotion invideoPromotion;
 
-  /** The kind, fixed to "youtube#channel". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#channel". */
   core.String kind;
 
   /** The snippet object contains basic details about the channel, such as its title, description, and thumbnail images. */
@@ -1121,7 +1121,7 @@ class ChannelBannerResource {
   /** Etag of this resource. */
   core.String etag;
 
-  /** The kind, fixed to "youtube#channelBannerResource". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#channelBannerResource". */
   core.String kind;
 
   /** The URL of this banner image. */
@@ -1397,7 +1397,7 @@ class ChannelListResponse {
   /** A list of channels that match the request criteria. */
   core.List<Channel> items;
 
-  /** The kind, fixed to "youtube#channelListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#channelListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -1809,6 +1809,12 @@ class ContentRating {
   /** British Board of Film Classification */
   core.String bbfcRating;
 
+  /** Rating system for Canadian TV - Canadian TV Classification System */
+  core.String catvRating;
+
+  /** Rating system for French Canadian TV - Regie du cinema */
+  core.String catvfrRating;
+
   /** Rating system in India - Central Board of Film Certification */
   core.String cbfcRating;
 
@@ -1861,6 +1867,12 @@ class ContentRating {
     }
     if (json.containsKey("bbfcRating")) {
       bbfcRating = json["bbfcRating"];
+    }
+    if (json.containsKey("catvRating")) {
+      catvRating = json["catvRating"];
+    }
+    if (json.containsKey("catvfrRating")) {
+      catvfrRating = json["catvfrRating"];
     }
     if (json.containsKey("cbfcRating")) {
       cbfcRating = json["cbfcRating"];
@@ -1918,6 +1930,12 @@ class ContentRating {
     }
     if (bbfcRating != null) {
       output["bbfcRating"] = bbfcRating;
+    }
+    if (catvRating != null) {
+      output["catvRating"] = catvRating;
+    }
+    if (catvfrRating != null) {
+      output["catvfrRating"] = catvfrRating;
     }
     if (cbfcRating != null) {
       output["cbfcRating"] = cbfcRating;
@@ -2029,7 +2047,7 @@ class GuideCategory {
   /** The ID that YouTube uses to uniquely identify the guide category. */
   core.String id;
 
-  /** The kind, fixed to "youtube#guideCategory". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#guideCategory". */
   core.String kind;
 
   /** The snippet object contains basic details about the category, such as its title. */
@@ -2087,7 +2105,7 @@ class GuideCategoryListResponse {
   /** A list of categories that can be associated with YouTube channels. In this map, the category ID is the map key, and its value is the corresponding guideCategory resource. */
   core.List<GuideCategory> items;
 
-  /** The kind, fixed to "youtube#guideCategoryListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#guideCategoryListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -2683,7 +2701,7 @@ class LiveBroadcast {
   /** The ID that YouTube assigns to uniquely identify the broadcast. */
   core.String id;
 
-  /** The kind, fixed to "youtube#liveBroadcast". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#liveBroadcast". */
   core.String kind;
 
   /** The snippet object contains basic details about the event, including its title, description, start time, and end time. */
@@ -2856,7 +2874,7 @@ class LiveBroadcastListResponse {
   /** A list of broadcasts that match the request criteria. */
   core.List<LiveBroadcast> items;
 
-  /** The kind, fixed to "youtube#liveBroadcastListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#liveBroadcastListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -3104,7 +3122,7 @@ class LiveStream {
   /** The ID that YouTube assigns to uniquely identify the stream. */
   core.String id;
 
-  /** The kind, fixed to "youtube#liveStream". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#liveStream". */
   core.String kind;
 
   /** The snippet object contains basic details about the stream, including its channel, title, and description. */
@@ -3212,7 +3230,7 @@ class LiveStreamListResponse {
   /** A list of live streams that match the request criteria. */
   core.List<LiveStream> items;
 
-  /** The kind, fixed to "youtube#liveStreamListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#liveStreamListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -3568,7 +3586,7 @@ class Playlist {
   /** The ID that YouTube uses to uniquely identify the playlist. */
   core.String id;
 
-  /** The kind, fixed to "youtube#playlist". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#playlist". */
   core.String kind;
 
   /** The player object contains information that you would use to play the playlist in an embedded player. */
@@ -3688,7 +3706,7 @@ class PlaylistItem {
   /** The ID that YouTube uses to uniquely identify the playlist item. */
   core.String id;
 
-  /** The kind, fixed to "youtube#playlistItem". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItem". */
   core.String kind;
 
   /** The snippet object contains basic details about the playlist item, such as its title and position in the playlist. */
@@ -3816,7 +3834,7 @@ class PlaylistItemListResponse {
   /** A list of playlist items that match the request criteria. */
   core.List<PlaylistItem> items;
 
-  /** The kind, fixed to "youtube#playlistItemListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItemListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -4044,7 +4062,7 @@ class PlaylistListResponse {
   /** A list of playlists that match the request criteria. */
   core.List<Playlist> items;
 
-  /** The kind, fixed to "youtube#playlistListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#playlistListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -4487,7 +4505,7 @@ class SearchListResponse {
   /** A list of results that match the search criteria. */
   core.List<SearchResult> items;
 
-  /** The kind, fixed to "youtube#searchListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#searchListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -4583,7 +4601,7 @@ class SearchResult {
   /** The id object contains information that can be used to uniquely identify the resource that matches the search request. */
   ResourceId id;
 
-  /** The kind, fixed to "youtube#searchResult". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#searchResult". */
   core.String kind;
 
   /** The snippet object contains basic details about a search result, such as its title or description. For example, if the search result is a video, then the title will be the video's title and the description will be the video's description. */
@@ -4725,7 +4743,7 @@ class Subscription {
   /** The ID that YouTube uses to uniquely identify the subscription. */
   core.String id;
 
-  /** The kind, fixed to "youtube#subscription". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#subscription". */
   core.String kind;
 
   /** The snippet object contains basic details about the subscription, including its title and the channel that the user subscribed to. */
@@ -4845,7 +4863,7 @@ class SubscriptionListResponse {
   /** A list of subscriptions that match the request criteria. */
   core.List<Subscription> items;
 
-  /** The kind, fixed to "youtube#subscriptionListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#subscriptionListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -5194,7 +5212,7 @@ class ThumbnailSetResponse {
   /** A list of thumbnails. */
   core.List<ThumbnailDetails> items;
 
-  /** The kind, fixed to "youtube#thumbnailSetResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#thumbnailSetResponse". */
   core.String kind;
 
   /** The visitorId identifies the visitor. */
@@ -5288,7 +5306,7 @@ class Video {
   /** The ID that YouTube uses to uniquely identify the video. */
   core.String id;
 
-  /** The kind, fixed to "youtube#video". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#video". */
   core.String kind;
 
   /** The liveStreamingDetails object contains information regarding the livestream */
@@ -5506,7 +5524,7 @@ class VideoCategory {
   /** The ID that YouTube uses to uniquely identify the video category. */
   core.String id;
 
-  /** The kind, fixed to "youtube#videoCategory". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#videoCategory". */
   core.String kind;
 
   /** The snippet object contains basic details about the video category, including its title. */
@@ -5564,7 +5582,7 @@ class VideoCategoryListResponse {
   /** A list of video categories that can be associated with YouTube videos. In this map, the video category ID is the map key, and its value is the corresponding videoCategory resource. */
   core.List<VideoCategory> items;
 
-  /** The kind, fixed to "youtube#videoCategoryListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#videoCategoryListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -6161,7 +6179,7 @@ class VideoGetRatingResponse {
   /** A list of ratings that match the request criteria. */
   core.List<VideoRating> items;
 
-  /** The kind, fixed to "youtube#videoGetRatingResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#videoGetRatingResponse". */
   core.String kind;
 
   /** Create new VideoGetRatingResponse from JSON data */
@@ -6210,7 +6228,7 @@ class VideoListResponse {
   /** A list of videos that match the request criteria. */
   core.List<Video> items;
 
-  /** The kind, fixed to "youtube#videoListResponse". */
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#videoListResponse". */
   core.String kind;
 
   /** The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set. */
@@ -6301,36 +6319,36 @@ class VideoListResponse {
 class VideoLiveStreamingDetails {
 
   /** The time in milliseconds since the epoch when the livestream actually ended. */
-  core.String actualEndTimeMs;
+  core.String actualEndTime;
 
   /** The time in milliseconds since the epoch when the livestream actually started. */
-  core.String actualStartTimeMs;
+  core.String actualStartTime;
 
   /** Number of viewers currently watch the livestream. */
   core.String concurrentViewers;
 
   /** The time in milliseconds since the epoch when the livestream is scheduled to end. */
-  core.String scheduledEndTimeMs;
+  core.String scheduledEndTime;
 
   /** The time in milliseconds since the epoch when the livestream is scheduled to start. */
-  core.String scheduledStartTimeMs;
+  core.String scheduledStartTime;
 
   /** Create new VideoLiveStreamingDetails from JSON data */
   VideoLiveStreamingDetails.fromJson(core.Map json) {
-    if (json.containsKey("actualEndTimeMs")) {
-      actualEndTimeMs = json["actualEndTimeMs"];
+    if (json.containsKey("actualEndTime")) {
+      actualEndTime = json["actualEndTime"];
     }
-    if (json.containsKey("actualStartTimeMs")) {
-      actualStartTimeMs = json["actualStartTimeMs"];
+    if (json.containsKey("actualStartTime")) {
+      actualStartTime = json["actualStartTime"];
     }
     if (json.containsKey("concurrentViewers")) {
       concurrentViewers = json["concurrentViewers"];
     }
-    if (json.containsKey("scheduledEndTimeMs")) {
-      scheduledEndTimeMs = json["scheduledEndTimeMs"];
+    if (json.containsKey("scheduledEndTime")) {
+      scheduledEndTime = json["scheduledEndTime"];
     }
-    if (json.containsKey("scheduledStartTimeMs")) {
-      scheduledStartTimeMs = json["scheduledStartTimeMs"];
+    if (json.containsKey("scheduledStartTime")) {
+      scheduledStartTime = json["scheduledStartTime"];
     }
   }
 
@@ -6338,20 +6356,20 @@ class VideoLiveStreamingDetails {
   core.Map toJson() {
     var output = new core.Map();
 
-    if (actualEndTimeMs != null) {
-      output["actualEndTimeMs"] = actualEndTimeMs;
+    if (actualEndTime != null) {
+      output["actualEndTime"] = actualEndTime;
     }
-    if (actualStartTimeMs != null) {
-      output["actualStartTimeMs"] = actualStartTimeMs;
+    if (actualStartTime != null) {
+      output["actualStartTime"] = actualStartTime;
     }
     if (concurrentViewers != null) {
       output["concurrentViewers"] = concurrentViewers;
     }
-    if (scheduledEndTimeMs != null) {
-      output["scheduledEndTimeMs"] = scheduledEndTimeMs;
+    if (scheduledEndTime != null) {
+      output["scheduledEndTime"] = scheduledEndTime;
     }
-    if (scheduledStartTimeMs != null) {
-      output["scheduledStartTimeMs"] = scheduledStartTimeMs;
+    if (scheduledStartTime != null) {
+      output["scheduledStartTime"] = scheduledStartTime;
     }
 
     return output;

@@ -886,14 +886,17 @@ class PlaylistItemsResource_ {
 
 The part names that you can include in the parameter value are snippet, contentDetails, and status.
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<PlaylistItem> insert(PlaylistItem request, core.String part, {core.Map optParams}) {
+  async.Future<PlaylistItem> insert(PlaylistItem request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -928,6 +931,8 @@ If the parameter identifies a property that contains child properties, the child
    *   Minimum: 0
    *   Maximum: 50
    *
+   * [onBehalfOfContentOwner] - USE_DESCRIPTION --- channels:list:onBehalfOfContentOwner
+   *
    * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
    *
    * [playlistId] - The playlistId parameter specifies the unique ID of the playlist for which you want to retrieve playlist items. Note that even though this is an optional parameter, every request to retrieve playlist items must specify a value for either the id parameter or the playlistId parameter.
@@ -936,7 +941,7 @@ If the parameter identifies a property that contains child properties, the child
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<PlaylistItemListResponse> list(core.String part, {core.String id, core.int maxResults, core.String pageToken, core.String playlistId, core.String videoId, core.Map optParams}) {
+  async.Future<PlaylistItemListResponse> list(core.String part, {core.String id, core.int maxResults, core.String onBehalfOfContentOwner, core.String pageToken, core.String playlistId, core.String videoId, core.Map optParams}) {
     var url = "playlistItems";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -944,6 +949,7 @@ If the parameter identifies a property that contains child properties, the child
     var paramErrors = new core.List();
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
