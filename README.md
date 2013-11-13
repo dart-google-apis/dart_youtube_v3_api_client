@@ -14,7 +14,7 @@ Adding dependency to pubspec.yaml
 
 ```
   dependencies:
-    google_youtube_v3_api: '>=0.4.10'
+    google_youtube_v3_api: '>=0.4.11'
 ```
 
 For web applications:
@@ -29,13 +29,13 @@ For console application:
   import "package:google_youtube_v3_api/youtube_v3_api_console.dart" as youtubeclient;
 ```
 
-Working with out authentication the following constructor can be called:
+Working without authentication the following constructor can be called:
 
 ```
   var youtube = new youtubeclient.Youtube();
 ```
 
-Working with authentication then create a new `GoogleOAuth2` object and pass it to the constructor:
+To use authentication create a new `GoogleOAuth2` object and pass it to the constructor:
 
 
 ```

@@ -439,10 +439,10 @@ class ActivityContentDetailsPromotedItem {
   core.String destinationUrl;
 
   /** The list of forecasting URLs. The client should ping all of these URLs when a promoted item is not available, to indicate that a promoted item could have been shown. */
-  core.List<core.String> forecastingUrls;
+  core.List<core.String> forecastingUrl;
 
   /** The list of impression URLs. The client should ping all of these URLs to indicate that the user was shown this promoted item. */
-  core.List<core.String> impressionUrls;
+  core.List<core.String> impressionUrl;
 
   /** The ID that YouTube uses to uniquely identify the promoted video. */
   core.String videoId;
@@ -470,11 +470,11 @@ class ActivityContentDetailsPromotedItem {
     if (json.containsKey("destinationUrl")) {
       destinationUrl = json["destinationUrl"];
     }
-    if (json.containsKey("forecastingUrls")) {
-      forecastingUrls = json["forecastingUrls"].toList();
+    if (json.containsKey("forecastingUrl")) {
+      forecastingUrl = json["forecastingUrl"].toList();
     }
-    if (json.containsKey("impressionUrls")) {
-      impressionUrls = json["impressionUrls"].toList();
+    if (json.containsKey("impressionUrl")) {
+      impressionUrl = json["impressionUrl"].toList();
     }
     if (json.containsKey("videoId")) {
       videoId = json["videoId"];
@@ -506,11 +506,11 @@ class ActivityContentDetailsPromotedItem {
     if (destinationUrl != null) {
       output["destinationUrl"] = destinationUrl;
     }
-    if (forecastingUrls != null) {
-      output["forecastingUrls"] = forecastingUrls.toList();
+    if (forecastingUrl != null) {
+      output["forecastingUrl"] = forecastingUrl.toList();
     }
-    if (impressionUrls != null) {
-      output["impressionUrls"] = impressionUrls.toList();
+    if (impressionUrl != null) {
+      output["impressionUrl"] = impressionUrl.toList();
     }
     if (videoId != null) {
       output["videoId"] = videoId;
@@ -5309,7 +5309,7 @@ class Video {
   /** Identifies what kind of resource this is. Value: the fixed string "youtube#video". */
   core.String kind;
 
-  /** The liveStreamingDetails object contains information regarding the livestream */
+  /** The liveStreamingDetails object contains metadata about a live video broadcast. The object will only be present in a video resource if the video is an upcoming, live, or completed live broadcast. */
   VideoLiveStreamingDetails liveStreamingDetails;
 
   /** The monetizationDetails object encapsulates information about the monetization status of the video. */
@@ -6318,19 +6318,19 @@ class VideoListResponse {
 /** Details about the live streaming metadata. */
 class VideoLiveStreamingDetails {
 
-  /** The time in milliseconds since the epoch when the livestream actually ended. */
+  /** The time that the broadcast actually ended. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast is over. */
   core.String actualEndTime;
 
-  /** The time in milliseconds since the epoch when the livestream actually started. */
+  /** The time that the broadcast actually started. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. This value will not be available until the broadcast begins. */
   core.String actualStartTime;
 
-  /** Number of viewers currently watch the livestream. */
+  /** The number of viewers currently watching the broadcast. The property and its value will be present if the broadcast has current viewers and the broadcast owner has not hidden the viewcount for the video. Note that YouTube stops tracking the number of concurrent viewers for a broadcast when the broadcast ends. So, this property would not identify the number of viewers watching an archived video of a live broadcast that already ended. */
   core.String concurrentViewers;
 
-  /** The time in milliseconds since the epoch when the livestream is scheduled to end. */
+  /** The time that the broadcast is scheduled to end. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely. */
   core.String scheduledEndTime;
 
-  /** The time in milliseconds since the epoch when the livestream is scheduled to start. */
+  /** The time that the broadcast is scheduled to begin. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
   core.String scheduledStartTime;
 
   /** Create new VideoLiveStreamingDetails from JSON data */
