@@ -334,6 +334,86 @@ If the parameter identifies a property that contains child properties, the child
   }
 }
 
+class I18nLanguageResource_ {
+
+  final Client _client;
+
+  I18nLanguageResource_(Client client) :
+      _client = client;
+
+  /**
+   *
+   * [hl] - The hl parameter specifies the language that should be used for text values in the API response.
+   *   Default: en_US
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<I18nLanguageListResponse> list({core.String hl, core.Map optParams}) {
+    var url = "i18nLanguages";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (hl != null) queryParams["hl"] = hl;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new I18nLanguageListResponse.fromJson(data));
+  }
+}
+
+class I18nRegionResource_ {
+
+  final Client _client;
+
+  I18nRegionResource_(Client client) :
+      _client = client;
+
+  /**
+   *
+   * [hl] - The hl parameter specifies the language that should be used for text values in the API response.
+   *   Default: en_US
+   *
+   * [optParams] - Additional query parameters
+   */
+  async.Future<I18nRegionListResponse> list({core.String hl, core.Map optParams}) {
+    var url = "i18nRegions";
+    var urlParams = new core.Map();
+    var queryParams = new core.Map();
+
+    var paramErrors = new core.List();
+    if (hl != null) queryParams["hl"] = hl;
+    if (optParams != null) {
+      optParams.forEach((key, value) {
+        if (value != null && queryParams[key] == null) {
+          queryParams[key] = value;
+        }
+      });
+    }
+
+    if (!paramErrors.isEmpty) {
+      throw new core.ArgumentError(paramErrors.join(" / "));
+    }
+
+    var response;
+    response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
+    return response
+      .then((data) => new I18nRegionListResponse.fromJson(data));
+  }
+}
+
 class LiveBroadcastsResource_ {
 
   final Client _client;
@@ -352,11 +432,17 @@ class LiveBroadcastsResource_ {
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [streamId] - The streamId parameter specifies the unique ID of the video stream that is being bound to a broadcast. If this parameter is omitted, the API will remove any existing binding between the broadcast and a video stream.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> bind(core.String id, core.String part, {core.String onBehalfOfContentOwner, core.String streamId, core.Map optParams}) {
+  async.Future<LiveBroadcast> bind(core.String id, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.String streamId, core.Map optParams}) {
     var url = "liveBroadcasts/bind";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -365,6 +451,7 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (streamId != null) queryParams["streamId"] = streamId;
@@ -405,9 +492,17 @@ Important: You should only specify a value for this parameter if your broadcast 
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
+   * [walltime] - The walltime parameter specifies the wall clock time at which the specified slate change will occur.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> control(core.String id, core.String part, {core.bool displaySlate, core.String offsetTimeMs, core.String onBehalfOfContentOwner, core.Map optParams}) {
+  async.Future<LiveBroadcast> control(core.String id, core.String part, {core.bool displaySlate, core.String offsetTimeMs, core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.String walltime, core.Map optParams}) {
     var url = "liveBroadcasts/control";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -418,8 +513,10 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (id != null) queryParams["id"] = id;
     if (offsetTimeMs != null) queryParams["offsetTimeMs"] = offsetTimeMs;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
+    if (walltime != null) queryParams["walltime"] = walltime;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -447,9 +544,15 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(core.String id, {core.String onBehalfOfContentOwner, core.Map optParams}) {
+  async.Future<core.Map> delete(core.String id, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -458,6 +561,7 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -488,15 +592,22 @@ The part properties that you can include in the parameter value are id, snippet,
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> insert(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
+  async.Future<LiveBroadcast> insert(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -538,11 +649,21 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
    *
    * [mine] - The mine parameter can be used to instruct the API to only return broadcasts owned by the authenticated user. Set the parameter value to true to only retrieve your own broadcasts.
    *
+   * [onBehalfOfContentOwner] - Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcastListResponse> list(core.String part, {core.String broadcastStatus, core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
+  async.Future<LiveBroadcastListResponse> list(core.String part, {core.String broadcastStatus, core.String id, core.int maxResults, core.bool mine, core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.String pageToken, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -555,6 +676,8 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (mine != null) queryParams["mine"] = mine;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
@@ -593,9 +716,15 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> transition(core.String broadcastStatus, core.String id, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
+  async.Future<LiveBroadcast> transition(core.String broadcastStatus, core.String id, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveBroadcasts/transition";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -609,6 +738,7 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -644,15 +774,22 @@ Note that this method will override the existing values for all of the mutable p
 
 The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
    *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveBroadcast> update(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.Map optParams}) {
+  async.Future<LiveBroadcast> update(LiveBroadcast request, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveBroadcasts";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -686,9 +823,19 @@ class LiveStreamsResource_ {
    *
    * [id] - The id parameter specifies the YouTube live stream ID for the resource that is being deleted.
    *
+   * [onBehalfOfContentOwner] - Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<core.Map> delete(core.String id, {core.Map optParams}) {
+  async.Future<core.Map> delete(core.String id, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -696,6 +843,8 @@ class LiveStreamsResource_ {
     var paramErrors = new core.List();
     if (id == null) paramErrors.add("id is required");
     if (id != null) queryParams["id"] = id;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (optParams != null) {
       optParams.forEach((key, value) {
         if (value != null && queryParams[key] == null) {
@@ -722,14 +871,26 @@ class LiveStreamsResource_ {
 
 The part properties that you can include in the parameter value are id, snippet, cdn, and status.
    *
+   * [onBehalfOfContentOwner] - Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveStream> insert(LiveStream request, core.String part, {core.Map optParams}) {
+  async.Future<LiveStream> insert(LiveStream request, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {
@@ -764,11 +925,21 @@ The part properties that you can include in the parameter value are id, snippet,
    *
    * [mine] - The mine parameter can be used to instruct the API to only return streams owned by the authenticated user. Set the parameter value to true to only retrieve your own streams.
    *
+   * [onBehalfOfContentOwner] - Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [pageToken] - The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveStreamListResponse> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String pageToken, core.Map optParams}) {
+  async.Future<LiveStreamListResponse> list(core.String part, {core.String id, core.int maxResults, core.bool mine, core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.String pageToken, core.Map optParams}) {
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -777,6 +948,8 @@ The part properties that you can include in the parameter value are id, snippet,
     if (id != null) queryParams["id"] = id;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (mine != null) queryParams["mine"] = mine;
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (pageToken != null) queryParams["pageToken"] = pageToken;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
@@ -809,14 +982,26 @@ The part properties that you can include in the parameter value are id, snippet,
 
 Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. If the request body does not specify a value for a mutable property, the existing value for that property will be removed.
    *
+   * [onBehalfOfContentOwner] - Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+   *
+   * [onBehalfOfContentOwnerChannel] - This parameter can only be used in a properly authorized request. Note: This parameter is intended exclusively for YouTube content partners.
+
+The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel to which a video is being added. This parameter is required when a request specifies a value for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that parameter. In addition, the request must be authorized using a CMS account that is linked to the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content owner that the onBehalfOfContentOwner parameter specifies.
+
+This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
+   *
    * [optParams] - Additional query parameters
    */
-  async.Future<LiveStream> update(LiveStream request, core.String part, {core.Map optParams}) {
+  async.Future<LiveStream> update(LiveStream request, core.String part, {core.String onBehalfOfContentOwner, core.String onBehalfOfContentOwnerChannel, core.Map optParams}) {
     var url = "liveStreams";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
 
     var paramErrors = new core.List();
+    if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
+    if (onBehalfOfContentOwnerChannel != null) queryParams["onBehalfOfContentOwnerChannel"] = onBehalfOfContentOwnerChannel;
     if (part == null) paramErrors.add("part is required");
     if (part != null) queryParams["part"] = part;
     if (optParams != null) {

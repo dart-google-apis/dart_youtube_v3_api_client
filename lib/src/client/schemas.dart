@@ -943,6 +943,9 @@ class Channel {
   /** The contentDetails object encapsulates information about the channel's content. */
   ChannelContentDetails contentDetails;
 
+  /** The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel. */
+  ChannelContentOwnerDetails contentOwnerDetails;
+
   /** The conversionPings object encapsulates information about conversion pings that need to be respected by the channel. */
   ChannelConversionPings conversionPings;
 
@@ -980,6 +983,9 @@ class Channel {
     }
     if (json.containsKey("contentDetails")) {
       contentDetails = new ChannelContentDetails.fromJson(json["contentDetails"]);
+    }
+    if (json.containsKey("contentOwnerDetails")) {
+      contentOwnerDetails = new ChannelContentOwnerDetails.fromJson(json["contentOwnerDetails"]);
     }
     if (json.containsKey("conversionPings")) {
       conversionPings = new ChannelConversionPings.fromJson(json["conversionPings"]);
@@ -1022,6 +1028,9 @@ class Channel {
     }
     if (contentDetails != null) {
       output["contentDetails"] = contentDetails.toJson();
+    }
+    if (contentOwnerDetails != null) {
+      output["contentOwnerDetails"] = contentOwnerDetails.toJson();
     }
     if (conversionPings != null) {
       output["conversionPings"] = conversionPings.toJson();
@@ -1315,6 +1324,44 @@ class ChannelContentDetailsRelatedPlaylists {
   }
 
   /** Return String representation of ChannelContentDetailsRelatedPlaylists */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel. */
+class ChannelContentOwnerDetails {
+
+  /** The ID of the content owner linked to the channel. */
+  core.String contentOwner;
+
+  /** The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  core.String timeLinked;
+
+  /** Create new ChannelContentOwnerDetails from JSON data */
+  ChannelContentOwnerDetails.fromJson(core.Map json) {
+    if (json.containsKey("contentOwner")) {
+      contentOwner = json["contentOwner"];
+    }
+    if (json.containsKey("timeLinked")) {
+      timeLinked = json["timeLinked"];
+    }
+  }
+
+  /** Create JSON Object for ChannelContentOwnerDetails */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (contentOwner != null) {
+      output["contentOwner"] = contentOwner;
+    }
+    if (timeLinked != null) {
+      output["timeLinked"] = timeLinked;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelContentOwnerDetails */
   core.String toString() => JSON.encode(this.toJson());
 
 }
@@ -2225,6 +2272,322 @@ class GuideCategorySnippet {
   }
 
   /** Return String representation of GuideCategorySnippet */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** An i18nLanguage resource identifies a UI language currently supported by YouTube. */
+class I18nLanguage {
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** The ID that YouTube uses to uniquely identify the i18n language. */
+  core.String id;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#i18nLanguage". */
+  core.String kind;
+
+  /** The snippet object contains basic details about the i18n language, such as language code and human-readable name. */
+  I18nLanguageSnippet snippet;
+
+  /** Create new I18nLanguage from JSON data */
+  I18nLanguage.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("snippet")) {
+      snippet = new I18nLanguageSnippet.fromJson(json["snippet"]);
+    }
+  }
+
+  /** Create JSON Object for I18nLanguage */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (snippet != null) {
+      output["snippet"] = snippet.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nLanguage */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+class I18nLanguageListResponse {
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** Serialized EventId of the request which produced this response. */
+  core.String eventId;
+
+  /** A list of supported i18n languages. In this map, the i18n language ID is the map key, and its value is the corresponding i18nLanguage resource. */
+  core.List<I18nLanguage> items;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#i18nLanguageListResponse". */
+  core.String kind;
+
+  /** The visitorId identifies the visitor. */
+  core.String visitorId;
+
+  /** Create new I18nLanguageListResponse from JSON data */
+  I18nLanguageListResponse.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("eventId")) {
+      eventId = json["eventId"];
+    }
+    if (json.containsKey("items")) {
+      items = json["items"].map((itemsItem) => new I18nLanguage.fromJson(itemsItem)).toList();
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("visitorId")) {
+      visitorId = json["visitorId"];
+    }
+  }
+
+  /** Create JSON Object for I18nLanguageListResponse */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (eventId != null) {
+      output["eventId"] = eventId;
+    }
+    if (items != null) {
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (visitorId != null) {
+      output["visitorId"] = visitorId;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nLanguageListResponse */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** Basic details about an i18n language, such as language code and human-readable name. */
+class I18nLanguageSnippet {
+
+  /** A short BCP-47 code that uniquely identifies a language. */
+  core.String hl;
+
+  /** The human-readable name of the language in the language itself. */
+  core.String name;
+
+  /** Create new I18nLanguageSnippet from JSON data */
+  I18nLanguageSnippet.fromJson(core.Map json) {
+    if (json.containsKey("hl")) {
+      hl = json["hl"];
+    }
+    if (json.containsKey("name")) {
+      name = json["name"];
+    }
+  }
+
+  /** Create JSON Object for I18nLanguageSnippet */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (hl != null) {
+      output["hl"] = hl;
+    }
+    if (name != null) {
+      output["name"] = name;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nLanguageSnippet */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** A i18nRegion resource identifies a region where YouTube is available. */
+class I18nRegion {
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** The ID that YouTube uses to uniquely identify the i18n region. */
+  core.String id;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#i18nRegion". */
+  core.String kind;
+
+  /** The snippet object contains basic details about the i18n region, such as region code and human-readable name. */
+  I18nRegionSnippet snippet;
+
+  /** Create new I18nRegion from JSON data */
+  I18nRegion.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("snippet")) {
+      snippet = new I18nRegionSnippet.fromJson(json["snippet"]);
+    }
+  }
+
+  /** Create JSON Object for I18nRegion */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (snippet != null) {
+      output["snippet"] = snippet.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nRegion */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+class I18nRegionListResponse {
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** Serialized EventId of the request which produced this response. */
+  core.String eventId;
+
+  /** A list of regions where YouTube is available. In this map, the i18n region ID is the map key, and its value is the corresponding i18nRegion resource. */
+  core.List<I18nRegion> items;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#i18nRegionListResponse". */
+  core.String kind;
+
+  /** The visitorId identifies the visitor. */
+  core.String visitorId;
+
+  /** Create new I18nRegionListResponse from JSON data */
+  I18nRegionListResponse.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("eventId")) {
+      eventId = json["eventId"];
+    }
+    if (json.containsKey("items")) {
+      items = json["items"].map((itemsItem) => new I18nRegion.fromJson(itemsItem)).toList();
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("visitorId")) {
+      visitorId = json["visitorId"];
+    }
+  }
+
+  /** Create JSON Object for I18nRegionListResponse */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (eventId != null) {
+      output["eventId"] = eventId;
+    }
+    if (items != null) {
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (visitorId != null) {
+      output["visitorId"] = visitorId;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nRegionListResponse */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** Basic details about an i18n region, such as region code and human-readable name. */
+class I18nRegionSnippet {
+
+  /** The region code as a 2-letter ISO country code. */
+  core.String gl;
+
+  /** The human-readable name of the region. */
+  core.String name;
+
+  /** Create new I18nRegionSnippet from JSON data */
+  I18nRegionSnippet.fromJson(core.Map json) {
+    if (json.containsKey("gl")) {
+      gl = json["gl"];
+    }
+    if (json.containsKey("name")) {
+      name = json["name"];
+    }
+  }
+
+  /** Create JSON Object for I18nRegionSnippet */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (gl != null) {
+      output["gl"] = gl;
+    }
+    if (name != null) {
+      output["name"] = name;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of I18nRegionSnippet */
   core.String toString() => JSON.encode(this.toJson());
 
 }
@@ -6875,6 +7238,9 @@ class VideoStatus {
   /** This value indicates if the extended video statistics on the watch page can be viewed by everyone. Note that the view count, likes, etc will still be visible if this is disabled. */
   core.bool publicStatsViewable;
 
+  /** The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  core.String publishAt;
+
   /** This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected. */
   core.String rejectionReason;
 
@@ -6897,6 +7263,9 @@ class VideoStatus {
     }
     if (json.containsKey("publicStatsViewable")) {
       publicStatsViewable = json["publicStatsViewable"];
+    }
+    if (json.containsKey("publishAt")) {
+      publishAt = json["publishAt"];
     }
     if (json.containsKey("rejectionReason")) {
       rejectionReason = json["rejectionReason"];
@@ -6924,6 +7293,9 @@ class VideoStatus {
     }
     if (publicStatsViewable != null) {
       output["publicStatsViewable"] = publicStatsViewable;
+    }
+    if (publishAt != null) {
+      output["publishAt"] = publishAt;
     }
     if (rejectionReason != null) {
       output["rejectionReason"] = rejectionReason;
