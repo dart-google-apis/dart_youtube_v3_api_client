@@ -10,10 +10,11 @@ abstract class Client extends ClientBase {
 
   ActivitiesResource_ get activities => new ActivitiesResource_(this);
   ChannelBannersResource_ get channelBanners => new ChannelBannersResource_(this);
+  ChannelSectionsResource_ get channelSections => new ChannelSectionsResource_(this);
   ChannelsResource_ get channels => new ChannelsResource_(this);
   GuideCategoriesResource_ get guideCategories => new GuideCategoriesResource_(this);
-  I18nLanguageResource_ get i18nLanguage => new I18nLanguageResource_(this);
-  I18nRegionResource_ get i18nRegion => new I18nRegionResource_(this);
+  I18nLanguagesResource_ get i18nLanguages => new I18nLanguagesResource_(this);
+  I18nRegionsResource_ get i18nRegions => new I18nRegionsResource_(this);
   LiveBroadcastsResource_ get liveBroadcasts => new LiveBroadcastsResource_(this);
   LiveStreamsResource_ get liveStreams => new LiveStreamsResource_(this);
   PlaylistItemsResource_ get playlistItems => new PlaylistItemsResource_(this);

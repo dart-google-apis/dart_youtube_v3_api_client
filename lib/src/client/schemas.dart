@@ -1531,6 +1531,238 @@ class ChannelListResponse {
 
 }
 
+/** TODO(lxz) follow up with adiamondstein@ to fullfill the doc before deploying */
+class ChannelSection {
+
+  /** The contentDetails object contains details about the ChannelSection content, such as playlists and channels. */
+  ChannelSectionContentDetails contentDetails;
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** The ID that YouTube uses to uniquely identify the ChannelSection. */
+  core.String id;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#channelSection". */
+  core.String kind;
+
+  /** The snippet object contains basic details about the ChannelSection, such as its type, style and title. */
+  ChannelSectionSnippet snippet;
+
+  /** Create new ChannelSection from JSON data */
+  ChannelSection.fromJson(core.Map json) {
+    if (json.containsKey("contentDetails")) {
+      contentDetails = new ChannelSectionContentDetails.fromJson(json["contentDetails"]);
+    }
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("id")) {
+      id = json["id"];
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("snippet")) {
+      snippet = new ChannelSectionSnippet.fromJson(json["snippet"]);
+    }
+  }
+
+  /** Create JSON Object for ChannelSection */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (contentDetails != null) {
+      output["contentDetails"] = contentDetails.toJson();
+    }
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (id != null) {
+      output["id"] = id;
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (snippet != null) {
+      output["snippet"] = snippet.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelSection */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** Details about a channelsection, including playlists and channels. */
+class ChannelSectionContentDetails {
+
+  /** The channel ids for type multiple_channels. */
+  core.List<core.String> channels;
+
+  /** The playlist ids for type single_playlist and multiple_playlists. For singlePlaylist, only one playlistId is allowed. */
+  core.List<core.String> playlists;
+
+  /** Create new ChannelSectionContentDetails from JSON data */
+  ChannelSectionContentDetails.fromJson(core.Map json) {
+    if (json.containsKey("channels")) {
+      channels = json["channels"].toList();
+    }
+    if (json.containsKey("playlists")) {
+      playlists = json["playlists"].toList();
+    }
+  }
+
+  /** Create JSON Object for ChannelSectionContentDetails */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (channels != null) {
+      output["channels"] = channels.toList();
+    }
+    if (playlists != null) {
+      output["playlists"] = playlists.toList();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelSectionContentDetails */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+class ChannelSectionListResponse {
+
+  /** Etag of this resource. */
+  core.String etag;
+
+  /** Serialized EventId of the request which produced this response. */
+  core.String eventId;
+
+  /** A list of ChannelSections that match the request criteria. */
+  core.List<ChannelSection> items;
+
+  /** Identifies what kind of resource this is. Value: the fixed string "youtube#channelSectionListResponse". */
+  core.String kind;
+
+  /** The visitorId identifies the visitor. */
+  core.String visitorId;
+
+  /** Create new ChannelSectionListResponse from JSON data */
+  ChannelSectionListResponse.fromJson(core.Map json) {
+    if (json.containsKey("etag")) {
+      etag = json["etag"];
+    }
+    if (json.containsKey("eventId")) {
+      eventId = json["eventId"];
+    }
+    if (json.containsKey("items")) {
+      items = json["items"].map((itemsItem) => new ChannelSection.fromJson(itemsItem)).toList();
+    }
+    if (json.containsKey("kind")) {
+      kind = json["kind"];
+    }
+    if (json.containsKey("visitorId")) {
+      visitorId = json["visitorId"];
+    }
+  }
+
+  /** Create JSON Object for ChannelSectionListResponse */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (etag != null) {
+      output["etag"] = etag;
+    }
+    if (eventId != null) {
+      output["eventId"] = eventId;
+    }
+    if (items != null) {
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
+    }
+    if (kind != null) {
+      output["kind"] = kind;
+    }
+    if (visitorId != null) {
+      output["visitorId"] = visitorId;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelSectionListResponse */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
+/** Basic details about a channelsection, including title, style and position. */
+class ChannelSectionSnippet {
+
+  /** The ID that YouTube uses to uniquely identify the channel that published the channelSection. */
+  core.String channelId;
+
+  /** The position of the channelSection in the channel. */
+  core.int position;
+
+  /** The style of the channelSection. */
+  core.String style;
+
+  /** The channelSection's title for multiple_playlists and multiple_channels. */
+  core.String title;
+
+  /** The type of the channelSection. */
+  core.String type;
+
+  /** Create new ChannelSectionSnippet from JSON data */
+  ChannelSectionSnippet.fromJson(core.Map json) {
+    if (json.containsKey("channelId")) {
+      channelId = json["channelId"];
+    }
+    if (json.containsKey("position")) {
+      position = json["position"];
+    }
+    if (json.containsKey("style")) {
+      style = json["style"];
+    }
+    if (json.containsKey("title")) {
+      title = json["title"];
+    }
+    if (json.containsKey("type")) {
+      type = json["type"];
+    }
+  }
+
+  /** Create JSON Object for ChannelSectionSnippet */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (channelId != null) {
+      output["channelId"] = channelId;
+    }
+    if (position != null) {
+      output["position"] = position;
+    }
+    if (style != null) {
+      output["style"] = style;
+    }
+    if (title != null) {
+      output["title"] = title;
+    }
+    if (type != null) {
+      output["type"] = type;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ChannelSectionSnippet */
+  core.String toString() => JSON.encode(this.toJson());
+
+}
+
 /** Branding properties for the channel view. */
 class ChannelSettings {
 
