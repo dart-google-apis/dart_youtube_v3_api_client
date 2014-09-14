@@ -2085,8 +2085,20 @@ class ContentRating {
   /** Rating system in Australia - Australian Classification Board */
   core.String acbRating;
 
+  /** Rating system for Italy - Autorit� per le Garanzie nelle Comunicazioni */
+  core.String agcomRating;
+
+  /** Rating system for Chile - Asociaci�n Nacional de Televisi�n */
+  core.String anatelRating;
+
   /** British Board of Film Classification */
   core.String bbfcRating;
+
+  /** Rating system for Thailand - Board of Filmand Video Censors */
+  core.String bfvcRating;
+
+  /** Rating system for Austria - Bundesministeriums f�r Unterricht, Kunst und Kultur! */
+  core.String bmukkRating;
 
   /** Rating system for Canadian TV - Canadian TV Classification System */
   core.String catvRating;
@@ -2097,41 +2109,161 @@ class ContentRating {
   /** Rating system in India - Central Board of Film Certification */
   core.String cbfcRating;
 
+  /** Rating system for Chile - Consejo de Calificaci�n Cinematogr�fica */
+  core.String cccRating;
+
+  /** Rating system for Portugal - Comiss�o de Classifica��o de Espect�culos */
+  core.String cceRating;
+
+  /** Rating system for Switzerland - Switzerland Rating System */
+  core.String chfilmRating;
+
   /** Canadian Home Video Rating System */
   core.String chvrsRating;
+
+  /** Rating system for Belgium - Belgium Rating System */
+  core.String cicfRating;
+
+  /** Rating system for Romania - CONSILIUL NATIONAL AL AUDIOVIZUALULUI - CNA */
+  core.String cnaRating;
+
+  /** Rating system for France - Conseil sup�rieur de l?audiovisuel */
+  core.String csaRating;
+
+  /** Rating system for Luxembourg - Commission de surveillance de la classification des films */
+  core.String cscfRating;
+
+  /** Rating system for Czech republic - Czech republic Rating System */
+  core.String czfilmRating;
 
   /** Rating system in Brazil - Department of Justice, Rating, Titles and Qualification */
   core.String djctqRating;
 
+  /** Rating system for Estonia - Estonia Rating System */
+  core.String eefilmRating;
+
+  /** Rating system for Egypt - Egypt Rating System */
+  core.String egfilmRating;
+
   /** Rating system in Japan - Eiga Rinri Kanri Iinkai */
   core.String eirinRating;
+
+  /** Rating system for Malaysia - Film Censorship Board of Malaysia */
+  core.String fcbmRating;
+
+  /** Rating system for Hong kong - Office for Film, Newspaper and Article Administration */
+  core.String fcoRating;
 
   /** Rating system in France - French Minister of Culture */
   core.String fmocRating;
 
+  /** Rating system for South africa - Film & Publication Board */
+  core.String fpbRating;
+
   /** Rating system in Germany - Voluntary Self Regulation of the Movie Industry */
   core.String fskRating;
+
+  /** Rating system for Greece - Greece Rating System */
+  core.String grfilmRating;
 
   /** Rating system in Spain - Instituto de Cinematografia y de las Artes Audiovisuales */
   core.String icaaRating;
 
+  /** Rating system in Ireland - Irish Film Classification Office */
+  core.String ifcoRating;
+
+  /** Rating system for Israel - Israel Rating System */
+  core.String ilfilmRating;
+
+  /** Rating system for Argentina - Instituto Nacional de Cine y Artes Audiovisuales */
+  core.String incaaRating;
+
+  /** Rating system for Kenya - Kenya Film Classification Board */
+  core.String kfcbRating;
+
+  /** Rating system for Netherlands - Nederlands Instituut voor de Classificatie van Audiovisuele Media */
+  core.String kijkwijzerRating;
+
   /** Rating system in South Korea - Korea Media Rating Board */
   core.String kmrbRating;
+
+  /** Rating system for Indonesia - Lembaga Sensor Film */
+  core.String lsfRating;
+
+  /** Rating system for Malta - Film Age-Classification Board */
+  core.String mccaaRating;
+
+  /** Rating system for Denmark - The Media Council for Children and Young People */
+  core.String mccypRating;
+
+  /** Rating system for Singapore - Media Development Authority */
+  core.String mdaRating;
+
+  /** Rating system for Norway - Medietilsynet */
+  core.String medietilsynetRating;
+
+  /** Rating system for Finland - Finnish Centre for Media Education and Audiovisual Media */
+  core.String mekuRating;
 
   /** Rating system in Italy - Ministero dei Beni e delle Attivita Culturali e del Turismo */
   core.String mibacRating;
 
+  /** Rating system for Colombia - MoC */
+  core.String mocRating;
+
+  /** Rating system for Taiwan - Ministry of Culture - Tawan */
+  core.String moctwRating;
+
   /** Motion Picture Association of America rating for the content. */
   core.String mpaaRating;
+
+  /** Rating system for Philippines - MOVIE AND TELEVISION REVIEW AND CLASSIFICATION BOARD */
+  core.String mtrcbRating;
+
+  /** Rating system for Maldives - National Bureau of Classification */
+  core.String nbcRating;
+
+  /** Rating system for Poland - National Broadcasting Council */
+  core.String nbcplRating;
+
+  /** Rating system for Bulgaria - National Film Centre */
+  core.String nfrcRating;
+
+  /** Rating system for Nigeria - National Film and Video Censors Board */
+  core.String nfvcbRating;
+
+  /** Rating system for Latvia - National Film Center of Latvia */
+  core.String nkclvRating;
 
   /** Rating system in New Zealand - Office of Film and Literature Classification */
   core.String oflcRating;
 
+  /** Rating system for Peru - Peru Rating System */
+  core.String pefilmRating;
+
+  /** Rating system for Hungary - Rating Committee of the National Office of Film */
+  core.String rcnofRating;
+
+  /** Rating system for Venezuela - SiBCI */
+  core.String resorteviolenciaRating;
+
   /** Rating system in Mexico - General Directorate of Radio, Television and Cinematography */
   core.String rtcRating;
 
+  /** Rating system for Ireland - Raidi� Teilif�s �ireann */
+  core.String rteRating;
+
   /** Rating system in Russia */
   core.String russiaRating;
+
+  /** Rating system for Slovakia - Slovakia Rating System */
+  core.String skfilmRating;
+
+  /** Rating system for Iceland - SMAIS */
+  core.String smaisRating;
+
+  /** Rating system for Sweden - Statens medier�d (National Media Council) */
+  core.String smsaRating;
 
   /** TV Parental Guidelines rating of the content. */
   core.String tvpgRating;
@@ -2144,8 +2276,20 @@ class ContentRating {
     if (json.containsKey("acbRating")) {
       acbRating = json["acbRating"];
     }
+    if (json.containsKey("agcomRating")) {
+      agcomRating = json["agcomRating"];
+    }
+    if (json.containsKey("anatelRating")) {
+      anatelRating = json["anatelRating"];
+    }
     if (json.containsKey("bbfcRating")) {
       bbfcRating = json["bbfcRating"];
+    }
+    if (json.containsKey("bfvcRating")) {
+      bfvcRating = json["bfvcRating"];
+    }
+    if (json.containsKey("bmukkRating")) {
+      bmukkRating = json["bmukkRating"];
     }
     if (json.containsKey("catvRating")) {
       catvRating = json["catvRating"];
@@ -2156,41 +2300,161 @@ class ContentRating {
     if (json.containsKey("cbfcRating")) {
       cbfcRating = json["cbfcRating"];
     }
+    if (json.containsKey("cccRating")) {
+      cccRating = json["cccRating"];
+    }
+    if (json.containsKey("cceRating")) {
+      cceRating = json["cceRating"];
+    }
+    if (json.containsKey("chfilmRating")) {
+      chfilmRating = json["chfilmRating"];
+    }
     if (json.containsKey("chvrsRating")) {
       chvrsRating = json["chvrsRating"];
+    }
+    if (json.containsKey("cicfRating")) {
+      cicfRating = json["cicfRating"];
+    }
+    if (json.containsKey("cnaRating")) {
+      cnaRating = json["cnaRating"];
+    }
+    if (json.containsKey("csaRating")) {
+      csaRating = json["csaRating"];
+    }
+    if (json.containsKey("cscfRating")) {
+      cscfRating = json["cscfRating"];
+    }
+    if (json.containsKey("czfilmRating")) {
+      czfilmRating = json["czfilmRating"];
     }
     if (json.containsKey("djctqRating")) {
       djctqRating = json["djctqRating"];
     }
+    if (json.containsKey("eefilmRating")) {
+      eefilmRating = json["eefilmRating"];
+    }
+    if (json.containsKey("egfilmRating")) {
+      egfilmRating = json["egfilmRating"];
+    }
     if (json.containsKey("eirinRating")) {
       eirinRating = json["eirinRating"];
+    }
+    if (json.containsKey("fcbmRating")) {
+      fcbmRating = json["fcbmRating"];
+    }
+    if (json.containsKey("fcoRating")) {
+      fcoRating = json["fcoRating"];
     }
     if (json.containsKey("fmocRating")) {
       fmocRating = json["fmocRating"];
     }
+    if (json.containsKey("fpbRating")) {
+      fpbRating = json["fpbRating"];
+    }
     if (json.containsKey("fskRating")) {
       fskRating = json["fskRating"];
+    }
+    if (json.containsKey("grfilmRating")) {
+      grfilmRating = json["grfilmRating"];
     }
     if (json.containsKey("icaaRating")) {
       icaaRating = json["icaaRating"];
     }
+    if (json.containsKey("ifcoRating")) {
+      ifcoRating = json["ifcoRating"];
+    }
+    if (json.containsKey("ilfilmRating")) {
+      ilfilmRating = json["ilfilmRating"];
+    }
+    if (json.containsKey("incaaRating")) {
+      incaaRating = json["incaaRating"];
+    }
+    if (json.containsKey("kfcbRating")) {
+      kfcbRating = json["kfcbRating"];
+    }
+    if (json.containsKey("kijkwijzerRating")) {
+      kijkwijzerRating = json["kijkwijzerRating"];
+    }
     if (json.containsKey("kmrbRating")) {
       kmrbRating = json["kmrbRating"];
+    }
+    if (json.containsKey("lsfRating")) {
+      lsfRating = json["lsfRating"];
+    }
+    if (json.containsKey("mccaaRating")) {
+      mccaaRating = json["mccaaRating"];
+    }
+    if (json.containsKey("mccypRating")) {
+      mccypRating = json["mccypRating"];
+    }
+    if (json.containsKey("mdaRating")) {
+      mdaRating = json["mdaRating"];
+    }
+    if (json.containsKey("medietilsynetRating")) {
+      medietilsynetRating = json["medietilsynetRating"];
+    }
+    if (json.containsKey("mekuRating")) {
+      mekuRating = json["mekuRating"];
     }
     if (json.containsKey("mibacRating")) {
       mibacRating = json["mibacRating"];
     }
+    if (json.containsKey("mocRating")) {
+      mocRating = json["mocRating"];
+    }
+    if (json.containsKey("moctwRating")) {
+      moctwRating = json["moctwRating"];
+    }
     if (json.containsKey("mpaaRating")) {
       mpaaRating = json["mpaaRating"];
+    }
+    if (json.containsKey("mtrcbRating")) {
+      mtrcbRating = json["mtrcbRating"];
+    }
+    if (json.containsKey("nbcRating")) {
+      nbcRating = json["nbcRating"];
+    }
+    if (json.containsKey("nbcplRating")) {
+      nbcplRating = json["nbcplRating"];
+    }
+    if (json.containsKey("nfrcRating")) {
+      nfrcRating = json["nfrcRating"];
+    }
+    if (json.containsKey("nfvcbRating")) {
+      nfvcbRating = json["nfvcbRating"];
+    }
+    if (json.containsKey("nkclvRating")) {
+      nkclvRating = json["nkclvRating"];
     }
     if (json.containsKey("oflcRating")) {
       oflcRating = json["oflcRating"];
     }
+    if (json.containsKey("pefilmRating")) {
+      pefilmRating = json["pefilmRating"];
+    }
+    if (json.containsKey("rcnofRating")) {
+      rcnofRating = json["rcnofRating"];
+    }
+    if (json.containsKey("resorteviolenciaRating")) {
+      resorteviolenciaRating = json["resorteviolenciaRating"];
+    }
     if (json.containsKey("rtcRating")) {
       rtcRating = json["rtcRating"];
     }
+    if (json.containsKey("rteRating")) {
+      rteRating = json["rteRating"];
+    }
     if (json.containsKey("russiaRating")) {
       russiaRating = json["russiaRating"];
+    }
+    if (json.containsKey("skfilmRating")) {
+      skfilmRating = json["skfilmRating"];
+    }
+    if (json.containsKey("smaisRating")) {
+      smaisRating = json["smaisRating"];
+    }
+    if (json.containsKey("smsaRating")) {
+      smsaRating = json["smsaRating"];
     }
     if (json.containsKey("tvpgRating")) {
       tvpgRating = json["tvpgRating"];
@@ -2207,8 +2471,20 @@ class ContentRating {
     if (acbRating != null) {
       output["acbRating"] = acbRating;
     }
+    if (agcomRating != null) {
+      output["agcomRating"] = agcomRating;
+    }
+    if (anatelRating != null) {
+      output["anatelRating"] = anatelRating;
+    }
     if (bbfcRating != null) {
       output["bbfcRating"] = bbfcRating;
+    }
+    if (bfvcRating != null) {
+      output["bfvcRating"] = bfvcRating;
+    }
+    if (bmukkRating != null) {
+      output["bmukkRating"] = bmukkRating;
     }
     if (catvRating != null) {
       output["catvRating"] = catvRating;
@@ -2219,41 +2495,161 @@ class ContentRating {
     if (cbfcRating != null) {
       output["cbfcRating"] = cbfcRating;
     }
+    if (cccRating != null) {
+      output["cccRating"] = cccRating;
+    }
+    if (cceRating != null) {
+      output["cceRating"] = cceRating;
+    }
+    if (chfilmRating != null) {
+      output["chfilmRating"] = chfilmRating;
+    }
     if (chvrsRating != null) {
       output["chvrsRating"] = chvrsRating;
+    }
+    if (cicfRating != null) {
+      output["cicfRating"] = cicfRating;
+    }
+    if (cnaRating != null) {
+      output["cnaRating"] = cnaRating;
+    }
+    if (csaRating != null) {
+      output["csaRating"] = csaRating;
+    }
+    if (cscfRating != null) {
+      output["cscfRating"] = cscfRating;
+    }
+    if (czfilmRating != null) {
+      output["czfilmRating"] = czfilmRating;
     }
     if (djctqRating != null) {
       output["djctqRating"] = djctqRating;
     }
+    if (eefilmRating != null) {
+      output["eefilmRating"] = eefilmRating;
+    }
+    if (egfilmRating != null) {
+      output["egfilmRating"] = egfilmRating;
+    }
     if (eirinRating != null) {
       output["eirinRating"] = eirinRating;
+    }
+    if (fcbmRating != null) {
+      output["fcbmRating"] = fcbmRating;
+    }
+    if (fcoRating != null) {
+      output["fcoRating"] = fcoRating;
     }
     if (fmocRating != null) {
       output["fmocRating"] = fmocRating;
     }
+    if (fpbRating != null) {
+      output["fpbRating"] = fpbRating;
+    }
     if (fskRating != null) {
       output["fskRating"] = fskRating;
+    }
+    if (grfilmRating != null) {
+      output["grfilmRating"] = grfilmRating;
     }
     if (icaaRating != null) {
       output["icaaRating"] = icaaRating;
     }
+    if (ifcoRating != null) {
+      output["ifcoRating"] = ifcoRating;
+    }
+    if (ilfilmRating != null) {
+      output["ilfilmRating"] = ilfilmRating;
+    }
+    if (incaaRating != null) {
+      output["incaaRating"] = incaaRating;
+    }
+    if (kfcbRating != null) {
+      output["kfcbRating"] = kfcbRating;
+    }
+    if (kijkwijzerRating != null) {
+      output["kijkwijzerRating"] = kijkwijzerRating;
+    }
     if (kmrbRating != null) {
       output["kmrbRating"] = kmrbRating;
+    }
+    if (lsfRating != null) {
+      output["lsfRating"] = lsfRating;
+    }
+    if (mccaaRating != null) {
+      output["mccaaRating"] = mccaaRating;
+    }
+    if (mccypRating != null) {
+      output["mccypRating"] = mccypRating;
+    }
+    if (mdaRating != null) {
+      output["mdaRating"] = mdaRating;
+    }
+    if (medietilsynetRating != null) {
+      output["medietilsynetRating"] = medietilsynetRating;
+    }
+    if (mekuRating != null) {
+      output["mekuRating"] = mekuRating;
     }
     if (mibacRating != null) {
       output["mibacRating"] = mibacRating;
     }
+    if (mocRating != null) {
+      output["mocRating"] = mocRating;
+    }
+    if (moctwRating != null) {
+      output["moctwRating"] = moctwRating;
+    }
     if (mpaaRating != null) {
       output["mpaaRating"] = mpaaRating;
+    }
+    if (mtrcbRating != null) {
+      output["mtrcbRating"] = mtrcbRating;
+    }
+    if (nbcRating != null) {
+      output["nbcRating"] = nbcRating;
+    }
+    if (nbcplRating != null) {
+      output["nbcplRating"] = nbcplRating;
+    }
+    if (nfrcRating != null) {
+      output["nfrcRating"] = nfrcRating;
+    }
+    if (nfvcbRating != null) {
+      output["nfvcbRating"] = nfvcbRating;
+    }
+    if (nkclvRating != null) {
+      output["nkclvRating"] = nkclvRating;
     }
     if (oflcRating != null) {
       output["oflcRating"] = oflcRating;
     }
+    if (pefilmRating != null) {
+      output["pefilmRating"] = pefilmRating;
+    }
+    if (rcnofRating != null) {
+      output["rcnofRating"] = rcnofRating;
+    }
+    if (resorteviolenciaRating != null) {
+      output["resorteviolenciaRating"] = resorteviolenciaRating;
+    }
     if (rtcRating != null) {
       output["rtcRating"] = rtcRating;
     }
+    if (rteRating != null) {
+      output["rteRating"] = rteRating;
+    }
     if (russiaRating != null) {
       output["russiaRating"] = russiaRating;
+    }
+    if (skfilmRating != null) {
+      output["skfilmRating"] = skfilmRating;
+    }
+    if (smaisRating != null) {
+      output["smaisRating"] = smaisRating;
+    }
+    if (smsaRating != null) {
+      output["smsaRating"] = smsaRating;
     }
     if (tvpgRating != null) {
       output["tvpgRating"] = tvpgRating;
@@ -3661,6 +4057,9 @@ class LiveBroadcastStatus {
   /** The broadcast's status. The status can be updated using the API's liveBroadcasts.transition method. */
   core.String lifeCycleStatus;
 
+  /** Priority of the live broadcast event (internal state). */
+  core.String liveBroadcastPriority;
+
   /** The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource. */
   core.String privacyStatus;
 
@@ -3671,6 +4070,9 @@ class LiveBroadcastStatus {
   LiveBroadcastStatus.fromJson(core.Map json) {
     if (json.containsKey("lifeCycleStatus")) {
       lifeCycleStatus = json["lifeCycleStatus"];
+    }
+    if (json.containsKey("liveBroadcastPriority")) {
+      liveBroadcastPriority = json["liveBroadcastPriority"];
     }
     if (json.containsKey("privacyStatus")) {
       privacyStatus = json["privacyStatus"];
@@ -3686,6 +4088,9 @@ class LiveBroadcastStatus {
 
     if (lifeCycleStatus != null) {
       output["lifeCycleStatus"] = lifeCycleStatus;
+    }
+    if (liveBroadcastPriority != null) {
+      output["liveBroadcastPriority"] = liveBroadcastPriority;
     }
     if (privacyStatus != null) {
       output["privacyStatus"] = privacyStatus;
@@ -7248,7 +7653,7 @@ class VideoRecordingDetails {
   /** The text description of the location where the video was recorded. */
   core.String locationDescription;
 
-  /** The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format. */
+  /** The date and time when the video was recorded. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format. */
   core.String recordingDate;
 
   /** Create new VideoRecordingDetails from JSON data */

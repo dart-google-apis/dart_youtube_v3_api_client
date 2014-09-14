@@ -683,7 +683,7 @@ The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of 
 
 This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and perform actions on behalf of the channel specified in the parameter value, without having to provide authentication credentials for each separate channel.
    *
-   * [walltime] - The walltime parameter specifies the wall clock time at which the specified slate change will occur.
+   * [walltime] - The walltime parameter specifies the wall clock time at which the specified slate change will occur. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sssZ) format.
    *
    * [optParams] - Additional query parameters
    */
@@ -1623,6 +1623,10 @@ The forContentOwner parameter restricts the search to only retrieve resources ow
    *
    * [forMine] - The forMine parameter restricts the search to only retrieve videos owned by the authenticated user. If you set this parameter to true, then the type parameter's value must also be set to video.
    *
+   * [location] - The location parameter restricts a search to videos that have a geographical location specified in their metadata. The value is a string that specifies geographic latitude/longitude coordinates e.g. (37.42307,-122.08427)
+   *
+   * [locationRadius] - The locationRadius, in conjunction with the location parameter, defines a geographic area. If the geographic coordinates associated with a video fall within that area, then the video may be included in search results. This parameter value must be a floating point number followed by a measurement unit. Valid measurement units are m, km, ft, and mi. For example, valid parameter values include 1500m, 5km, 10000ft, and 0.75mi. The API does not support locationRadius parameter values larger than 1000 kilometers.
+   *
    * [maxResults] - The maxResults parameter specifies the maximum number of items that should be returned in the result set.
    *   Default: 5
    *   Minimum: 0
@@ -1716,7 +1720,7 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
    *
    * [optParams] - Additional query parameters
    */
-  async.Future<SearchListResponse> list(core.String part, {core.String channelId, core.String channelType, core.String eventType, core.bool forContentOwner, core.bool forMine, core.int maxResults, core.String onBehalfOfContentOwner, core.String order, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String q, core.String regionCode, core.String relatedToVideoId, core.String safeSearch, core.String topicId, core.String type, core.String videoCaption, core.String videoCategoryId, core.String videoDefinition, core.String videoDimension, core.String videoDuration, core.String videoEmbeddable, core.String videoLicense, core.String videoSyndicated, core.String videoType, core.Map optParams}) {
+  async.Future<SearchListResponse> list(core.String part, {core.String channelId, core.String channelType, core.String eventType, core.bool forContentOwner, core.bool forMine, core.String location, core.String locationRadius, core.int maxResults, core.String onBehalfOfContentOwner, core.String order, core.String pageToken, core.String publishedAfter, core.String publishedBefore, core.String q, core.String regionCode, core.String relatedToVideoId, core.String safeSearch, core.String topicId, core.String type, core.String videoCaption, core.String videoCategoryId, core.String videoDefinition, core.String videoDimension, core.String videoDuration, core.String videoEmbeddable, core.String videoLicense, core.String videoSyndicated, core.String videoType, core.Map optParams}) {
     var url = "search";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -1733,6 +1737,8 @@ The onBehalfOfContentOwner parameter indicates that the request's authorization 
     if (eventType != null) queryParams["eventType"] = eventType;
     if (forContentOwner != null) queryParams["forContentOwner"] = forContentOwner;
     if (forMine != null) queryParams["forMine"] = forMine;
+    if (location != null) queryParams["location"] = location;
+    if (locationRadius != null) queryParams["locationRadius"] = locationRadius;
     if (maxResults != null) queryParams["maxResults"] = maxResults;
     if (onBehalfOfContentOwner != null) queryParams["onBehalfOfContentOwner"] = onBehalfOfContentOwner;
     if (order != null && !["date", "rating", "relevance", "title", "videoCount", "viewCount"].contains(order)) {

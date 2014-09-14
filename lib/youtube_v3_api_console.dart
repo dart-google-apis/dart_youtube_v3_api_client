@@ -7,6 +7,7 @@ import 'package:google_youtube_v3_api/src/console_client.dart';
 import "package:google_youtube_v3_api/youtube_v3_api_client.dart";
 
 /** Programmatic access to YouTube features. */
+@deprecated
 class Youtube extends Client with ConsoleClient {
 
   /** OAuth Scope2: Manage your YouTube account */
